@@ -112,6 +112,43 @@
       });
     }
 
+    function loadAdv(arg1,arg2){
+      $.ajax({
+        type: "GET",
+        url: '/creative/creative/subselect',
+        data: {"creativetype": arg1,"creativeadv":arg2},
+        dataType: "json",
+        error: function (XMLHttpRequest, textStatus, errorThrown, data) {
+          console.info(XMLHttpRequest.status);
+          console.info(XMLHttpRequest.readyState);
+          console.info(textStatus);
+          console.info(XMLHttpRequest.responseText);
+        },
+
+        success: function (data) {
+//          $('#resText').empty();   //清空resText里面的所有内容
+          alert('请求ok'+arg1+arg2);
+//
+          var str1 = "";
+          //清空table中的html
+          str0="#"+arg2
+          $(str0).html("");
+          str1="<option value="+arg2+">"+arg2+"</option>";
+          $("#"+arg2).append(str1);
+          for (var i = 0; i < data.length; i++) {
+
+            str1="<option value="+data[i].toSelect+">"+data[i].toSelect+"</option>";
+
+
+            $(str0).append(str1);
+          }
+        },
+
+      });
+
+
+    }
+
 
     function typeForm(arg1) {
 
@@ -163,7 +200,7 @@
                     "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
                     "</a>"+
                     "</td>"+
-                    "<td>"+data[i].creative_url + "</td>" +
+//                    "<td>"+data[i].creative_url + "</td>" +
                     "<td>"+data[i].order_id + "</td>" +
                     "<td>"+data[i].campaign_id + "</td>" +
                     "<td>"+data[i].exe_campaign_id + "</td>" +
@@ -205,6 +242,10 @@
         <%--}--%>
         <%--});--%>
       });
+      loadAdv(arg1,"advs")
+      loadAdv(arg1,"industrys")
+      loadAdv(arg1,"sizes")
+      loadAdv(arg1,"classes")
     }
   </script>
 
@@ -309,44 +350,45 @@
                       <input type="hidden" name="type" id='type' value="banner">
                       <ul class="nav nav-tabs" id="selectadv">
                         <li>
-                        <select name="adv" id='adv'>
-                        <option value="">广告主</option>
-                        <c:forEach items="${advList }" var="adv" varStatus="one">
-                        <option value="${adv.toSelect }">${adv.toSelect }</option>
-                        </c:forEach>
+                        <select id="advs" id='adv'>
+                        <%--<option id="advs" value="">广告主</option>--%>
+
+                        <%--<c:forEach items="${advList }" var="adv" varStatus="one">--%>
+                        <%--<option value="${adv.toSelect }">${adv.toSelect }</option>--%>
+                        <%--</c:forEach>--%>
                         </select>
                         </li>
 
-                        <li>
+                        <li onload="typeForm('advertiser_cat')">
 
-                          <select name="industry" id="industry">
-                            <option value="">行业</option>
+                          <select  id="industrys" id="industry">
+                            <%--<option id="industrys" value="">行业</option>--%>
 
-                            <c:forEach items="${industryList }" var="industry" varStatus="one">
-                              <option value="${industry.toSelect }">${industry.toSelect }</option>
-                            </c:forEach>
+                            <%--<c:forEach items="${industryList }" var="industry" varStatus="one">--%>
+                              <%--<option value="${industry.toSelect }">${industry.toSelect }</option>--%>
+                            <%--</c:forEach>--%>
                           </select>
                         </li>
 
-                        <li>
+                        <li onload="typeForm('size')">
 
-                          <select name="size" id="size">
-                            <option value="">尺寸</option>
+                          <select id="sizes" id="size">
+                            <%--<option id="sizes" value="">尺寸</option>--%>
 
-                            <c:forEach items="${sizeList }" var="size" varStatus="one">
-                              <option value="${size.toSelect }">${size.toSelect }</option>
-                            </c:forEach>
+                            <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                              <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                            <%--</c:forEach>--%>
                           </select>
                         </li>
 
 
-                        <li>
+                        <li onload="typeForm('creative_id')">
 
-                          <select name="classify" id="classify" >
-                            <option value="">创意类别</option>
-                            <c:forEach items="${classifyList }" var="classify" varStatus="one">
-                              <option value="${classify.toSelect }">${classify.toSelect }</option>
-                            </c:forEach>
+                          <select id="classes" id="classify" >
+                            <%--<option id="classes" value="">创意类别</option>--%>
+                            <%--<c:forEach items="${classifyList }" var="classify" varStatus="one">--%>
+                              <%--<option value="${classify.toSelect }">${classify.toSelect }</option>--%>
+                            <%--</c:forEach>--%>
                           </select>
                         </li>
 
@@ -382,6 +424,7 @@
                       <tr>
                         <th>creative_url</th>
                         <th>order_id</th>
+                        <th>campaign_id</th>
                         <th>exe_campaign_id</th>
                         <th>width</th>
                         <th>height</th>

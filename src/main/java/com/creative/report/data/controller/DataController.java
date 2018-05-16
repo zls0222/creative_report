@@ -9,6 +9,7 @@ import com.creative.report.data.vo.SubmitSelect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +34,37 @@ public class DataController {
 	public @ResponseBody String showNative(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String toSelect = request.getParameter("toSelect");
 		List<Creative> list = dataService.conditionNative(toSelect);
+//
+		String jsonStr = JSONObject.toJSONString(list);
+
+		if (list.size()>0) {
+
+			return jsonStr;
+		}
+		return jsonStr;
+	}
+
+
+	//选在子菜单，也就是selected
+	@RequestMapping("/creative/subselect")
+	public @ResponseBody String subSelected(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String toSelect = request.getParameter("creativetype");
+
+		String creativeadv = request.getParameter("creativeadv");
+		System.out.print(toSelect+creativeadv);
+		System.out.print("**************");
+		SelectFunction subselect=new SelectFunction(toSelect);
+		List<SelectFunction> list=new ArrayList<SelectFunction>();
+		if(creativeadv.equals("advs")){
+			list = dataService.conditionNativeAdv(subselect);
+		}else if(creativeadv.equals("industrys")){
+			list = dataService.conditionNativeIndustry(subselect);
+		}else if(creativeadv.equals("sizes")){
+			list = dataService.conditionNativeAdvSize(subselect);
+		}else if(creativeadv.equals("classes")){
+			list = dataService.conditionNativeAdvClassify(subselect);
+		}
+
 //
 		String jsonStr = JSONObject.toJSONString(list);
 

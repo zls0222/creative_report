@@ -7,6 +7,13 @@ public class SelectFunction {
     private static final long serialVersionUID=1L;
     String toSelect;
 
+    public SelectFunction(String toSelect) {
+        this.toSelect = toSelect;
+    }
+
+    public SelectFunction() {
+    }
+
     public String getToSelect() {
         return toSelect;
     }
@@ -22,12 +29,19 @@ public class SelectFunction {
 
         SelectFunction that = (SelectFunction) o;
 
-        return !(toSelect != null ? !toSelect.equals(that.toSelect) : that.toSelect != null);
+        return toSelect.equals(that.toSelect);
 
     }
 
     @Override
     public int hashCode() {
-        return toSelect != null ? toSelect.hashCode() : 0;
+        return toSelect.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "SelectFunction{" +
+                "toSelect='" + toSelect + '\'' +
+                '}';
     }
 }
