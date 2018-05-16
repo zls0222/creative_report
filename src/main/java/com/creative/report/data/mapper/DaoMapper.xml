@@ -4,7 +4,7 @@
 <mapper namespace="com.creative.report.data.mapper.DaoMapper">
 
 	<!--<insert id="addCustomer">-->
-		<!--insert into t_custom values(#{cidcard},#{name},#{sex},#{tel},#{adress},#{job})-->
+	<!--insert into t_custom values(#{cidcard},#{name},#{sex},#{tel},#{adress},#{job})-->
 	<!--</insert>-->
 
 	<select id="conditionNative" resultType="com.creative.report.data.vo.Creative">
@@ -24,7 +24,7 @@
 
 	<select id="conditionNativeAdvSize" resultType="com.creative.report.data.vo.SelectFunction">
 		select DISTINCT CONCAT(width,"*",height) AS toSelect  from creative_data where type='#{toSelect}' order by  toSelect
-	</select>EA
+	</select>
 
 
 	<select id="conditionNativeAdvClassify" resultType="com.creative.report.data.vo.SelectFunction">
@@ -44,27 +44,27 @@
 	</select>
 
 	<!--<select id="findCustomer" resultType="cn.sxt.carsystem.com.creative.report.data.vo.Customer">-->
-		<!--select * from t_custom where cidcard=#{cidcard}-->
+	<!--select * from t_custom where cidcard=#{cidcard}-->
 	<!--</select> -->
 	<!-- -->
 	<!--<delete id="deleteCustomer">-->
-		<!--delete from t_custom where cidcard=#{cidcard}-->
+	<!--delete from t_custom where cidcard=#{cidcard}-->
 	<!--</delete>-->
 	<!-- -->
 	<!--<update id="updateCustomer">-->
-		<!--update t_custom set name=#{name},sex=#{sex},tel=#{tel},adress=#{adress},job=#{job} where cidcard=#{cidcard}-->
+	<!--update t_custom set name=#{name},sex=#{sex},tel=#{tel},adress=#{adress},job=#{job} where cidcard=#{cidcard}-->
 	<!--</update>-->
 	<!-- -->
 	<!--<select id="toList" resultType="cn.sxt.carsystem.com.creative.report.data.vo.Customer">-->
-		<!--select * from t_custom where '1'='1'-->
+	<!--select * from t_custom where '1'='1'-->
 
-		<!--<if test="cidcard!=null"> and cidcard=#{cidcard}</if>-->
-		<!--<if test="name.length()>0"> and name like '%'||#{name}||'%'</if>-->
-		<!--<if test="sex!=null"> and sex=#{sex}</if>-->
-		<!--<if test="adress.length()>0"> and adress like '%'||#{adress}||'%'</if>-->
-		<!--<if test="tel!=null"> and tel=#{tel}</if>-->
-		<!--<if test="job.length()>0"> and job like '%'||#{job}||'%'</if>-->
-		<!--<if test="1==1"></if>-->
+	<!--<if test="cidcard!=null"> and cidcard=#{cidcard}</if>-->
+	<!--<if test="name.length()>0"> and name like '%'||#{name}||'%'</if>-->
+	<!--<if test="sex!=null"> and sex=#{sex}</if>-->
+	<!--<if test="adress.length()>0"> and adress like '%'||#{adress}||'%'</if>-->
+	<!--<if test="tel!=null"> and tel=#{tel}</if>-->
+	<!--<if test="job.length()>0"> and job like '%'||#{job}||'%'</if>-->
+	<!--<if test="1==1"></if>-->
 	<!--</select>-->
 
 </mapper>
