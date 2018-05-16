@@ -49,7 +49,7 @@ public class DataController {
 
 	//显示所选创意
 	@RequestMapping("/selected")
-	public List<Creative> findCreative(SubmitSelect submitSelect,Model model) throws UnsupportedEncodingException {
+	public @ResponseBody String findCreative(SubmitSelect submitSelect,Model model) throws UnsupportedEncodingException {
 //		submitSelect.setAdv(submitSelect.getAdv().getBytes("iso-8859-1"));
 //		submitSelect.setIndustry(submitSelect.getIndustry().getBytes("iso-8859-1"));
 
@@ -59,11 +59,12 @@ public class DataController {
 		findCreative = dataService.findCreative(submitSelect);
 		model.addAttribute("findCreative", findCreative);
 		System.out.print(findCreative.size());
+		String jsonStr = JSONObject.toJSONString(findCreative);
 		if(findCreative.size()>2){
-			return findCreative;
+			return jsonStr;
 			
 		}
-		return findCreative;
+		return jsonStr;
 
 	}
 

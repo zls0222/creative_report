@@ -69,14 +69,19 @@
 
           for(var i = 0;i<data.length;i++){
             str1 = "<tr>" +
+                    "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                    "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
+                    "</a>"+
+                    "</td>"+
+                    "<td>"+data[i].creative_url + "</td>" +
                     "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
-                    "<td>"+data[i].order_id + "</td>" +
+                    "<td>"+data[i].campaign_id + "</td>" +
+                    "<td>"+data[i].exe_campaign_id + "</td>" +
+                    "<td>"+data[i].width + "</td>" +
+                    "<td>"+data[i].height + "</td>" +
+                    "<td>"+data[i].imp + "</td>" +
+                    "<td>"+data[i].click + "</td>" +
+                    "<td>"+data[i].ctr + "</td>" +
                     "</tr>";
 
 
@@ -111,90 +116,95 @@
     function typeForm(arg1) {
 
 
-
       $.ajax({
         type: "GET",
         url: '/creative/creative',
-        data: {"toSelect":arg1},
+        data: {"toSelect": arg1},
         dataType: "json",
-        error: function(XMLHttpRequest, textStatus, errorThrown,data) {
+        error: function (XMLHttpRequest, textStatus, errorThrown, data) {
           console.info(XMLHttpRequest.status);
           console.info(XMLHttpRequest.readyState);
           console.info(textStatus);
-          console.info(XMLHttpRequest.responseText);},
+          console.info(XMLHttpRequest.responseText);
+        },
 
-        success: function(data){
+        success: function (data) {
 //          $('#resText').empty();   //清空resText里面的所有内容
           alert('请求ok');
-        }
-      });
-      <%--$.ajax({--%>
-        <%--url: '/creative/creative', //请求的url--%>
-        <%--type: 'post', //请求的方式--%>
-        <%--data: {"toSelect":arg1},--%>
-        <%--async : false,--%>
-<%--//        dataType : 'json',--%>
-<%--//        error:function (data) {--%>
-<%--//          alert(data.toLocaleString)--%>
-<%--//          alert('请求失败');--%>
-<%--//        },--%>
-
-        <%--success:function (data) {--%>
-          <%--alert(data);--%>
-          <%--var str1 = "";--%>
-          <%--//清空table中的html--%>
-          <%--$("#test").html("");--%>
-          <%--for(var i = 0;i<data.length;i++){--%>
-            <%--str1 = "<tr>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-                    <%--"<td>111</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-<%--//                    "<td>"+data[i].order_id + "</td>" +--%>
-                    <%--"</tr>";--%>
-
+//        }
+//      });
+//      $.ajax({
+//        url: '/creative/creative', //请求的url
+//        type: 'post', //请求的方式
+//        data: {"toSelect":arg1},
+//        async : false,
+////        dataType : 'json',
+////        error:function (data) {
+////          alert(data.toLocaleString)
+////          alert('请求失败');
+////        },
+//
+//        success:function (data) {
+//          alert(data);
+          var str1 = "";
+          //清空table中的html
+          $("#test").html("");
+          for (var i = 0; i < data.length; i++) {
+            str1 = "<tr>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+//                    "<td>111</td>" +
+                    "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                    "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
+                    "</a>"+
+                    "</td>"+
+                    "<td>"+data[i].creative_url + "</td>" +
+                    "<td>"+data[i].order_id + "</td>" +
+                    "<td>"+data[i].campaign_id + "</td>" +
+                    "<td>"+data[i].exe_campaign_id + "</td>" +
+                    "<td>"+data[i].width + "</td>" +
+                    "<td>"+data[i].height + "</td>" +
+                    "<td>"+data[i].imp + "</td>" +
+                    "<td>"+data[i].click + "</td>" +
+                    "<td>"+data[i].ctr + "</td>" +
+                    "</tr>";
 
 
             <%--&lt;%&ndash;<tr class="text-c">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td><a href='${creative.creative_url }' data-rel="colorbox">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<img alt="15x15" src='${creative.creative_url }' />&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<!--<div class="text">-->&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<!--<div class="inner">Sample Caption on Hover</div>-->&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<!--</div>-->&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
+            <%--"<td><a href="+'${creative.creative_url }'+" data-rel="+"colorbox"+">"+--%>
+            <%--"<img alt="+"15x15"+" src="+'${creative.creative_url }'+" />"+--%>
+            <%--<!--<div class="text">-->--%>
+            <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
+            <%--<!--</div>-->--%>
+            <%--"</a>"+--%>
+            <%--"</td>"--%>
 
-            <%--&lt;%&ndash;<td>${creative.order_id }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.exe_campaign_id}</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.width }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.height }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.imp }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.click }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>${creative.ctr }</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;&ndash;%&gt;--%>
-            <%--&lt;%&ndash;&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+            <%--<td>${creative.order_id }</td>--%>
+            <%--<td>${creative.exe_campaign_id}</td>--%>
+            <%--<td>${creative.width }</td>--%>
+            <%--<td>${creative.height }</td>--%>
+            <%--<td>${creative.imp }</td>--%>
+            <%--<td>${creative.click }</td>--%>
+            <%--<td>${creative.ctr }</td>--%>
+            <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
+            <%--</tr>--%>
 
-            <%--$("#test").append(str1);--%>
-          <%--}--%>
-        <%--},--%>
+            $("#test").append(str1);
+          }
+        },
         <%--error:function(XMLHttpRequest, textStatus, errorThrown){--%>
-          <%--alert(XMLHttpRequest);--%>
-          <%--alert(textStatus);--%>
-          <%--alert(errorThrown);--%>
+        <%--alert(XMLHttpRequest);--%>
+        <%--alert(textStatus);--%>
+        <%--alert(errorThrown);--%>
         <%--}--%>
-      <%--});--%>
+        <%--});--%>
+      });
     }
   </script>
 
