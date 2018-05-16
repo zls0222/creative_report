@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--<configuration>-->
+<!--&lt;!&ndash; 配置分页插件 &ndash;&gt;-->
+	<!--&lt;!&ndash;<plugins>&ndash;&gt;-->
+		<!--&lt;!&ndash;<plugin interceptor="com.github.pagehelper.PageHelper">&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash; 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库&ndash;&gt;&ndash;&gt;-->
+        	<!--&lt;!&ndash;<property name="dialect" value="mysql"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;</plugin>&ndash;&gt;-->
+	<!--&lt;!&ndash;</plugins>&ndash;&gt;-->
+
+<!--</configuration>-->
+<configuration>
+
+	<!--&lt;!&ndash; 加载java的配置文件或者声明属性信息 &ndash;&gt;-->
+	<!--<properties resource="db.properties">-->
+		<!--<property name="db.username" value="123" />-->
+	<!--</properties>-->
+
+	<!--&lt;!&ndash; <settings></settings> &ndash;&gt;-->
+
+	<!--&lt;!&ndash; 自定义别名 &ndash;&gt;-->
+	<!--<typeAliases>-->
+		<!--&lt;!&ndash; 单个别名定义 &ndash;&gt;-->
+		<!--&lt;!&ndash; <typeAlias type="com.itheima.mybatis.po.User" alias="user"/> &ndash;&gt;-->
+
+		<!--&lt;!&ndash; 批量别名定义（推荐） &ndash;&gt;-->
+		<!--&lt;!&ndash; package：指定包名称来为该包下的po类声明别名，默认的别名就是类名（首字母大小写都可） &ndash;&gt;-->
+		<!--<package name="com.itheima.mybatis.po" />-->
+	<!--</typeAliases>-->
+
+	<!--&lt;!&ndash; 配置mybatis的环境信息，与spring整合，该信息由spring来管理 &ndash;&gt;-->
+	<!--<environments default="development">-->
+		<!--<environment id="development">-->
+			<!--&lt;!&ndash; 配置JDBC事务控制，由mybatis进行管理 &ndash;&gt;-->
+			<!--<transactionManager type="JDBC"></transactionManager>-->
+			<!--&lt;!&ndash; 配置数据源，采用mybatis连接池 &ndash;&gt;-->
+			<!--<dataSource type="POOLED">-->
+				<!--<property name="driver" value="${db.driver}" />-->
+				<!--<property name="url" value="${db.url}" />-->
+				<!--<property name="username" value="${db.username}" />-->
+				<!--<property name="password" value="${db.password}" />-->
+			<!--</dataSource>-->
+		<!--</environment>-->
+	<!--</environments>-->
+
+	<!-- 加载映射文件 -->
+	<!--<mappers>-->
+		<!--&lt;!&ndash;<mapper resource="User.xml" />&ndash;&gt;-->
+		<!--&lt;!&ndash; <mapper resource="mapper/UserMapper.xml" /> &ndash;&gt;-->
+
+		<!--&lt;!&ndash; 批量加载映射文件 &ndash;&gt;-->
+		<!--<package name="com.creative.report.data.mapper" />-->
+	<!--</mappers>-->
+	<!-- 输出mapper中的sql语句-->
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+
+</configuration>
