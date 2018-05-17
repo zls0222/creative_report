@@ -29,6 +29,17 @@ public class DataController {
 	@Autowired
 	private DataService dataService;
 
+
+	//选择不同的报表类型
+	@RequestMapping("/reporttype")
+	public String reportType(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String toSelect = request.getParameter("toSelect");
+		String type=toSelect;
+		return "modi023";
+
+	}
+
+
 	//添加客户
 	@RequestMapping("/creative")
 	public @ResponseBody String showNative(HttpServletRequest request,HttpServletResponse response) throws IOException {
