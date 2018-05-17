@@ -103,14 +103,21 @@
                           "</a>"+
                           "</td>"+
 //                    "<td>"+data[i].creative_url + "</td>" +
+                          "<td>"+data[i].advertiser + "</td>" +
                           "<td>"+data[i].order_id + "</td>" +
                           "<td>"+data[i].campaign_id + "</td>" +
-                          "<td>"+data[i].exe_campaign_id + "</td>" +
+                          "<td>"+data[i].advertiser_cat + "</td>" +
                           "<td>"+data[i].width + "</td>" +
                           "<td>"+data[i].height + "</td>" +
+                          "<td>"+data[i].campaign_id + "</td>" +
                           "<td>"+data[i].imp + "</td>" +
                           "<td>"+data[i].click + "</td>" +
                           "<td>"+data[i].ctr + "</td>" +
+                          "<td>"+data[i].clickContrast + "</td>" +
+                          "<td>"+data[i].cvt + "</td>" +
+                          "<td>"+data[i].cvr + "</td>" +
+                          "<td>"+data[i].cvtContrast + "</td>" +
+                          "<td>"+data[i].ComprehensiveWeight + "</td>" +
                           "</tr>";
 
 
@@ -224,19 +231,48 @@
 //                    "<td>111</td>" +
 //                    "<td>111</td>" +
 //                    "<td>111</td>" +
+//
+//                    <th>创意图片</th>
+//                    <th>广告主</th>
+//                    <th>订单</th>
+//                    <th>计划</th>
+//                    <th>分类</th>
+//                    <th>宽度</th>
+//                    <th>高度</th>
+//                    <th>创意分类</th>
+//                    <th>曝光</th>
+//                    <th>点击</th>
+//                    <th>点击率</th>
+//                    <th>对比值</th>
+//                    <th>转化</th>
+//                    <th>转化率</th>
+//                    <th>对比值</th>
+//                    <th>综合权重</th>
+
+
+//
+
+
                     "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
                     "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
                     "</a>"+
                     "</td>"+
 //                    "<td>"+data[i].creative_url + "</td>" +
+                    "<td>"+data[i].advertiser + "</td>" +
                     "<td>"+data[i].order_id + "</td>" +
                     "<td>"+data[i].campaign_id + "</td>" +
-                    "<td>"+data[i].exe_campaign_id + "</td>" +
+                    "<td>"+data[i].advertiser_cat + "</td>" +
                     "<td>"+data[i].width + "</td>" +
                     "<td>"+data[i].height + "</td>" +
+                    "<td>"+data[i].campaign_id + "</td>" +
                     "<td>"+data[i].imp + "</td>" +
                     "<td>"+data[i].click + "</td>" +
                     "<td>"+data[i].ctr + "</td>" +
+                    "<td>"+data[i].clickContrast + "</td>" +
+                    "<td>"+data[i].cvt + "</td>" +
+                    "<td>"+data[i].cvr + "</td>" +
+                    "<td>"+data[i].cvtContrast + "</td>" +
+                    "<td>"+data[i].ComprehensiveWeight + "</td>" +
                     "</tr>";
 
 
@@ -452,14 +488,21 @@
                       <thead>
                       <tr>
                         <th>创意图片</th>
+                        <th>广告主</th>
                         <th>订单</th>
                         <th>计划</th>
-                        <th>执行计划</th>
+                        <th>分类</th>
                         <th>宽度</th>
                         <th>高度</th>
+                        <th>创意分类</th>
                         <th>曝光</th>
                         <th>点击</th>
                         <th>点击率</th>
+                        <th>对比值</th>
+                        <th>转化</th>
+                        <th>转化率</th>
+                        <th>对比值</th>
+                        <th>综合权重</th>
 
 
                       </tr>
