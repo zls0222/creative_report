@@ -63,7 +63,7 @@
 
     <ul class="nav nav-tabs" id="myTab">
         <li class="active" style="width:100px" style="text-align:center;">
-            <a data-toggle="tab" href="${pageContext.request.contextPath}/creative/reporttype?toSelect='launch'" >
+            <a data-toggle="tab" href="${pageContext.request.contextPath}/creative/reporttype?toSelect=launch" >
                 <%--<button id="select01" onclick="subForm()" >提交</button>--%>
                 <i class="green icon-home bigger-170"></i>
                 投放分析
@@ -71,7 +71,7 @@
         </li>
 
         <li style="width:100px" style="text-align:center;">
-            <a data-toggle="tab" href="${pageContext.request.contextPath}/creative/reporttype?toSelect='recommend'" >
+            <a data-toggle="tab" href="${pageContext.request.contextPath}/creative/reporttype?toSelect=recommend" >
                 <i class="green icon-home bigger-170"></i>
 
                 <!--<a data-toggle="tab" href="#profile">-->
@@ -83,7 +83,7 @@
 
 
         <li style="width:100px" style="text-align:center;">
-            <a data-toggle="tab"  href="${pageContext.request.contextPath}/creative/reporttype?toSelect='media'">
+            <a data-toggle="tab"  href="${pageContext.request.contextPath}/creative/reporttype?toSelect=media">
                 <i class="green icon-home bigger-170"></i>
                 <!--<a data-toggle="tab" href="#dropdown1">-->
                 媒体分析

@@ -4,18 +4,27 @@ package com.creative.report.data.vo;
  * Created by Administrator on 2018/5/14.
  */
 public class SubmitSelect {
+    private static final long serialVersionUID=1L;
 
 
     String adv;
     String industry;
     String size;
+    String classify;
 
-    public String getType() {
-        return type;
+    public SubmitSelect(String adv, String industry, String size, String classify) {
+        this.adv = adv;
+        this.industry = industry;
+        this.size = size;
+        this.classify = classify;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public SubmitSelect() {
+    }
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getAdv() {
@@ -50,20 +59,26 @@ public class SubmitSelect {
         this.classify = classify;
     }
 
-    String classify;
-    String type;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        SubmitSelect that = (SubmitSelect) o;
 
+        if (adv != null ? !adv.equals(that.adv) : that.adv != null) return false;
+        if (industry != null ? !industry.equals(that.industry) : that.industry != null) return false;
+        if (size != null ? !size.equals(that.size) : that.size != null) return false;
+        return !(classify != null ? !classify.equals(that.classify) : that.classify != null);
 
-
+    }
 
     @Override
     public int hashCode() {
-        int result = adv.hashCode();
-        result = 31 * result + industry.hashCode();
-        result = 31 * result + size.hashCode();
-        result = 31 * result + classify.hashCode();
-        result = 31 * result + type.hashCode();
+        int result = adv != null ? adv.hashCode() : 0;
+        result = 31 * result + (industry != null ? industry.hashCode() : 0);
+        result = 31 * result + (size != null ? size.hashCode() : 0);
+        result = 31 * result + (classify != null ? classify.hashCode() : 0);
         return result;
     }
 
@@ -74,18 +89,6 @@ public class SubmitSelect {
                 ", industry='" + industry + '\'' +
                 ", size='" + size + '\'' +
                 ", classify='" + classify + '\'' +
-                ", type='" + type + '\'' +
                 '}';
-    }
-
-    public SubmitSelect(String adv, String industry, String size, String classify, String type) {
-        this.adv = adv;
-        this.industry = industry;
-        this.size = size;
-        this.classify = classify;
-        this.type = type;
-    }
-
-    public SubmitSelect() {
     }
 }

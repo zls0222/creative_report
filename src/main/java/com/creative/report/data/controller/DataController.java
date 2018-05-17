@@ -34,8 +34,9 @@ public class DataController {
 	@RequestMapping("/reporttype")
 	public String reportType(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String toSelect = request.getParameter("toSelect");
+
 		String type=toSelect;
-		return "modi023";
+		return type;
 
 	}
 
@@ -75,6 +76,15 @@ public class DataController {
 		}else if(creativeadv.equals("classes")){
 			list = dataService.conditionNativeAdvClassify(subselect);
 		}
+		else if(creativeadv.equals("recommends")){
+			list = dataService.conditionNativeAdvClassify(subselect);
+		}
+		else if(creativeadv.equals("platforms")){
+			list = dataService.conditionNativeAdvClassify(subselect);
+		}
+		else if(creativeadv.equals("medias")){
+			list = dataService.conditionNativeAdvClassify(subselect);
+		}
 
 //
 		String jsonStr = JSONObject.toJSONString(list);
@@ -92,15 +102,21 @@ public class DataController {
 
 	//显示所选创意
 	@RequestMapping("/selected")
-	public @ResponseBody String findCreative(SubmitSelect submitSelect,Model model) throws UnsupportedEncodingException {
+	public @ResponseBody String findCreative(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
 //		submitSelect.setAdv(submitSelect.getAdv().getBytes("iso-8859-1"));
 //		submitSelect.setIndustry(submitSelect.getIndustry().getBytes("iso-8859-1"));
+		String adv = request.getParameter("adv");
+		String industry = request.getParameter("industry");
+		String size = request.getParameter("size");
+		String classify = request.getParameter("classify");
 
 
-		System.out.print(submitSelect.toString());
+		SubmitSelect submitSelect=new SubmitSelect(adv,industry,size,classify);
+		System.out.print(submitSelect);
+//		System.out.print(submitSelect.toString());
 		List<Creative> findCreative = new ArrayList<Creative>();
 		findCreative = dataService.findCreative(submitSelect);
-		model.addAttribute("findCreative", findCreative);
+//		model.addAttribute("findCreative", findCreative);
 		System.out.print(findCreative.size());
 		String jsonStr = JSONObject.toJSONString(findCreative);
 		if(findCreative.size()>2){

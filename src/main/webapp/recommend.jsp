@@ -59,7 +59,7 @@
         type: 'post', //请求的方式
         data: $('#formAddtr').serialize(), //form表单里要提交的内容，里面的input等写上name就会提交，这是序列化
         success:function (data) {
-          alert(data);
+//          alert(data);
 
 
 //          data = JSON.parse(data);
@@ -81,7 +81,6 @@
                     "<td>"+data[i].height + "</td>" +
                     "<td>"+data[i].imp + "</td>" +
                     "<td>"+data[i].click + "</td>" +
-                    "<td>"+data[i].ctr + "</td>" +
                     "</tr>";
 
 
@@ -127,7 +126,7 @@
 
         success: function (data) {
 //          $('#resText').empty();   //清空resText里面的所有内容
-          alert('请求ok'+arg1+arg2);
+//          alert('请求ok'+arg1+arg2);
 //
           var str1 = "";
           //清空table中的html
@@ -167,7 +166,7 @@
 
         success: function (data) {
 //          $('#resText').empty();   //清空resText里面的所有内容
-          alert('请求ok');
+//          alert('请求ok');
 //        }
 //      });
 //      $.ajax({
@@ -208,7 +207,6 @@
                     "<td>"+data[i].height + "</td>" +
                     "<td>"+data[i].imp + "</td>" +
                     "<td>"+data[i].click + "</td>" +
-                    "<td>"+data[i].ctr + "</td>" +
                     "</tr>";
 
 
@@ -246,6 +244,8 @@
       loadAdv(arg1,"industrys")
       loadAdv(arg1,"sizes")
       loadAdv(arg1,"classes")
+      loadAdv(arg1,"recommends")
+
     }
   </script>
 
@@ -359,9 +359,9 @@
                         </select>
                         </li>
 
-                        <li onload="typeForm('advertiser_cat')">
+                        <li >
 
-                          <select  id="industrys" id="industry">
+                          <select  id="industrys" >
                             <%--<option id="industrys" value="">行业</option>--%>
 
                             <%--<c:forEach items="${industryList }" var="industry" varStatus="one">--%>
@@ -370,9 +370,9 @@
                           </select>
                         </li>
 
-                        <li onload="typeForm('size')">
+                        <li>
 
-                          <select id="sizes" id="size">
+                          <select id="sizes" >
                             <%--<option id="sizes" value="">尺寸</option>--%>
 
                             <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
@@ -381,8 +381,19 @@
                           </select>
                         </li>
 
+                          <li>
 
-                        <li onload="typeForm('creative_id')">
+                              <select id="recommends" >
+                                  <%--<option id="sizes" value="">尺寸</option>--%>
+
+                                  <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                                  <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                                  <%--</c:forEach>--%>
+                              </select>
+                          </li>
+
+
+                        <li>
 
                           <select id="classes" id="classify" >
                             <%--<option id="classes" value="">创意类别</option>--%>
@@ -422,15 +433,14 @@
                     <table id="table_report2" class="table table-striped table-bordered table-hover">
                       <thead>
                       <tr>
-                        <th>creative_url</th>
-                        <th>order_id</th>
-                        <th>campaign_id</th>
-                        <th>exe_campaign_id</th>
-                        <th>width</th>
-                        <th>height</th>
-                        <th>imp</th>
-                        <th>click</th>
-                        <th>ctr</th>
+                        <th>创意图片</th>
+                        <th>尺寸</th>
+                        <th>曝光</th>
+                        <th>点击</th>
+                        <th>点击率</th>
+                        <th>转化</th>
+                        <th>转化率</th>
+                        <th>推荐值</th>
 
 
                       </tr>
