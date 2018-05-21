@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
@@ -51,82 +51,7 @@
   <!--inline styles if any-->
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        jQuery(function($) {
-            var oTable1 =
-                    $('#table_report2')
-                        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                            .dataTable( {
-                                bAutoWidth: false,
-                                "aoColumns": [
-                                    { "bSortable": false },
-                                    null, null,null, null, null,
-                                    { "bSortable": false }
-                                ],
-                                "aaSorting": [],
-
-                                //,
-                                //"sScrollY": "200px",
-                                //"bPaginate": false,
-
-                                //"sScrollX": "100%",
-                                //"sScrollXInner": "120%",
-                                //"bScrollCollapse": true,
-                                //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                //"iDisplayLength": 50
-                            } );
-            /**
-             var tableTools = new $.fn.dataTable.TableTools( oTable1, {
-					"sSwfPath": "../../copy_csv_xls_pdf.swf",
-			        "buttons": [
-			            "copy",
-			            "csv",
-			            "xls",
-						"pdf",
-			            "print"
-			        ]
-			    } );
-             $( tableTools.fnContainer() ).insertBefore('#sample-table-2');
-             */
-
-
-                //oTable1.fnAdjustColumnSizing();
-
-
-            $(document).on('click', 'th input:checkbox' , function(){
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                        .each(function(){
-                            this.checked = that.checked;
-                            $(this).closest('tr').toggleClass('selected');
-                        });
-            });
-
-
-            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-            function tooltip_placement(context, source) {
-                var $source = $(source);
-                var $parent = $source.closest('table')
-                var off1 = $parent.offset();
-                var w1 = $parent.width();
-
-                var off2 = $source.offset();
-                //var w2 = $source.width();
-
-                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-                return 'left';
-            }
-
-        })
-    </script>
-
-
   <script>
-
-
     //别忘了导入该用的js文件
     function subForm() {
         alert($('#selectCondition').serialize())
@@ -628,75 +553,58 @@
                       Results for Last 90 Day Creative Data
                     </div>
                   <div>
+                    <table   id="table_report2" class="table table-striped table-bordered table-hover">
+                      <thead>
+                      <tr style="width:2280px">
+                        <th  style="width:180px">创意图片</th>
+                        <th>广告主</th>
+                        <th>订单</th>
+                        <th>计划</th>
+                        <th>分类</th>
+                        <th>宽度</th>
+                        <th>高度</th>
+                        <th>创意分类</th>
+                        <th>曝光</th>
+                        <th>点击</th>
+                        <th>点击率</th>
+                        <%--<th>对比值</th>--%>
+                        <%--<th>转化</th>--%>
+                        <%--<th>转化率</th>--%>
+                        <%--<th>对比值</th>--%>
+                        <%--<th>综合权重</th>--%>
 
 
-                        <table   id="table_report2" class="table table-striped table-bordered table-hover">
-                          <thead>
-                          <tr style="width:2280px">
-                            <th  style="width:180px">创意图片</th>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status1: activate to sort column ascending" rowspan="1" colspan="1">Status1</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status2: activate to sort column ascending" rowspan="1" colspan="1">Status2</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status3: activate to sort column ascending" rowspan="1" colspan="1">Status3</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status4: activate to sort column ascending" rowspan="1" colspan="1">Status4</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status5: activate to sort column ascending" rowspan="1" colspan="1">Status5</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status6: activate to sort column ascending" rowspan="1" colspan="1">Status6</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status7: activate to sort column ascending" rowspan="1" colspan="1">Status7</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status8: activate to sort column ascending" rowspan="1" colspan="1">Status8</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status9: activate to sort column ascending" rowspan="1" colspan="1">Status9</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status10: activate to sort column ascending" rowspan="1" colspan="1">Status10</th>--%>
+                      </tr>
+                      </thead>
+
+                      <tbody id="test">
+                      <tr>
+                        <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
+                      <%--<tr class="text-c">--%>
+                        <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
+                          <%--<img alt="15x15" src='${creative.creative_url }' />--%>
+                          <%--<!--<div class="text">-->--%>
+                          <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
+                          <%--<!--</div>-->--%>
+                        <%--</a>--%>
+                        <%--</td>--%>
+
+                        <%--<td>${creative.order_id }</td>--%>
+                        <%--<td>${creative.exe_campaign_id}</td>--%>
+                        <%--<td>${creative.width }</td>--%>
+                        <%--<td>${creative.height }</td>--%>
+                        <%--<td>${creative.imp }</td>--%>
+                        <%--<td>${creative.click }</td>--%>
+                        <%--<td>${creative.ctr }</td>--%>
+                        <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
+                          <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
+                      <%--</tr>--%>
+                      <%--</c:forEach>--%>
+                      </tr>
 
 
-                            <th>广告主</th>
-                            <th>订单</th>
-                            <th>计划</th>
-                            <th>分类</th>
-                            <th>宽度</th>
-                            <th>高度</th>
-                            <th>创意分类</th>
-                            <th>曝光</th>
-                            <th>点击</th>
-                            <th>点击率</th>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>转化</th>--%>
-                            <%--<th>转化率</th>--%>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>综合权重</th>--%>
-
-
-                          </tr>
-                          </thead>
-
-                          <tbody id="test">
-                          <tr>
-                            <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
-                          <%--<tr class="text-c">--%>
-                            <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
-                              <%--<img alt="15x15" src='${creative.creative_url }' />--%>
-                              <%--<!--<div class="text">-->--%>
-                              <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                              <%--<!--</div>-->--%>
-                            <%--</a>--%>
-                            <%--</td>--%>
-
-                            <%--<td>${creative.order_id }</td>--%>
-                            <%--<td>${creative.exe_campaign_id}</td>--%>
-                            <%--<td>${creative.width }</td>--%>
-                            <%--<td>${creative.height }</td>--%>
-                            <%--<td>${creative.imp }</td>--%>
-                            <%--<td>${creative.click }</td>--%>
-                            <%--<td>${creative.ctr }</td>--%>
-                            <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                              <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                          <%--</tr>--%>
-                          <%--</c:forEach>--%>
-                          </tr>
-
-
-                          </tbody>
-                        </table>
-
-
-
+                      </tbody>
+                    </table>
                   </div>
 
                   <!--PAGE CONTENT ENDS HERE-->
@@ -759,100 +667,232 @@
 
 <!--basic scripts-->
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+  window.jQuery || document.write("<script src='/assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
 </script>
-<script src="/assets/js/bootstrap.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
-<!-- page specific plugin scripts -->
-<script src="/assets/js/jquery.dataTables.js"></script>
+<!--page specific plugin scripts-->
+
+<script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
 
-<!-- ace scripts -->
-<script src="/assets/js/ace/elements.scroller.js"></script>
-<script src="/assets/js/ace/elements.colorpicker.js"></script>
-<script src="/assets/js/ace/elements.fileinput.js"></script>
-<script src="/assets/js/ace/elements.typeahead.js"></script>
-<script src="/assets/js/ace/elements.wysiwyg.js"></script>
-<script src="/assets/js/ace/elements.spinner.js"></script>
-<script src="/assets/js/ace/elements.treeview.js"></script>
-<script src="/assets/js/ace/elements.wizard.js"></script>
-<script src="/assets/js/ace/elements.aside.js"></script>
-<script src="/assets/js/ace/ace.js"></script>
-<script src="/assets/js/ace/ace.ajax-content.js"></script>
-<script src="/assets/js/ace/ace.touch-drag.js"></script>
-<script src="/assets/js/ace/ace.sidebar.js"></script>
-<script src="/assets/js/ace/ace.sidebar-scroll-1.js"></script>
-<script src="/assets/js/ace/ace.submenu-hover.js"></script>
-<script src="/assets/js/ace/ace.widget-box.js"></script>
-<script src="/assets/js/ace/ace.settings.js"></script>
-<script src="/assets/js/ace/ace.settings-rtl.js"></script>
-<script src="/assets/js/ace/ace.settings-skin.js"></script>
-<script src="/assets/js/ace/ace.widget-on-reload.js"></script>
-<script src="/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+<!--ace scripts-->
+<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/assets/js/jquery.slimscroll.min.js"></script>
+<script src="/assets/js/jquery.easy-pie-chart.min.js"></script>
+<script src="/assets/js/jquery.sparkline.min.js"></script>
+<script src="/assets/js/flot/jquery.flot.min.js"></script>
+<script src="/assets/js/flot/jquery.flot.pie.min.js"></script>
+<script src="/assets/js/flot/jquery.flot.resize.min.js"></script>
 
-<!-- inline scripts related to this page -->
+<script src="/assets/js/ace-elements.min.js"></script>
+<script src="/assets/js/ace.min.js"></script>
+
+<!--inline scripts related to this page-->
+
 <script type="text/javascript">
-    jQuery(function($) {
-        var oTable1 =
-                $('#sample-table-2')
-                    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                        .dataTable( {
-                            bAutoWidth: false,
-                            "aoColumns": [
-                                { "bSortable": false },
-                                null, null,null, null, null,
-                                { "bSortable": false }
-                            ],
-                            "aaSorting": [],
+  $(function() {
+    var oTable1 = $('#table_report').dataTable( {
+      "aoColumns": [
+        { "bSortable": false },
+        null, null,null, null, null,
+        { "bSortable": false }
+      ] } );
 
 
-                        } );
+    $('table th input:checkbox').on('click' , function(){
+      var that = this;
+      $(this).closest('table').find('tr > td:first-child input:checkbox')
+              .each(function(){
+                this.checked = that.checked;
+                $(this).closest('tr').toggleClass('selected');
+              });
+
+    });
+
+    $('[data-rel=tooltip]').tooltip();
+  })
 
 
 
-        //oTable1.fnAdjustColumnSizing();
+</script>
 
+<script type="text/javascript">
+    $(function() {
 
-        $(document).on('click', 'th input:checkbox' , function(){
-            var that = this;
-            $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function(){
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
+        $('.dialogs,.comments').slimScroll({
+            height: '300px'
+        });
+
+        $('#tasks').sortable();
+        $('#tasks').disableSelection();
+        $('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+            if(this.checked) $(this).closest('li').addClass('selected');
+            else $(this).closest('li').removeClass('selected');
+        });
+
+        var oldie = $.browser.msie && $.browser.version < 9;
+        $('.easy-pie-chart.percentage').each(function(){
+            var $box = $(this).closest('.infobox');
+            var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+            var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+            var size = parseInt($(this).data('size')) || 50;
+            $(this).easyPieChart({
+                barColor: barColor,
+                trackColor: trackColor,
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: parseInt(size/10),
+                animate: oldie ? false : 1000,
+                size: size
+            });
+        })
+
+        $('.sparkline').each(function(){
+            var $box = $(this).closest('.infobox');
+            var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+            $(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
         });
 
 
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+
+        var data = [
+            { label: "social networks",  data: 38.7, color: "#68BC31"},
+            { label: "search engines",  data: 24.5, color: "#2091CF"},
+            { label: "ad campaings",  data: 8.2, color: "#AF4E96"},
+            { label: "direct traffic",  data: 18.6, color: "#DA5430"},
+            { label: "other",  data: 10, color: "#FEE074"}
+        ];
+
+        var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+        $.plot(placeholder, data, {
+
+            series: {
+                pie: {
+                    show: true,
+                    tilt:0.8,
+                    highlight: {
+                        opacity: 0.25
+                    },
+                    stroke: {
+                        color: '#fff',
+                        width: 2
+                    },
+                    startAngle: 2
+
+                }
+            },
+            legend: {
+                show: true,
+                position: "ne",
+                labelBoxBorderColor: null,
+                margin:[-30,15]
+            }
+            ,
+            grid: {
+                hoverable: true,
+                clickable: true
+            },
+            tooltip: true, //activate tooltip
+            tooltipOpts: {
+                content: "%s : %y.1",
+                shifts: {
+                    x: -30,
+                    y: -50
+                }
+            }
+
+        });
+
+
+        var $tooltip = $("<div class='tooltip top in' style='display:none;'><div class='tooltip-inner'></div></div>").appendTo('body');
+        placeholder.data('tooltip', $tooltip);
+        var previousPoint = null;
+
+        placeholder.on('plothover', function (event, pos, item) {
+            if(item) {
+                if (previousPoint != item.seriesIndex) {
+                    previousPoint = item.seriesIndex;
+                    var tip = item.series['label'] + " : " + item.series['percent']+'%';
+                    $(this).data('tooltip').show().children(0).text(tip);
+                }
+                $(this).data('tooltip').css({top:pos.pageY + 10, left:pos.pageX + 10});
+            } else {
+                $(this).data('tooltip').hide();
+                previousPoint = null;
+            }
+
+        });
+
+
+
+
+
+
+        var d1 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.5) {
+            d1.push([i, Math.sin(i)]);
+        }
+
+        var d2 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.5) {
+            d2.push([i, Math.cos(i)]);
+        }
+
+        var d3 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.2) {
+            d3.push([i, Math.tan(i)]);
+        }
+
+
+        var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+        $.plot("#sales-charts", [
+            { label: "Domains", data: d1 },
+            { label: "Hosting", data: d2 },
+            { label: "Services", data: d3 }
+        ], {
+            hoverable: true,
+            shadowSize: 0,
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            },
+            xaxis: {
+                tickLength: 0
+            },
+            yaxis: {
+                ticks: 10,
+                min: -2,
+                max: 2,
+                tickDecimals: 3
+            },
+            grid: {
+                backgroundColor: { colors: [ "#fff", "#fff" ] },
+                borderWidth: 1,
+                borderColor:'#555'
+            }
+        });
+
+
+        $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
         function tooltip_placement(context, source) {
             var $source = $(source);
-            var $parent = $source.closest('table')
+            var $parent = $source.closest('.tab-content')
             var off1 = $parent.offset();
             var w1 = $parent.width();
 
             var off2 = $source.offset();
-            //var w2 = $source.width();
+            var w2 = $source.width();
 
             if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
             return 'left';
         }
-
     })
 </script>
-
-<!-- the following scripts are used in demo only for onpage help and you don't need them -->
-<link rel="stylesheet" href="/assets/css/ace.onpage-help.css" />
-<link rel="stylesheet" href="/docs/assets/js/themes/sunburst.css" />
-
-<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-<script src="/assets/js/ace/elements.onpage-help.js"></script>
-<script src="/assets/js/ace/ace.onpage-help.js"></script>
-<script src="/docs/assets/js/rainbow.js"></script>
-<script src="/docs/assets/js/language/generic.js"></script>
-<script src="/docs/assets/js/language/html.js"></script>
-<script src="/docs/assets/js/language/css.js"></script>
-<script src="/docs/assets/js/language/javascript.js"></script>
 </body>
 </html>
 

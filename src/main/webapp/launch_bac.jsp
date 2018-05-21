@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
@@ -20,7 +20,7 @@
   <title>Tables - Ace Admin</title>
 
   <meta name="description" content="Static &amp; Dynamic Tables" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width*2, initial-scale=1.0" />
 
   <!--basic styles-->
 
@@ -51,82 +51,7 @@
   <!--inline styles if any-->
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        jQuery(function($) {
-            var oTable1 =
-                    $('#table_report2')
-                        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                            .dataTable( {
-                                bAutoWidth: false,
-                                "aoColumns": [
-                                    { "bSortable": false },
-                                    null, null,null, null, null,
-                                    { "bSortable": false }
-                                ],
-                                "aaSorting": [],
-
-                                //,
-                                //"sScrollY": "200px",
-                                //"bPaginate": false,
-
-                                //"sScrollX": "100%",
-                                //"sScrollXInner": "120%",
-                                //"bScrollCollapse": true,
-                                //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                //"iDisplayLength": 50
-                            } );
-            /**
-             var tableTools = new $.fn.dataTable.TableTools( oTable1, {
-					"sSwfPath": "../../copy_csv_xls_pdf.swf",
-			        "buttons": [
-			            "copy",
-			            "csv",
-			            "xls",
-						"pdf",
-			            "print"
-			        ]
-			    } );
-             $( tableTools.fnContainer() ).insertBefore('#sample-table-2');
-             */
-
-
-                //oTable1.fnAdjustColumnSizing();
-
-
-            $(document).on('click', 'th input:checkbox' , function(){
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                        .each(function(){
-                            this.checked = that.checked;
-                            $(this).closest('tr').toggleClass('selected');
-                        });
-            });
-
-
-            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-            function tooltip_placement(context, source) {
-                var $source = $(source);
-                var $parent = $source.closest('table')
-                var off1 = $parent.offset();
-                var w1 = $parent.width();
-
-                var off2 = $source.offset();
-                //var w2 = $source.width();
-
-                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-                return 'left';
-            }
-
-        })
-    </script>
-
-
   <script>
-
-
     //别忘了导入该用的js文件
     function subForm() {
         alert($('#selectCondition').serialize())
@@ -159,7 +84,7 @@
 //                    "<td>111</td>" +
 //                    "<td>111</td>" +
                           "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
-                          "<img style=\"width:180px\" src="+data[i].creative_url+" />"+
+                          "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
                           "</a>"+
                           "</td>"+
 //                    "<td>"+data[i].creative_url + "</td>" +
@@ -169,7 +94,7 @@
                           "<td>"+data[i].advertiser_cat + "</td>" +
                           "<td>"+data[i].width + "</td>" +
                           "<td>"+data[i].height + "</td>" +
-                          "<td>"+data[i].creative_id + "</td>" +
+                          "<td>"+data[i].campaign_id + "</td>" +
                           "<td>"+data[i].imp + "</td>" +
                           "<td>"+data[i].click + "</td>" +
                           "<td>"+data[i].ctr + "</td>" +
@@ -282,7 +207,7 @@
           //清空table中的html
           $("#test").html("");
           for (var i = 0; i < data.length; i++) {
-            str1 = "<tr style=\"width:2280px\">" +
+            str1 = "<tr>" +
 //                    "<td>111</td>" +
 //                    "<td>111</td>" +
 //                    "<td>111</td>" +
@@ -314,20 +239,20 @@
 
 
                     "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
-                    "<img style=\"width:180px\" src="+data[i].creative_url+" />"+
+                    "<img alt="+"15x15"+" src="+data[i].creative_url+" />"+
                     "</a>"+
                     "</td>"+
 //                    "<td>"+data[i].creative_url + "</td>" +
-                    "<td style=\"width:100px\">"+data[i].advertiser + "</td>" +
-                    "<td style=\"width:120px\">"+data[i].order_id + "</td>" +
-                    "<td style=\"width:120px\">"+data[i].campaign_id + "</td>" +
+                    "<td>"+data[i].advertiser + "</td>" +
+                    "<td>"+data[i].order_id + "</td>" +
+                    "<td>"+data[i].campaign_id + "</td>" +
                     "<td>"+data[i].advertiser_cat + "</td>" +
                     "<td>"+data[i].width + "</td>" +
                     "<td>"+data[i].height + "</td>" +
-                    "<td>"+data[i].creative_id + "</td>" +
+                    "<td>"+data[i].campaign_id + "</td>" +
                     "<td>"+data[i].imp + "</td>" +
                     "<td>"+data[i].click + "</td>" +
-                    "<td style=\"width:30px\">"+data[i].ctr + "</td>" +
+                    "<td>"+data[i].ctr + "</td>" +
 //                    "<td>"+data[i].clickContrast + "</td>" +
 //                    "<td>"+data[i].cvt + "</td>" +
 //                    "<td>"+data[i].cvr + "</td>" +
@@ -378,127 +303,43 @@
 <%--<body onload="typeForm('banner')">--%>
 <body>
 <div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a href="#" class="brand">
-                <small>
-                    <i class="icon-leaf"></i>
-                    Creative_Analysis
-                </small>
-            </a><!--/.brand-->
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a href="#" class="brand">
+        <small>
+          <i class="icon-leaf"></i>
+          Creative_Analysis
+        </small>
+      </a><!--/.brand-->
 
 
-        </div><!--/.container-fluid-->
-    </div><!--/.navbar-inner-->
+    </div><!--/.container-fluid-->
+  </div><!--/.navbar-inner-->
 </div>
 
 <div class="container-fluid" id="main-container">
-    <a id="menu-toggler" href="#">
-        <span></span>
-    </a>
-
-    <div id="sidebar" >
-        <div id="sidebar-shortcuts">
-            <div id="sidebar-shortcuts-large">
-                <button class="btn btn-small btn-success">
-                    <i class="icon-signal"></i>
-                </button>
-
-                <button class="btn btn-small btn-info">
-                    <i class="icon-pencil"></i>
-                </button>
-
-                <button class="btn btn-small btn-warning">
-                    <i class="icon-group"></i>
-                </button>
-
-                <button class="btn btn-small btn-danger">
-                    <i class="icon-cogs"></i>
-                </button>
+  <a id="menu-toggler" href="#">
+    <span></span>
+  </a>
 
 
 
-
-            </div>
-
-            <div id="sidebar-shortcuts-mini">
-                <span class="btn btn-success"></span>
-
-                <span class="btn btn-info"></span>
-
-                <span class="btn btn-warning"></span>
-
-                <span class="btn btn-danger"></span>
-            </div>
-        </div><!--#sidebar-shortcuts-->
-
-        <ul class="nav nav-list">
-            <li class="active">
-                <a style=" color:#666; font-size:18px;" href="launch.jsp">
-                    <i class="icon-dashboard"></i>
-                    <span>投放分析</span>
-                </a>
-            </li>
-
-            <li>
-                <a style=" color:#666; font-size:18px;" href="recommend.jsp">
-                    <i class="icon-text-width"></i>
-                    <span>创意推荐</span>
-                </a>
-            </li>
-
-            <li>
-                <a style=" color:#666; font-size:18px;" href="media.jsp">
-                    <i class="icon-dashboard"></i>
-                    <span>媒体分析</span>
-                </a>
-            </li>
+  <div class="clearfix">
+    <!--<div id="main-content" class="clearfix">-->
 
 
+    <div id="page-content" class="clearfix">
+      <div class="page-header position-relative">
+        <h1>
+          Creative
+          <small>
+            <i class="icon-double-angle-right"></i>
+            Show_detail
+          </small>
+        </h1>
+      </div><!--/.page-header-->
 
-        </ul><!--/.nav-list-->
-
-        <div id="sidebar-collapse">
-            <i class="icon-double-angle-left"></i>
-        </div>
-    </div>
-
-    <div id="main-content" class="clearfix">
-        <div id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="icon-home"></i>
-                    <a href="#">Home</a>
-
-							<span class="divider">
-								<i class="icon-angle-right"></i>
-							</span>
-                </li>
-                <li class="active">Dashboard</li>
-            </ul><!--.breadcrumb-->
-
-            <div id="nav-search">
-                <form class="form-search">
-							<span class="input-icon">
-								<input type="text" placeholder="Search ..." class="input-small search-query" id="nav-search-input" autocomplete="off" />
-								<i class="icon-search" id="nav-search-icon"></i>
-							</span>
-                </form>
-            </div><!--#nav-search-->
-        </div>
-
-        <div id="page-content" class="clearfix">
-            <div class="page-header position-relative">
-                <h1>
-                    Creative
-                    <small>
-                        <i class="icon-double-angle-right"></i>
-                        show_detail
-                    </small>
-                </h1>
-            </div><!--/.page-header-->
-
-      <div class="row-fluid"  style="width:2280px" >
+      <div class="row-fluid"  style="width:2680px" >
         <div class="span6">
           <div class="tabbable">
             <ul class="nav nav-tabs" id="myTab">
@@ -627,76 +468,59 @@
                     <div class="table-header">
                       Results for Last 90 Day Creative Data
                     </div>
-                  <div>
+
+                    <table id="table_report2" class="table table-striped table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th>创意图片</th>
+                        <th>广告主</th>
+                        <th>订单</th>
+                        <th>计划</th>
+                        <th>分类</th>
+                        <th>宽度</th>
+                        <th>高度</th>
+                        <th>创意分类</th>
+                        <th>曝光</th>
+                        <th>点击</th>
+                        <th>点击率</th>
+                        <%--<th>对比值</th>--%>
+                        <%--<th>转化</th>--%>
+                        <%--<th>转化率</th>--%>
+                        <%--<th>对比值</th>--%>
+                        <%--<th>综合权重</th>--%>
 
 
-                        <table   id="table_report2" class="table table-striped table-bordered table-hover">
-                          <thead>
-                          <tr style="width:2280px">
-                            <th  style="width:180px">创意图片</th>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status1: activate to sort column ascending" rowspan="1" colspan="1">Status1</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status2: activate to sort column ascending" rowspan="1" colspan="1">Status2</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status3: activate to sort column ascending" rowspan="1" colspan="1">Status3</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status4: activate to sort column ascending" rowspan="1" colspan="1">Status4</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status5: activate to sort column ascending" rowspan="1" colspan="1">Status5</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status6: activate to sort column ascending" rowspan="1" colspan="1">Status6</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status7: activate to sort column ascending" rowspan="1" colspan="1">Status7</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status8: activate to sort column ascending" rowspan="1" colspan="1">Status8</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status9: activate to sort column ascending" rowspan="1" colspan="1">Status9</th>--%>
-                              <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status10: activate to sort column ascending" rowspan="1" colspan="1">Status10</th>--%>
+                      </tr>
+                      </thead>
+
+                      <tbody id="test">
+                      <tr>
+                        <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
+                      <%--<tr class="text-c">--%>
+                        <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
+                          <%--<img alt="15x15" src='${creative.creative_url }' />--%>
+                          <%--<!--<div class="text">-->--%>
+                          <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
+                          <%--<!--</div>-->--%>
+                        <%--</a>--%>
+                        <%--</td>--%>
+
+                        <%--<td>${creative.order_id }</td>--%>
+                        <%--<td>${creative.exe_campaign_id}</td>--%>
+                        <%--<td>${creative.width }</td>--%>
+                        <%--<td>${creative.height }</td>--%>
+                        <%--<td>${creative.imp }</td>--%>
+                        <%--<td>${creative.click }</td>--%>
+                        <%--<td>${creative.ctr }</td>--%>
+                        <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
+                          <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
+                      <%--</tr>--%>
+                      <%--</c:forEach>--%>
+                      </tr>
 
 
-                            <th>广告主</th>
-                            <th>订单</th>
-                            <th>计划</th>
-                            <th>分类</th>
-                            <th>宽度</th>
-                            <th>高度</th>
-                            <th>创意分类</th>
-                            <th>曝光</th>
-                            <th>点击</th>
-                            <th>点击率</th>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>转化</th>--%>
-                            <%--<th>转化率</th>--%>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>综合权重</th>--%>
-
-
-                          </tr>
-                          </thead>
-
-                          <tbody id="test">
-                          <tr>
-                            <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
-                          <%--<tr class="text-c">--%>
-                            <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
-                              <%--<img alt="15x15" src='${creative.creative_url }' />--%>
-                              <%--<!--<div class="text">-->--%>
-                              <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                              <%--<!--</div>-->--%>
-                            <%--</a>--%>
-                            <%--</td>--%>
-
-                            <%--<td>${creative.order_id }</td>--%>
-                            <%--<td>${creative.exe_campaign_id}</td>--%>
-                            <%--<td>${creative.width }</td>--%>
-                            <%--<td>${creative.height }</td>--%>
-                            <%--<td>${creative.imp }</td>--%>
-                            <%--<td>${creative.click }</td>--%>
-                            <%--<td>${creative.ctr }</td>--%>
-                            <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                              <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                          <%--</tr>--%>
-                          <%--</c:forEach>--%>
-                          </tr>
-
-
-                          </tbody>
-                        </table>
-
-
-
+                      </tbody>
+                    </table>
                   </div>
 
                   <!--PAGE CONTENT ENDS HERE-->
@@ -719,7 +543,6 @@
 
 
     </div><!--/#page-content-->
-   </div>
 
     <div id="ace-settings-container">
       <div class="btn btn-app btn-mini btn-warning" id="ace-settings-btn">
@@ -759,100 +582,47 @@
 
 <!--basic scripts-->
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+  window.jQuery || document.write("<script src='/assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
 </script>
-<script src="/assets/js/bootstrap.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
-<!-- page specific plugin scripts -->
-<script src="/assets/js/jquery.dataTables.js"></script>
+<!--page specific plugin scripts-->
+
+<script src="/assets/js/jquery.dataTables.min.js"></script>
 <script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
 
-<!-- ace scripts -->
-<script src="/assets/js/ace/elements.scroller.js"></script>
-<script src="/assets/js/ace/elements.colorpicker.js"></script>
-<script src="/assets/js/ace/elements.fileinput.js"></script>
-<script src="/assets/js/ace/elements.typeahead.js"></script>
-<script src="/assets/js/ace/elements.wysiwyg.js"></script>
-<script src="/assets/js/ace/elements.spinner.js"></script>
-<script src="/assets/js/ace/elements.treeview.js"></script>
-<script src="/assets/js/ace/elements.wizard.js"></script>
-<script src="/assets/js/ace/elements.aside.js"></script>
-<script src="/assets/js/ace/ace.js"></script>
-<script src="/assets/js/ace/ace.ajax-content.js"></script>
-<script src="/assets/js/ace/ace.touch-drag.js"></script>
-<script src="/assets/js/ace/ace.sidebar.js"></script>
-<script src="/assets/js/ace/ace.sidebar-scroll-1.js"></script>
-<script src="/assets/js/ace/ace.submenu-hover.js"></script>
-<script src="/assets/js/ace/ace.widget-box.js"></script>
-<script src="/assets/js/ace/ace.settings.js"></script>
-<script src="/assets/js/ace/ace.settings-rtl.js"></script>
-<script src="/assets/js/ace/ace.settings-skin.js"></script>
-<script src="/assets/js/ace/ace.widget-on-reload.js"></script>
-<script src="/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+<!--ace scripts-->
 
-<!-- inline scripts related to this page -->
+<script src="/assets/js/ace-elements.min.js"></script>
+<script src="/assets/js/ace.min.js"></script>
+
+<!--inline scripts related to this page-->
+
 <script type="text/javascript">
-    jQuery(function($) {
-        var oTable1 =
-                $('#sample-table-2')
-                    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                        .dataTable( {
-                            bAutoWidth: false,
-                            "aoColumns": [
-                                { "bSortable": false },
-                                null, null,null, null, null,
-                                { "bSortable": false }
-                            ],
-                            "aaSorting": [],
+  $(function() {
+    var oTable1 = $('#table_report').dataTable( {
+      "aoColumns": [
+        { "bSortable": false },
+        null, null,null, null, null,
+        { "bSortable": false }
+      ] } );
 
 
-                        } );
+    $('table th input:checkbox').on('click' , function(){
+      var that = this;
+      $(this).closest('table').find('tr > td:first-child input:checkbox')
+              .each(function(){
+                this.checked = that.checked;
+                $(this).closest('tr').toggleClass('selected');
+              });
 
+    });
 
-
-        //oTable1.fnAdjustColumnSizing();
-
-
-        $(document).on('click', 'th input:checkbox' , function(){
-            var that = this;
-            $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function(){
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
-        });
-
-
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('table')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            //var w2 = $source.width();
-
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-
-    })
+    $('[data-rel=tooltip]').tooltip();
+  })
 </script>
-
-<!-- the following scripts are used in demo only for onpage help and you don't need them -->
-<link rel="stylesheet" href="/assets/css/ace.onpage-help.css" />
-<link rel="stylesheet" href="/docs/assets/js/themes/sunburst.css" />
-
-<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-<script src="/assets/js/ace/elements.onpage-help.js"></script>
-<script src="/assets/js/ace/ace.onpage-help.js"></script>
-<script src="/docs/assets/js/rainbow.js"></script>
-<script src="/docs/assets/js/language/generic.js"></script>
-<script src="/docs/assets/js/language/html.js"></script>
-<script src="/docs/assets/js/language/css.js"></script>
-<script src="/docs/assets/js/language/javascript.js"></script>
 </body>
 </html>
 
