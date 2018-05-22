@@ -8,7 +8,7 @@
 	<!--</insert>-->
 
 	<select id="conditionNative" resultType="com.creative.report.data.vo.Creative">
-		select * from creative_data where type like concat('%',#{toSelect},'%') limit 10
+		select * from creative_data where type like concat('%',#{toSelect},'%') limit 100
 	</select>
 
 	<!--筛选出广告主-->
