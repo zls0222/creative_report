@@ -255,6 +255,8 @@
 
     function typeForm(arg1) {
 
+        $.fn.dataTable.ext.errMode = 'throw';
+
 
         $('#example').DataTable( {
             retrieve: true,
@@ -298,7 +300,7 @@
                 }
             },
             ajax: {
-                url: "/resume/queryList",
+
                 url : "/creative/creative",
                 type : "GET",
                 contentType : "application/json",
@@ -314,16 +316,28 @@
                                 "<img style=\"width:180px\" src="+data+" />"+
                                 "</a>"; }
                 },
+
+                //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
+
+
+
                 { "data": "advertiser" },
                 { "data": "order_id" },
-                { "data": "campaign_id" },
+                { "data": "exe_campaign_id" },
                 { "data": "advertiser_cat" },
-                { "data": "width" },
-                { "data": "height" },
+                { "data": "size" },
                 { "data": "creative_id" },
-                { data: "imp"},
-                { data: "click"},
-                { data: "ctr"},
+
+                { "data": "imp"},
+                { "data": "click"},
+                { "data": "ctr"},
+                { "data": "clickContrast"},
+                { "data": "cvt"},
+                { "data": "cvr"},
+                { "data": "cvtContrast"},
+                { "data": "comprehensiveWeight"}
+
+
             ]
         } );
 
@@ -616,45 +630,21 @@
                             <th>订单</th>
                             <th>计划</th>
                             <th>分类</th>
-                            <th>宽度</th>
-                            <th>高度</th>
+                            <th>尺寸</th>
                             <th>创意分类</th>
                             <th>曝光</th>
                             <th>点击</th>
                             <th>点击率</th>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>转化</th>--%>
-                            <%--<th>转化率</th>--%>
-                            <%--<th>对比值</th>--%>
-                            <%--<th>综合权重</th>--%>
+                            <th>对比值</th>
+                            <th>转化</th>
+                            <th>转化率</th>
+                            <th>对比值</th>
+                            <th>综合权重</th>
 
 
                           </tr>
                           </thead>
 
-
-
-                            <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
-                          <%--<tr class="text-c">--%>
-                            <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
-                              <%--<img alt="15x15" src='${creative.creative_url }' />--%>
-                              <%--<!--<div class="text">-->--%>
-                              <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                              <%--<!--</div>-->--%>
-                            <%--</a>--%>
-                            <%--</td>--%>
-
-                            <%--<td>${creative.order_id }</td>--%>
-                            <%--<td>${creative.exe_campaign_id}</td>--%>
-                            <%--<td>${creative.width }</td>--%>
-                            <%--<td>${creative.height }</td>--%>
-                            <%--<td>${creative.imp }</td>--%>
-                            <%--<td>${creative.click }</td>--%>
-                            <%--<td>${creative.ctr }</td>--%>
-                            <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                              <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                          <%--</tr>--%>
-                          <%--</c:forEach>--%>
 
 
 
@@ -754,57 +744,7 @@
 <script src="/assets/js/ace/ace.widget-on-reload.js"></script>
 <script src="/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
-<!-- inline scripts related to this page -->
-<%--<script type="text/javascript">--%>
-    <%--jQuery(function($) {--%>
-        <%--var oTable1 =--%>
-                <%--$('#sample-table-2')--%>
-                    <%--//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)--%>
-                        <%--.dataTable( {--%>
-                            <%--bAutoWidth: false,--%>
-                            <%--"aoColumns": [--%>
-                                <%--{ "bSortable": false },--%>
-                                <%--null, null,null, null, null,--%>
-                                <%--{ "bSortable": false }--%>
-                            <%--],--%>
-                            <%--"aaSorting": [],--%>
 
-
-                        <%--} );--%>
-
-
-
-        <%--//oTable1.fnAdjustColumnSizing();--%>
-
-
-        <%--$(document).on('click', 'th input:checkbox' , function(){--%>
-            <%--var that = this;--%>
-            <%--$(this).closest('table').find('tr > td:first-child input:checkbox')--%>
-                    <%--.each(function(){--%>
-                        <%--this.checked = that.checked;--%>
-                        <%--$(this).closest('tr').toggleClass('selected');--%>
-                    <%--});--%>
-        <%--});--%>
-
-
-        <%--$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});--%>
-        <%--function tooltip_placement(context, source) {--%>
-            <%--var $source = $(source);--%>
-            <%--var $parent = $source.closest('table')--%>
-            <%--var off1 = $parent.offset();--%>
-            <%--var w1 = $parent.width();--%>
-
-            <%--var off2 = $source.offset();--%>
-            <%--//var w2 = $source.width();--%>
-
-            <%--if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';--%>
-            <%--return 'left';--%>
-        <%--}--%>
-
-    <%--})--%>
-<%--</script>--%>
-
-<!-- the following scripts are used in demo only for onpage help and you don't need them -->
 <link rel="stylesheet" href="/assets/css/ace.onpage-help.css" />
 <link rel="stylesheet" href="/assets/js/themes/sunburst.css" />
 
@@ -816,291 +756,6 @@
 <script src="/assets/js/language/css.js"></script>
 <script src="/assets/js/language/javascript.js"></script>
 
-<%--<script>--%>
-    <%--//加入分页--%>
-
-    <%--$('#example').DataTable( {--%>
-        <%--retrieve: true,--%>
-        <%--"serverSide": true,--%>
-        <%--searching: true,--%>
-        <%--lengthChange: true,--%>
-        <%--paging: true,--%>
-        <%--scrollCollapse: true,--%>
-        <%--serverSide: false,--%>
-        <%--search: true,--%>
-        <%--processing: true,--%>
-        <%--/* scrollY: 500,   表格的高度限制*/--%>
-        <%--scrollX: "100%",--%>
-        <%--scrollXInner: "100%",--%>
-        <%--scrollCollapse: true,--%>
-        <%--jQueryUI: true,--%>
-        <%--autoWidth: true,--%>
-        <%--autoSearch: false,--%>
-        <%--language: {--%>
-            <%--"sProcessing": "处理中...",--%>
-            <%--"sLengthMenu": "显示 _MENU_ 项搜索结果",--%>
-            <%--"sZeroRecords": "没有匹配结果",--%>
-            <%--"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 条简历",--%>
-            <%--"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",--%>
-            <%--"sInfoFiltered": "(由 _MAX_ 项结果过滤)",--%>
-            <%--"sInfoPostFix": "",--%>
-            <%--"sSearch": "搜索:",--%>
-            <%--"sUrl": "",--%>
-            <%--"sEmptyTable": "未搜索到数据",--%>
-            <%--"sLoadingRecords": "载入中...",--%>
-            <%--"sInfoThousands": ",",--%>
-            <%--"oPaginate": {--%>
-                <%--"sFirst": "首页",--%>
-                <%--"sPrevious": "上页",--%>
-                <%--"sNext": "下页",--%>
-                <%--"sLast": "末页"--%>
-            <%--},--%>
-            <%--"oAria": {--%>
-                <%--"sSortAscending": ": 以升序排列此列",--%>
-                <%--"sSortDescending": ": 以降序排列此列"--%>
-            <%--}--%>
-        <%--},--%>
-        <%--ajax: {--%>
-            <%--url: "/resume/queryList",--%>
-            <%--url : "/creative/creative",--%>
-            <%--type : "GET",--%>
-            <%--contentType : "application/json",--%>
-            <%--dataType : "json",--%>
-            <%--data: {"toSelect":arg1},--%>
-            <%--dataSrc: ''--%>
-        <%--},--%>
-
-        <%--"columns": [--%>
-            <%--{ "data": "creative_url" },--%>
-            <%--{ "data": "advertiser" },--%>
-            <%--{ "data": "order_id" },--%>
-            <%--{ "data": "campaign_id" },--%>
-            <%--{ "data": "advertiser_cat" },--%>
-            <%--{ "data": "width" },--%>
-            <%--{ "data": "height" },--%>
-            <%--{ "data": "creative_id" },--%>
-            <%--{ data: "imp"},--%>
-            <%--{ data: "click"},--%>
-            <%--{ data: "ctr"},--%>
-        <%--]--%>
-    <%--} );--%>
-<%--</script>--%>
-
-    <%--//                        p.pageNo = d.advertiser;--%>
-    <%--//                        p.draw = d.order_id;--%>
-    <%--//                        p.pageSize = d.campaign_id;--%>
-    <%--//                        p.pageNo = d.advertiser_cat;--%>
-    <%--//                        p.draw = d.width;--%>
-    <%--//                        p.pageSize = d.height;--%>
-    <%--//                        p.pageNo = d.creative_id;--%>
-    <%--//                        p.draw = d.imp;--%>
-    <%--//                        p.pageSize = d.click;--%>
-    <%--//                        p.pageSize = d.ctr;--%>
-
-
-
-
-    <%--$('#example').DataTable({--%>
-                <%--retrieve: true,--%>
-                <%--//开启搜索框--%>
-                <%--"searching": true,--%>
-                <%--//允许分页--%>
-                <%--"paging": true,--%>
-                <%--//左下角信息 showing 1 to 7 of 7entries--%>
-                <%--"info":true,--%>
-                <%--//支持国际化，将search转为中文--%>
-                <%--language: {--%>
-                    <%--"search": "在表格中搜索:",--%>
-                    <%--"oPaginate": {--%>
-                        <%--"sPrevious": "上页",--%>
-                        <%--"sNext": "下页",--%>
-                    <%--},--%>
-                <%--},--%>
-                <%--"columnDefs": [--%>
-                    <%--{--%>
-                        <%--//targets指定列禁止排序功能--%>
-                        <%--"orderable": false,--%>
-                        <%--"targets": [0,1,2]--%>
-                    <%--}--%>
-                <%--],--%>
-<%--//                ajax : {--%>
-<%--//                    url : "/creative/creative",--%>
-<%--//                    type : "GET",--%>
-<%--//                    contentType : "application/json",--%>
-<%--//                    dataType : "json",--%>
-<%--//                    data: {"toSelect":arg1},--%>
-<%--//                    data : function(d) {--%>
-<%--//                        //console.log(JSON.stringify(d));--%>
-<%--//                        var p = {};--%>
-<%--//                        p.pageSize = d.creative_url;--%>
-<%--//                        p.pageNo = d.advertiser;--%>
-<%--//                        p.draw = d.order_id;--%>
-<%--//                        p.pageSize = d.campaign_id;--%>
-<%--//                        p.pageNo = d.advertiser_cat;--%>
-<%--//                        p.draw = d.width;--%>
-<%--//                        p.pageSize = d.height;--%>
-<%--//                        p.pageNo = d.creative_id;--%>
-<%--//                        p.draw = d.imp;--%>
-<%--//                        p.pageSize = d.click;--%>
-<%--//                        p.pageSize = d.ctr;--%>
-<%--//--%>
-<%--////                        "<td style=\"width:100px\">"+data[i].advertiser + "</td>" +--%>
-<%--////                        "<td style=\"width:120px\">"+data[i].order_id + "</td>" +--%>
-<%--////                        "<td style=\"width:120px\">"+data[i].campaign_id + "</td>" +--%>
-<%--////                        "<td>"+data[i].advertiser_cat + "</td>" +--%>
-<%--////                        "<td>"+data[i].width + "</td>" +--%>
-<%--////                        "<td>"+data[i].height + "</td>" +--%>
-<%--////                        "<td>"+data[i].creative_id + "</td>" +--%>
-<%--////                        "<td>"+data[i].imp + "</td>" +--%>
-<%--////                        "<td>"+data[i].click + "</td>" +--%>
-<%--////                        "<td style=\"width:30px\">"+data[i].ctr + "</td>" +--%>
-<%--//--%>
-<%--//--%>
-<%--//                        var jsonParam = JSON.stringify(p);--%>
-<%--//                        console.log(jsonParam);--%>
-<%--//                        return jsonParam;--%>
-<%--//                    },--%>
-<%--//                    "error":function(data){--%>
-<%--//                        alert(data);--%>
-<%--//                    }--%>
-<%--//--%>
-<%--//                }--%>
-
-
-                <%--ajax:{--%>
-                    <%--type: "GET",--%>
-                    <%--url: '/creative/creative',--%>
-                    <%--data: {"toSelect": arg1},--%>
-                    <%--dataType: "json",--%>
-                    <%--error: function (XMLHttpRequest, textStatus, errorThrown, data) {--%>
-                        <%--console.info(XMLHttpRequest.status);--%>
-                        <%--console.info(XMLHttpRequest.readyState);--%>
-                        <%--console.info(textStatus);--%>
-                        <%--console.info(XMLHttpRequest.responseText);--%>
-                    <%--},--%>
-
-                    <%--success: function (data) {--%>
-<%--//          $('#resText').empty();   //清空resText里面的所有内容--%>
-<%--//          alert('请求ok');--%>
-<%--//        }--%>
-<%--//      });--%>
-<%--//      $.ajax({--%>
-<%--//        url: '/creative/creative', //请求的url--%>
-<%--//        type: 'post', //请求的方式--%>
-<%--//        data: {"toSelect":arg1},--%>
-<%--//        async : false,--%>
-<%--////        dataType : 'json',--%>
-<%--////        error:function (data) {--%>
-<%--////          alert(data.toLocaleString)--%>
-<%--////          alert('请求失败');--%>
-<%--////        },--%>
-<%--//--%>
-<%--//        success:function (data) {--%>
-<%--//          alert(data);--%>
-                        <%--var str1 = "";--%>
-                        <%--//清空table中的html--%>
-                        <%--$("#test").html("");--%>
-                        <%--for (var i = 0; i < data.length; i++) {--%>
-                            <%--str1 = "<tr style=\"width:2280px\">" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//                    "<td>111</td>" +--%>
-<%--//--%>
-<%--//                    <th>创意图片</th>--%>
-<%--//                    <th>广告主</th>--%>
-<%--//                    <th>订单</th>--%>
-<%--//                    <th>计划</th>--%>
-<%--//                    <th>分类</th>--%>
-<%--//                    <th>宽度</th>--%>
-<%--//                    <th>高度</th>--%>
-<%--//                    <th>创意分类</th>--%>
-<%--//                    <th>曝光</th>--%>
-<%--//                    <th>点击</th>--%>
-<%--//                    <th>点击率</th>--%>
-<%--//                    <th>对比值</th>--%>
-<%--//                    <th>转化</th>--%>
-<%--//                    <th>转化率</th>--%>
-<%--//                    <th>对比值</th>--%>
-<%--//                    <th>综合权重</th>--%>
-
-
-<%--//--%>
-
-
-                                    <%--"<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+--%>
-                                    <%--"<img style=\"width:180px\" src="+data[i].creative_url+" />"+--%>
-                                    <%--"</a>"+--%>
-                                    <%--"</td>"+--%>
-<%--//                    "<td>"+data[i].creative_url + "</td>" +--%>
-                                    <%--"<td style=\"width:100px\">"+data[i].advertiser + "</td>" +--%>
-                                    <%--"<td style=\"width:120px\">"+data[i].order_id + "</td>" +--%>
-                                    <%--"<td style=\"width:120px\">"+data[i].campaign_id + "</td>" +--%>
-                                    <%--"<td>"+data[i].advertiser_cat + "</td>" +--%>
-                                    <%--"<td>"+data[i].width + "</td>" +--%>
-                                    <%--"<td>"+data[i].height + "</td>" +--%>
-                                    <%--"<td>"+data[i].creative_id + "</td>" +--%>
-                                    <%--"<td>"+data[i].imp + "</td>" +--%>
-                                    <%--"<td>"+data[i].click + "</td>" +--%>
-                                    <%--"<td style=\"width:30px\">"+data[i].ctr + "</td>" +--%>
-<%--//                    "<td>"+data[i].clickContrast + "</td>" +--%>
-<%--//                    "<td>"+data[i].cvt + "</td>" +--%>
-<%--//                    "<td>"+data[i].cvr + "</td>" +--%>
-<%--//                    "<td>"+data[i].cvtContrast + "</td>" +--%>
-<%--//                    "<td>"+data[i].ComprehensiveWeight + "</td>" +--%>
-                                    <%--"</tr>";--%>
-
-
-                            <%--&lt;%&ndash;&lt;%&ndash;<tr class="text-c">&ndash;%&gt;&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;"<td><a href="+'${creative.creative_url }'+" data-rel="+"colorbox"+">"+&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;"<img alt="+"15x15"+" src="+'${creative.creative_url }'+" />"+&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<!--<div class="text">-->&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<!--<div class="inner">Sample Caption on Hover</div>-->&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<!--</div>-->&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;"</a>"+&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;"</td>"&ndash;%&gt;--%>
-
-                            <%--&lt;%&ndash;<td>${creative.order_id }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.exe_campaign_id}</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.width }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.height }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.imp }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.click }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td>${creative.ctr }</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-
-                            <%--$("#test").append(str1);--%>
-                        <%--}--%>
-                    <%--},--%>
-                    <%--&lt;%&ndash;error:function(XMLHttpRequest, textStatus, errorThrown){&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;alert(XMLHttpRequest);&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;alert(textStatus);&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;alert(errorThrown);&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;}&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;});&ndash;%&gt;--%>
-
-
-
-                <%--}--%>
-            <%--}--%>
-
-
-
-
-    <%--);--%>
-
-
-<%--<script type="text/javascript">--%>
-    <%--$(document).ready( function () {--%>
-        <%--$('#example').DataTable();--%>
-    <%--} );--%>
-<%--</script>--%>
 
 
 </body>

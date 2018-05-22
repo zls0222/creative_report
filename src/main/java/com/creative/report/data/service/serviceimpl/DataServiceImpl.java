@@ -3,10 +3,7 @@ package com.creative.report.data.service.serviceimpl;
 
 import com.creative.report.data.dao.DataDAO;
 import com.creative.report.data.service.DataService;
-import com.creative.report.data.vo.Condition;
-import com.creative.report.data.vo.Creative;
-import com.creative.report.data.vo.SelectFunction;
-import com.creative.report.data.vo.SubmitSelect;
+import com.creative.report.data.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +27,9 @@ public class DataServiceImpl implements DataService{
 //	}
 
 	@Override
-	public List<Creative> conditionNative(String condition) {
-		List<Creative> result=dataDAO.conditionNative(condition);
+	public List<LaunchBanner> conditionNative(String condition) {
+		List<LaunchBanner> result=dataDAO.conditionNative(condition);
+
 		return result;
 	}
 

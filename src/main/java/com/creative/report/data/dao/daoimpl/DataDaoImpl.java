@@ -2,13 +2,10 @@ package com.creative.report.data.dao.daoimpl;
 
 import com.creative.report.data.dao.DataDAO;
 import com.creative.report.data.mapper.DaoMapper;
-import com.creative.report.data.vo.Condition;
-import com.creative.report.data.vo.Creative;
+import com.creative.report.data.vo.*;
 
 import java.util.List;
 
-import com.creative.report.data.vo.SelectFunction;
-import com.creative.report.data.vo.SubmitSelect;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -19,8 +16,27 @@ public class DataDaoImpl implements DataDAO {
     @Autowired
     private DaoMapper daoMapper;
     @Override
-    public List<Creative> conditionNative(String condition) {
-        List<Creative> result=daoMapper.conditionNative(condition);
+    public List<LaunchBanner> conditionNative(String condition) {
+        List<LaunchBanner> result=daoMapper.conditionNative(condition);
+
+        Float ctr_avg=daoMapper.conditionCtrAvg(condition);
+        Float cvr_avg=daoMapper.conditionCvrAvg(condition);
+        for (int i = 0; i < result.size(); i++) {
+            float clickContrast=(result.get(i).getCtr()-ctr_avg)/ctr_avg;
+            float cvtContrast=(result.get(i).getCtr()-cvr_avg)/cvr_avg;
+            String size="";
+            size+=result.get(i).getWidth();
+            size+="*";
+            size+=result.get(i).getHeight();
+            result.get(i).setClickContrast(clickContrast);
+            result.get(i).setCvtContrast(cvtContrast);
+            result.get(i).setSize(size);
+            result.get(i).setComprehensiveWeight((float) 1.0);
+
+
+
+
+        }
         return result;
     }
 

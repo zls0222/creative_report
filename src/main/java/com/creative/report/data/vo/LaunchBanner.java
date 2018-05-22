@@ -14,7 +14,12 @@ public class LaunchBanner {
     String order_id;
     String exe_campaign_id;
     String size;
-    String campaign_id;
+    String advertiser_cat;
+    String creative_id;
+    int width;
+    int height;
+
+
     Long imp;
     Long click;
     Float ctr;
@@ -22,18 +27,22 @@ public class LaunchBanner {
     Long cvt;
     Float cvr;
     Float cvtContrast;
-    Float ComprehensiveWeight;
+    Float comprehensiveWeight;
+
 
     public LaunchBanner() {
     }
 
-    public LaunchBanner(String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String campaign_id, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, Float comprehensiveWeight) {
+    public LaunchBanner(String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String advertiser_cat, String creative_id, int width, int height, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, Float comprehensiveWeight) {
         this.creative_url = creative_url;
         this.advertiser = advertiser;
         this.order_id = order_id;
         this.exe_campaign_id = exe_campaign_id;
         this.size = size;
-        this.campaign_id = campaign_id;
+        this.advertiser_cat = advertiser_cat;
+        this.creative_id = creative_id;
+        this.width = width;
+        this.height = height;
         this.imp = imp;
         this.click = click;
         this.ctr = ctr;
@@ -41,7 +50,11 @@ public class LaunchBanner {
         this.cvt = cvt;
         this.cvr = cvr;
         this.cvtContrast = cvtContrast;
-        ComprehensiveWeight = comprehensiveWeight;
+        this.comprehensiveWeight = comprehensiveWeight;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getCreative_url() {
@@ -84,12 +97,36 @@ public class LaunchBanner {
         this.size = size;
     }
 
-    public String getCampaign_id() {
-        return campaign_id;
+    public String getAdvertiser_cat() {
+        return advertiser_cat;
     }
 
-    public void setCampaign_id(String campaign_id) {
-        this.campaign_id = campaign_id;
+    public void setAdvertiser_cat(String advertiser_cat) {
+        this.advertiser_cat = advertiser_cat;
+    }
+
+    public String getCreative_id() {
+        return creative_id;
+    }
+
+    public void setCreative_id(String creative_id) {
+        this.creative_id = creative_id;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public Long getImp() {
@@ -149,11 +186,11 @@ public class LaunchBanner {
     }
 
     public Float getComprehensiveWeight() {
-        return ComprehensiveWeight;
+        return comprehensiveWeight;
     }
 
     public void setComprehensiveWeight(Float comprehensiveWeight) {
-        ComprehensiveWeight = comprehensiveWeight;
+        this.comprehensiveWeight = comprehensiveWeight;
     }
 
 
@@ -162,41 +199,50 @@ public class LaunchBanner {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LaunchBanner launchBanner = (LaunchBanner) o;
+        LaunchBanner that = (LaunchBanner) o;
 
-        if (!creative_url.equals(launchBanner.creative_url)) return false;
-        if (!advertiser.equals(launchBanner.advertiser)) return false;
-        if (!order_id.equals(launchBanner.order_id)) return false;
-        if (!exe_campaign_id.equals(launchBanner.exe_campaign_id)) return false;
-        if (!size.equals(launchBanner.size)) return false;
-        if (!campaign_id.equals(launchBanner.campaign_id)) return false;
-        if (!imp.equals(launchBanner.imp)) return false;
-        if (!click.equals(launchBanner.click)) return false;
-        if (!ctr.equals(launchBanner.ctr)) return false;
-        if (!clickContrast.equals(launchBanner.clickContrast)) return false;
-        if (!cvt.equals(launchBanner.cvt)) return false;
-        if (!cvr.equals(launchBanner.cvr)) return false;
-        if (!cvtContrast.equals(launchBanner.cvtContrast)) return false;
-        return ComprehensiveWeight.equals(launchBanner.ComprehensiveWeight);
+        if (width != that.width) return false;
+        if (height != that.height) return false;
+        if (creative_url != null ? !creative_url.equals(that.creative_url) : that.creative_url != null) return false;
+        if (advertiser != null ? !advertiser.equals(that.advertiser) : that.advertiser != null) return false;
+        if (order_id != null ? !order_id.equals(that.order_id) : that.order_id != null) return false;
+        if (exe_campaign_id != null ? !exe_campaign_id.equals(that.exe_campaign_id) : that.exe_campaign_id != null)
+            return false;
+        if (size != null ? !size.equals(that.size) : that.size != null) return false;
+        if (advertiser_cat != null ? !advertiser_cat.equals(that.advertiser_cat) : that.advertiser_cat != null)
+            return false;
+        if (creative_id != null ? !creative_id.equals(that.creative_id) : that.creative_id != null) return false;
+        if (imp != null ? !imp.equals(that.imp) : that.imp != null) return false;
+        if (click != null ? !click.equals(that.click) : that.click != null) return false;
+        if (ctr != null ? !ctr.equals(that.ctr) : that.ctr != null) return false;
+        if (clickContrast != null ? !clickContrast.equals(that.clickContrast) : that.clickContrast != null)
+            return false;
+        if (cvt != null ? !cvt.equals(that.cvt) : that.cvt != null) return false;
+        if (cvr != null ? !cvr.equals(that.cvr) : that.cvr != null) return false;
+        if (cvtContrast != null ? !cvtContrast.equals(that.cvtContrast) : that.cvtContrast != null) return false;
+        return !(comprehensiveWeight != null ? !comprehensiveWeight.equals(that.comprehensiveWeight) : that.comprehensiveWeight != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = creative_url.hashCode();
-        result = 31 * result + advertiser.hashCode();
-        result = 31 * result + order_id.hashCode();
-        result = 31 * result + exe_campaign_id.hashCode();
-        result = 31 * result + size.hashCode();
-        result = 31 * result + campaign_id.hashCode();
-        result = 31 * result + imp.hashCode();
-        result = 31 * result + click.hashCode();
-        result = 31 * result + ctr.hashCode();
-        result = 31 * result + clickContrast.hashCode();
-        result = 31 * result + cvt.hashCode();
-        result = 31 * result + cvr.hashCode();
-        result = 31 * result + cvtContrast.hashCode();
-        result = 31 * result + ComprehensiveWeight.hashCode();
+        int result = creative_url != null ? creative_url.hashCode() : 0;
+        result = 31 * result + (advertiser != null ? advertiser.hashCode() : 0);
+        result = 31 * result + (order_id != null ? order_id.hashCode() : 0);
+        result = 31 * result + (exe_campaign_id != null ? exe_campaign_id.hashCode() : 0);
+        result = 31 * result + (size != null ? size.hashCode() : 0);
+        result = 31 * result + (advertiser_cat != null ? advertiser_cat.hashCode() : 0);
+        result = 31 * result + (creative_id != null ? creative_id.hashCode() : 0);
+        result = 31 * result + width;
+        result = 31 * result + height;
+        result = 31 * result + (imp != null ? imp.hashCode() : 0);
+        result = 31 * result + (click != null ? click.hashCode() : 0);
+        result = 31 * result + (ctr != null ? ctr.hashCode() : 0);
+        result = 31 * result + (clickContrast != null ? clickContrast.hashCode() : 0);
+        result = 31 * result + (cvt != null ? cvt.hashCode() : 0);
+        result = 31 * result + (cvr != null ? cvr.hashCode() : 0);
+        result = 31 * result + (cvtContrast != null ? cvtContrast.hashCode() : 0);
+        result = 31 * result + (comprehensiveWeight != null ? comprehensiveWeight.hashCode() : 0);
         return result;
     }
 
@@ -208,7 +254,10 @@ public class LaunchBanner {
                 ", order_id='" + order_id + '\'' +
                 ", exe_campaign_id='" + exe_campaign_id + '\'' +
                 ", size='" + size + '\'' +
-                ", campaign_id='" + campaign_id + '\'' +
+                ", advertiser_cat='" + advertiser_cat + '\'' +
+                ", creative_id='" + creative_id + '\'' +
+                ", width=" + width +
+                ", height=" + height +
                 ", imp=" + imp +
                 ", click=" + click +
                 ", ctr=" + ctr +
@@ -216,7 +265,7 @@ public class LaunchBanner {
                 ", cvt=" + cvt +
                 ", cvr=" + cvr +
                 ", cvtContrast=" + cvtContrast +
-                ", ComprehensiveWeight=" + ComprehensiveWeight +
+                ", comprehensiveWeight=" + comprehensiveWeight +
                 '}';
     }
 }

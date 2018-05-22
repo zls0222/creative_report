@@ -7,8 +7,16 @@
 	<!--insert into t_custom values(#{cidcard},#{name},#{sex},#{tel},#{adress},#{job})-->
 	<!--</insert>-->
 
-	<select id="conditionNative" resultType="com.creative.report.data.vo.Creative">
-		select * from creative_data where type like concat('%',#{toSelect},'%') limit 100
+	<select id="conditionNative" resultType="com.creative.report.data.vo.LaunchBanner">
+		select * from creative_report where type like concat('%',#{toSelect},'%') limit 100
+	</select>
+
+	<select id="conditionCtrAvg" resultType="Float">
+		select AVG(ctr) from creative_report where type like concat('%',#{toSelect},'%')
+	</select>
+
+	<select id="conditionCvrAvg" resultType="Float">
+		select AVG(cvr) from creative_report where type like concat('%',#{toSelect},'%')
 	</select>
 
 	<!--筛选出广告主-->

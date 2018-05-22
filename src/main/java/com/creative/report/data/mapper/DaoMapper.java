@@ -2,17 +2,16 @@ package com.creative.report.data.mapper;
 
 
 
-import com.creative.report.data.vo.Condition;
-import com.creative.report.data.vo.Creative;
-import com.creative.report.data.vo.SelectFunction;
-import com.creative.report.data.vo.SubmitSelect;
+import com.creative.report.data.vo.*;
 
 import java.util.List;
 
 public interface DaoMapper {
 
 
-    List<Creative> conditionNative(String condition);
+    List<LaunchBanner> conditionNative(String condition);
+    Float conditionCtrAvg(String condition);
+    Float conditionCvrAvg(String condition);
 
     List<SelectFunction> conditionNativeAdv(SelectFunction condition);
 
@@ -23,4 +22,7 @@ public interface DaoMapper {
     List<SelectFunction> conditionNativeAdvClassify(SelectFunction condition);
 
     List<Creative> findCreative(SubmitSelect submitSelect);
+
+
+
 }

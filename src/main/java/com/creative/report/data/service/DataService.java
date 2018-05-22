@@ -1,9 +1,6 @@
 package com.creative.report.data.service;
 
-import com.creative.report.data.vo.Condition;
-import com.creative.report.data.vo.Creative;
-import com.creative.report.data.vo.SelectFunction;
-import com.creative.report.data.vo.SubmitSelect;
+import com.creative.report.data.vo.*;
 
 import java.util.List;
 
@@ -11,7 +8,7 @@ public interface DataService {
 
 
 
-	List<Creative> conditionNative(String condition);
+	List<LaunchBanner> conditionNative(String condition);
 
 	List<SelectFunction> conditionNativeAdv(SelectFunction condition);
 

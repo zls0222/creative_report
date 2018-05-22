@@ -2,10 +2,7 @@ package com.creative.report.data.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.creative.report.data.service.DataService;
-import com.creative.report.data.vo.Condition;
-import com.creative.report.data.vo.Creative;
-import com.creative.report.data.vo.SelectFunction;
-import com.creative.report.data.vo.SubmitSelect;
+import com.creative.report.data.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +23,10 @@ import java.util.List;
 @RequestMapping("/creative")
 public class DataController {
 
+
 	@Autowired
 	private DataService dataService;
+
 
 
 	//选择不同的报表类型
@@ -44,10 +43,13 @@ public class DataController {
 	//添加客户
 	@RequestMapping("/creative")
 	public @ResponseBody String showNative(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		System.out.print("进来了");
 		String toSelect = request.getParameter("toSelect");
-		List<Creative> list = dataService.conditionNative(toSelect);
+		List<LaunchBanner> list = dataService.conditionNative(toSelect);
 //
 		String jsonStr = JSONObject.toJSONString(list);
+		System.out.print(jsonStr);
+
 
 		if (list.size()>0) {
 
