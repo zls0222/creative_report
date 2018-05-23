@@ -268,12 +268,12 @@
             serverSide: false,
             search: true,
             processing: true,
-            /* scrollY: 500,   表格的高度限制*/
+//            scrollY: 500,   //表格的高度限制*/
 //            scrollX: "50%",
 //            scrollXInner: "100%",
             scrollCollapse: true,
-            jQueryUI: true,
-            autoWidth: true,
+//            jQueryUI: true,
+//            autoWidth: false,
             autoSearch: false,
             language: {
                 "sProcessing": "处理中...",
@@ -321,21 +321,64 @@
 
 
 
-                { "data": "advertiser" },
-                { "data": "order_id" },
-                { "data": "exe_campaign_id" },
-                { "data": "advertiser_cat" },
-                { "data": "size" },
-                { "data": "creative_id" },
+                { "data": "advertiser",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
 
-                { "data": "imp"},
-                { "data": "click"},
-                { "data": "ctr"},
-                { "data": "clickContrast"},
-                { "data": "cvt"},
-                { "data": "cvr"},
-                { "data": "cvtContrast"},
-                { "data": "comprehensiveWeight"}
+                },
+                { "data": "order_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "exe_campaign_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "advertiser_cat",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "size" ,
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "creative_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+
+                { "data": "imp",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "click",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "ctr",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "clickContrast",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvt",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvr",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvtContrast",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "comprehensiveWeight",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                }
 
 
             ]
@@ -626,20 +669,22 @@
                               <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status10: activate to sort column ascending" rowspan="1" colspan="1">Status10</th>--%>
 
 
-                            <th>广告主</th>
-                            <th>订单</th>
-                            <th>计划</th>
-                            <th>分类</th>
-                            <th>尺寸</th>
-                            <th>创意分类</th>
-                            <th>曝光</th>
-                            <th>点击</th>
-                            <th>点击率</th>
-                            <th>对比值</th>
-                            <th>转化</th>
-                            <th>转化率</th>
-                            <th>对比值</th>
-                            <th>综合权重</th>
+                              <%--<th style="width:100px;word-wrap:break-word;">订单</th>--%>
+
+                            <th width='100' style="word-break: break-all;">广告主</th>
+                            <th width='100' style="word-break: break-all;">订单</th>
+                            <th width='100' style="word-break: break-all;">计划</th>
+                            <th width='100' style="word-break: break-all;">分类</th>
+                            <th width='100' style="word-break: break-all;">尺寸</th>
+                            <th width='100' style="word-break: break-all;">创意分类</th>
+                            <th width='100' style="word-break: break-all;">曝光</th>
+                            <th width='100' style="word-break: break-all;">点击</th>
+                            <th width='100' style="word-break: break-all;">点击率</th>
+                            <th width='100' style="word-break: break-all;">对比值</th>
+                            <th width='100' style="word-break: break-all;">转化</th>
+                            <th width='100' style="word-break: break-all;">转化率</th>
+                            <th width='100' style="word-break: break-all;">对比值</th>
+                            <th width='100' style="word-break: break-all;">综合权重</th>
 
 
                           </tr>
