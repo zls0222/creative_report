@@ -4,6 +4,7 @@ import com.creative.report.data.dao.DataDAO;
 import com.creative.report.data.mapper.DaoMapper;
 import com.creative.report.data.vo.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -19,9 +20,37 @@ public class DataDaoImpl implements DataDAO {
     public List<LaunchBanner> conditionNative(String condition) {
         List<LaunchBanner> result=daoMapper.conditionNative(condition);
 
-        Float ctr_avg=daoMapper.conditionCtrAvg(condition);
-        Float cvr_avg=daoMapper.conditionCvrAvg(condition);
+        List<MyMap> ctr_avgss= daoMapper.conditionCtrAvg();
+        List<MyMap> cvr_avgss= daoMapper.conditionCvrAvg();
+
+        HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
+        for(int i=0;i<ctr_avgss.size();i++) {
+            MyMap one= ctr_avgss.get(i);
+            ctr_avgs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> cvr_avgs=new HashMap<String,Float>();
+        for(int i=0;i<cvr_avgss.size();i++) {
+            MyMap one= cvr_avgss.get(i);
+            cvr_avgs.put(one.getVal1(),one.getValue());
+        }
+
         for (int i = 0; i < result.size(); i++) {
+            String adv=result.get(i).getAdvertiser();
+            String type=result.get(i).getType();
+            int width=result.get(i).getWidth();
+            int height=result.get(i).getHeight();
+            String key=adv+"^"+type+"^"+width+"×"+height;
+
+            float ctr_avg= (float) ctr_avgs.get(key);
+            float cvr_avg= (float) cvr_avgs.get(key);
+
+
+
+
+
+
+
+
             float clickContrast=(result.get(i).getCtr()-ctr_avg)/ctr_avg;
             float cvtContrast=(result.get(i).getCtr()-cvr_avg)/cvr_avg;
             String size="";
@@ -65,10 +94,57 @@ public class DataDaoImpl implements DataDAO {
     }
 
     @Override
-    public List<Creative> findCreative(SubmitSelect submitSelect) {
+    public List<LaunchBanner> findCreative(SubmitSelect submitSelect) {
 
-        List<Creative> result=daoMapper.findCreative(submitSelect);
+        List<LaunchBanner> result=daoMapper.findCreative(submitSelect);
         System.out.print(result.toString());
+        List<MyMap> ctr_avgss= (List<MyMap>) daoMapper.conditionCtrAvg();
+        List<MyMap> cvr_avgss=(List<MyMap>)daoMapper.conditionCvrAvg();
+
+        HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
+        for(int i=0;i<ctr_avgss.size();i++) {
+            MyMap one= ctr_avgss.get(i);
+            ctr_avgs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> cvr_avgs=new HashMap<String,Float>();
+        for(int i=0;i<cvr_avgss.size();i++) {
+            MyMap one= cvr_avgss.get(i);
+            cvr_avgs.put(one.getVal1(),one.getValue());
+        }
+
+
+        for (int i = 0; i < result.size(); i++) {
+            String adv=result.get(i).getAdvertiser();
+            String type=result.get(i).getType();
+            int width=result.get(i).getWidth();
+            int height=result.get(i).getHeight();
+            String key=adv+"^"+type+"^"+width+"×"+height;
+
+            float ctr_avg= (float) ctr_avgs.get(key);
+            float cvr_avg= (float) cvr_avgs.get(key);
+
+
+
+
+
+
+
+
+            float clickContrast=(result.get(i).getCtr()-ctr_avg)/ctr_avg;
+            float cvtContrast=(result.get(i).getCtr()-cvr_avg)/cvr_avg;
+            String size="";
+            size+=result.get(i).getWidth();
+            size+="*";
+            size+=result.get(i).getHeight();
+            result.get(i).setClickContrast(clickContrast);
+            result.get(i).setCvtContrast(cvtContrast);
+            result.get(i).setSize(size);
+            result.get(i).setComprehensiveWeight((float) 1.0);
+
+
+
+
+        }
             return result;
     }
 }

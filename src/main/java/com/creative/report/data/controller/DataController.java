@@ -45,8 +45,8 @@ public class DataController {
 	public @ResponseBody String showNative(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		System.out.print("进来了");
 		String toSelect = request.getParameter("toSelect");
-		List<LaunchBanner> list = dataService.conditionNative(toSelect);
-//
+		List<LaunchBanner> list=dataService.conditionNative(toSelect);
+//=
 		String jsonStr = JSONObject.toJSONString(list);
 		System.out.print(jsonStr);
 
@@ -116,7 +116,7 @@ public class DataController {
 		SubmitSelect submitSelect=new SubmitSelect(adv,industry,size,classify);
 		System.out.print(submitSelect);
 //		System.out.print(submitSelect.toString());
-		List<Creative> findCreative = new ArrayList<Creative>();
+		List<LaunchBanner> findCreative = new ArrayList<LaunchBanner>();
 		findCreative = dataService.findCreative(submitSelect);
 //		model.addAttribute("findCreative", findCreative);
 		System.out.print(findCreative.size());

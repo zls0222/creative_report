@@ -137,82 +137,160 @@
 
     //别忘了导入该用的js文件
     function subForm() {
-        alert($('#selectCondition').serialize())
-      $.ajax({
-        url: '/creative/selected', //请求的url
-        type: 'post', //请求的方式
-        data: $('#selectCondition').serialize(), //form表单里要提交的内容，里面的input等写上name就会提交，这是序列化
-        error: function (XMLHttpRequest, textStatus, errorThrown, data) {
-            alert("error");
-//              console.info(XMLHttpRequest.status);
-//              console.info(XMLHttpRequest.readyState);
-//              console.info(textStatus);
-//              console.info(XMLHttpRequest.responseText);
-          },
+        alert($('#selectCondition').serialize());
 
-          success: function (data) {
+        $.fn.dataTable.ext.errMode = 'throw';
+        var1=$('#selectCondition').serialize();
+        alert(var1);
+
+
+        advs=document.getElementById('advs').value
+        industrys=document.getElementById('industrys').value
+        sizes=document.getElementById('sizes').value
+        classes=document.getElementById('classes').value
+
+
+
+
+
+
+        var  labelItemListDataTable =$("#example").dataTable();
+        labelItemListDataTable.fnClearTable();
+        labelItemListDataTable.fnDestroy();
+
+
+        $('#example').DataTable( {
+            retrieve: true,
+            "serverSide": true,
+            searching: true,
+            lengthChange: true,
+            paging: true,
+            scrollCollapse: true,
+            serverSide: false,
+            search: true,
+            processing: true,
+//            scrollY: 500,   //表格的高度限制*/
+//            scrollX: "50%",
+//            scrollXInner: "100%",
+            scrollCollapse: true,
+//            jQueryUI: true,
+//            autoWidth: false,
+            autoSearch: false,
+            language: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项搜索结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 条",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "未搜索到数据",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            ajax: {
+
+                url : "/creative/selected",
+                type : "GET",
+                contentType : "application/json",
+                dataType : "json",
+
+
 //
-              alert("success");
-              var str1 = "";
-              //清空table中的html
-              $("#test").html("");
-              for (var i = 0; i < data.length; i++) {
-                  str1 = "<tr>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-                          "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
-                          "<img style=\"width:180px\" src="+data[i].creative_url+" />"+
-                          "</a>"+
-                          "</td>"+
-//                    "<td>"+data[i].creative_url + "</td>" +
-                          "<td>"+data[i].advertiser + "</td>" +
-                          "<td>"+data[i].order_id + "</td>" +
-                          "<td>"+data[i].campaign_id + "</td>" +
-                          "<td>"+data[i].advertiser_cat + "</td>" +
-                          "<td>"+data[i].width + "</td>" +
-                          "<td>"+data[i].height + "</td>" +
-                          "<td>"+data[i].creative_id + "</td>" +
-                          "<td>"+data[i].imp + "</td>" +
-                          "<td>"+data[i].click + "</td>" +
-                          "<td>"+data[i].ctr + "</td>" +
-//                          "<td>"+data[i].clickContrast + "</td>" +
-//                          "<td>"+data[i].cvt + "</td>" +
-//                          "<td>"+data[i].cvr + "</td>" +
-//                          "<td>"+data[i].cvtContrast + "</td>" +
-//                          "<td>"+data[i].ComprehensiveWeight + "</td>" +
-                          "</tr>";
 
 
-                  <%--&lt;%&ndash;<tr class="text-c">&ndash;%&gt;--%>
-                  <%--"<td><a href="+'${creative.creative_url }'+" data-rel="+"colorbox"+">"+--%>
-                  <%--"<img alt="+"15x15"+" src="+'${creative.creative_url }'+" />"+--%>
-                  <%--<!--<div class="text">-->--%>
-                  <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                  <%--<!--</div>-->--%>
-                  <%--"</a>"+--%>
-                  <%--"</td>"--%>
+                data: {"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
+                dataSrc: ''
+            },
 
-                  <%--<td>${creative.order_id }</td>--%>
-                  <%--<td>${creative.exe_campaign_id}</td>--%>
-                  <%--<td>${creative.width }</td>--%>
-                  <%--<td>${creative.height }</td>--%>
-                  <%--<td>${creative.imp }</td>--%>
-                  <%--<td>${creative.click }</td>--%>
-                  <%--<td>${creative.ctr }</td>--%>
-                  <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                  <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                  <%--</tr>--%>
+            "columns": [
+                { "data": "creative_url",
+                    render : function(data,type, full, meta) {
+                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                                "<img style=\"width:180px\" src="+data+" />"+
+                                "</a>"; }
+                },
 
-                  $("#test").append(str1);
-              }
-          },
-      });
+                //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
+
+
+
+                { "data": "advertiser",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+
+                },
+                { "data": "order_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "exe_campaign_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "advertiser_cat",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "size" ,
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "creative_id",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+
+                { "data": "imp",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "click",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "ctr",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "clickContrast",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvt",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvr",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "cvtContrast",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                },
+                { "data": "comprehensiveWeight",
+                    render : function(data,type, full, meta) {
+                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                }
+
+
+            ]
+        } );
+
+
     }
 
     function loadAdv(arg1,arg2){
@@ -256,6 +334,9 @@
     function typeForm(arg1) {
 
         $.fn.dataTable.ext.errMode = 'throw';
+        var  labelItemListDataTable =$("#example").dataTable();
+        labelItemListDataTable.fnClearTable();
+        labelItemListDataTable.fnDestroy();
 
 
         $('#example').DataTable( {
@@ -623,7 +704,9 @@
                         </li>
 
                         <li>
-                          <button id="select01" onclick="subForm()" >提交</button>
+
+                          <img src="/assets/images/gallery/thumb-3.jpg" onclick="subForm()" style="cursor:pointer;" />
+                          <%--<button id="select01" onclick="subForm()" >提交</button>--%>
 
 
                         </li>

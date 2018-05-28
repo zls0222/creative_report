@@ -18,6 +18,7 @@ public class LaunchBanner {
     String creative_id;
     int width;
     int height;
+    String type;
 
 
     Long imp;
@@ -33,7 +34,8 @@ public class LaunchBanner {
     public LaunchBanner() {
     }
 
-    public LaunchBanner(String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String advertiser_cat, String creative_id, int width, int height, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, Float comprehensiveWeight) {
+
+    public LaunchBanner(String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String advertiser_cat, String creative_id, int width, int height, String type, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, Float comprehensiveWeight) {
         this.creative_url = creative_url;
         this.advertiser = advertiser;
         this.order_id = order_id;
@@ -43,6 +45,7 @@ public class LaunchBanner {
         this.creative_id = creative_id;
         this.width = width;
         this.height = height;
+        this.type = type;
         this.imp = imp;
         this.click = click;
         this.ctr = ctr;
@@ -129,6 +132,14 @@ public class LaunchBanner {
         this.height = height;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Long getImp() {
         return imp;
     }
@@ -212,6 +223,7 @@ public class LaunchBanner {
         if (advertiser_cat != null ? !advertiser_cat.equals(that.advertiser_cat) : that.advertiser_cat != null)
             return false;
         if (creative_id != null ? !creative_id.equals(that.creative_id) : that.creative_id != null) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (imp != null ? !imp.equals(that.imp) : that.imp != null) return false;
         if (click != null ? !click.equals(that.click) : that.click != null) return false;
         if (ctr != null ? !ctr.equals(that.ctr) : that.ctr != null) return false;
@@ -235,6 +247,7 @@ public class LaunchBanner {
         result = 31 * result + (creative_id != null ? creative_id.hashCode() : 0);
         result = 31 * result + width;
         result = 31 * result + height;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (imp != null ? imp.hashCode() : 0);
         result = 31 * result + (click != null ? click.hashCode() : 0);
         result = 31 * result + (ctr != null ? ctr.hashCode() : 0);
@@ -244,28 +257,5 @@ public class LaunchBanner {
         result = 31 * result + (cvtContrast != null ? cvtContrast.hashCode() : 0);
         result = 31 * result + (comprehensiveWeight != null ? comprehensiveWeight.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "LaunchBanner{" +
-                "creative_url='" + creative_url + '\'' +
-                ", advertiser='" + advertiser + '\'' +
-                ", order_id='" + order_id + '\'' +
-                ", exe_campaign_id='" + exe_campaign_id + '\'' +
-                ", size='" + size + '\'' +
-                ", advertiser_cat='" + advertiser_cat + '\'' +
-                ", creative_id='" + creative_id + '\'' +
-                ", width=" + width +
-                ", height=" + height +
-                ", imp=" + imp +
-                ", click=" + click +
-                ", ctr=" + ctr +
-                ", clickContrast=" + clickContrast +
-                ", cvt=" + cvt +
-                ", cvr=" + cvr +
-                ", cvtContrast=" + cvtContrast +
-                ", comprehensiveWeight=" + comprehensiveWeight +
-                '}';
     }
 }

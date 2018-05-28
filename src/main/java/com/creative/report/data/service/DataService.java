@@ -18,5 +18,5 @@ public interface DataService {
 
 	List<SelectFunction> conditionNativeAdvClassify(SelectFunction condition);
     //条件查询
-	List<Creative> findCreative(SubmitSelect submitSelect);
+	List<LaunchBanner> findCreative(SubmitSelect submitSelect);
 }

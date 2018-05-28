@@ -58,8 +58,8 @@ public class DataServiceImpl implements DataService{
 	}
 
 	@Override
-	public List<Creative> findCreative(SubmitSelect submitSelect) {
-		List<Creative> result=dataDAO.findCreative(submitSelect);
+	public List<LaunchBanner> findCreative(SubmitSelect submitSelect) {
+		List<LaunchBanner> result=dataDAO.findCreative(submitSelect);
 		return result;
 	}
 }

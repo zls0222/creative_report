@@ -11,12 +11,12 @@
 		select * from creative_report where type like concat('%',#{toSelect},'%') limit 100
 	</select>
 
-	<select id="conditionCtrAvg" resultType="Float">
-		select AVG(ctr) from creative_report where type like concat('%',#{toSelect},'%')
+	<select id="conditionCtrAvg" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, avg(ctr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,ctr  FROM `creative_report`) t group by val1 ;
 	</select>
 
-	<select id="conditionCvrAvg" resultType="Float">
-		select AVG(cvr) from creative_report where type like concat('%',#{toSelect},'%')
+	<select id="conditionCvrAvg" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, avg(cvr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,cvr  FROM `creative_report`) t group by val1 ;
 	</select>
 
 	<!--筛选出广告主-->
@@ -42,8 +42,8 @@
 
 
 
-	<select id="findCreative" resultType="com.creative.report.data.vo.Creative">
-		select *  from creative_data where '1'='1'
+	<select id="findCreative" resultType="com.creative.report.data.vo.LaunchBanner">
+		select *  from creative_report where '1'='1'
 
 		<if test="adv!=''"> and advertiser=#{adv}</if>
 		<if test="industry!=''"> and advertiser_cat=#{industry}</if>
