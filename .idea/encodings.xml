@@ -7,6 +7,13 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/resource" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/spring" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/css/select2.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/css/select2.min.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/i18n" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/select2.full.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/select2.full.min.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/select2.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/assets/js/select2.min.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/calendar.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/dataTables.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/dataTables.js" charset="GBK" />

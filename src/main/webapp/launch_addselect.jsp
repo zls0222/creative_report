@@ -32,12 +32,9 @@
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
   <link href="http://select2.github.io/select2/select2-3.5.3/select2.css" rel="stylesheet">
   <script src="http://select2.github.io/select2/select2-3.5.3/select2.js"></script>
-    <script>
-        $(function () {
-            $("#adv").select2();
-        });
-    </script>
-
+  <script>
+        $(document).ready(function() { $("#advs").select2(); });
+  </script>
 
     <!--[if IE 7]>
   <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
@@ -62,15 +59,6 @@
   <!--inline styles if any-->
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-
-  <script>
-
-      function toPercent(point){
-          var str=Number(point*100).toFixed(2);
-          str+="%";
-          return str;
-      }
-  </script>
 
 
 
@@ -270,16 +258,6 @@
                         return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
 
-                { "data": "title",
-                    render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
-                },
-
-                { "data": "descri",
-                    render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
-                },
-
                 { "data": "imp",
                     render : function(data,type, full, meta) {
                         return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
@@ -290,11 +268,11 @@
                 },
                 { "data": "ctr",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "clickContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvt",
                     render : function(data,type, full, meta) {
@@ -302,11 +280,11 @@
                 },
                 { "data": "cvr",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvtContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "comprehensiveWeight",
                     render : function(data,type, full, meta) {
@@ -349,11 +327,6 @@
 
 
             $(str0).append(str1);
-//            $(str0).select2({
-//                  placeholder: "Select a State",
-//                  allowClear: true
-//            });
-//            $(str0).select2();
           }
         },
 
@@ -464,16 +437,6 @@
                         return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
 
-                { "data": "title",
-                    render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
-                },
-
-                { "data": "descri",
-                    render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
-                },
-
                 { "data": "imp",
                     render : function(data,type, full, meta) {
                         return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
@@ -484,24 +447,23 @@
                 },
                 { "data": "ctr",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "clickContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvt",
                     render : function(data,type, full, meta) {
-
                         return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvr",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvtContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "comprehensiveWeight",
                     render : function(data,type, full, meta) {
@@ -664,31 +626,31 @@
                   <i class="green icon-home bigger-170"></i>
 
                   <!--<a data-toggle="tab" href="#profile">-->
-                    原生创意
+                  native
 
                 </a>
               </li>
 
 
 
-              <%--<li style="width:100px" style="text-align:center;">--%>
-                <%--<a data-toggle="tab"  onclick="typeForm('product')">--%>
-                  <%--<i class="green icon-home bigger-170"></i>--%>
-                  <%--<!--<a data-toggle="tab" href="#dropdown1">-->--%>
-                  <%--product--%>
+              <li style="width:100px" style="text-align:center;">
+                <a data-toggle="tab"  onclick="typeForm('product')">
+                  <i class="green icon-home bigger-170"></i>
+                  <!--<a data-toggle="tab" href="#dropdown1">-->
+                  product
 
-                <%--</a>--%>
-              <%--</li>--%>
+                </a>
+              </li>
 
 
-              <%--<li style="width:100px" style="text-align:center;">--%>
-                <%--<a data-toggle="tab" onclick="typeForm('html')">--%>
-                  <%--<i class="green icon-home bigger-170"></i>--%>
-                  <%--<!--<a data-toggle="tab" href="#dropdown2">-->--%>
-                  <%--html--%>
+              <li style="width:100px" style="text-align:center;">
+                <a data-toggle="tab" onclick="typeForm('html')">
+                  <i class="green icon-home bigger-170"></i>
+                  <!--<a data-toggle="tab" href="#dropdown2">-->
+                  html
 
-                <%--</a>--%>
-              <%--</li>--%>
+                </a>
+              </li>
 
 
 
@@ -747,7 +709,6 @@
 
 
 
-
                   <div >
                     <form id="selectCondition"    class="form form-horizontal" id="form-member-add" >
 
@@ -757,7 +718,7 @@
                         <li>
                         <%--<select  id="advs" name="adv" onchange="putValueToInput()">--%>
 
-                        <select  id="advs" name="adv" class="js-example-basic-single" >
+                        <select class="chosen-select" id="advs" name="adv" onchange="putValueToInput()">
 
 
                             <%--<option id="advs" value="">广告主</option>--%>
@@ -766,10 +727,10 @@
                         <%--<option value="${adv.toSelect }">${adv.toSelect }</option>--%>
                         <%--</c:forEach>--%>
                         </select>
-                        <%--<input  type="text" name="input"  placeholder="-请选择-" id="input" onblur="inputValue()"--%>
-                                    <%--style="width:150px; height: 30px; position: absolute;left: 8px;top: 8px; "/>--%>
-                        <%--<div style="width:150px;border:1px solid #ccc;display:none; " id="DIV">--%>
-                        <%--</div>--%>
+                        <input  type="text" name="input"  placeholder="-请选择-" id="input" onblur="inputValue()"
+                                    style="width:150px; height: 30px; position: absolute;left: 8px;top: 8px; "/>
+                        <div style="width:150px;border:1px solid #ccc;display:none; " id="DIV">
+                        </div>
                         </li>
 
                         <li onload="typeForm('advertiser_cat')">
@@ -866,8 +827,6 @@
                             <th width='100' style="word-break: break-all;">分类</th>
                             <th width='100' style="word-break: break-all;">尺寸</th>
                             <th width='100' style="word-break: break-all;">创意分类</th>
-                            <th width='100' style="word-break: break-all;">标题</th>
-                            <th width='100' style="word-break: break-all;">描述</th>
                             <th width='100' style="word-break: break-all;">曝光</th>
                             <th width='100' style="word-break: break-all;">点击</th>
                             <th width='100' style="word-break: break-all;">点击率</th>

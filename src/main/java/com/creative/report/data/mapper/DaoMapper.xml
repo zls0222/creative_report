@@ -21,22 +21,22 @@
 
 	<!--筛选出广告主-->
 	<select id="conditionNativeAdv" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT advertiser AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT advertiser AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeIndustry" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT advertiser_cat AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT advertiser_cat AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeAdvSize" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT CONCAT(width,"*",height) AS toSelect  from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT CONCAT(width,"*",height) AS toSelect  from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeAdvClassify" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT creative_id AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
@@ -46,7 +46,7 @@
 
 
 	<select id="conditionTypePlatforms" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT creative_id AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 

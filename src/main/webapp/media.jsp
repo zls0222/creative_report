@@ -56,6 +56,16 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 
+    <script>
+
+        function toPercent(point){
+            var str=Number(point*100).toFixed(2);
+            str+="%";
+            return str;
+        }
+    </script>
+
+
 
 
 
@@ -244,7 +254,7 @@
                     },
                     { "data": "ctr",
                         render : function(data,type, full, meta) {
-                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                            return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
                     },
 
                     { "data": "cvt",
@@ -253,7 +263,7 @@
                     },
                     { "data": "cvr",
                         render : function(data,type, full, meta) {
-                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                            return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
                     },
 
                     { "data": "comprehensiveWeight",
@@ -398,7 +408,7 @@
                     },
                     { "data": "ctr",
                         render : function(data,type, full, meta) {
-                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                            return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
                     },
 
                     { "data": "cvt",
@@ -407,7 +417,7 @@
                     },
                     { "data": "cvr",
                         render : function(data,type, full, meta) {
-                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                            return "<td width='50' style=\"word-break: break-all;\">"+toPercent(data) + "</td>"; }
                     },
 
                     { "data": "comprehensiveWeight",
@@ -490,7 +500,7 @@
         </div><!--#sidebar-shortcuts-->
 
         <ul class="nav nav-list">
-            <li class="active">
+            <li >
                 <a style=" color:#666; font-size:18px;" href="launch.jsp">
                     <i class="icon-dashboard"></i>
                     <span>投放分析</span>
@@ -504,7 +514,7 @@
                 </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a style=" color:#666; font-size:18px;" href="media.jsp">
                     <i class="icon-dashboard"></i>
                     <span>媒体分析</span>
@@ -572,31 +582,31 @@
                                     <i class="green icon-home bigger-170"></i>
 
                                     <!--<a data-toggle="tab" href="#profile">-->
-                                    native
+                                    原生创意
 
                                 </a>
                             </li>
 
 
 
-                            <li style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab"  onclick="typeForm('product')">
-                                    <i class="green icon-home bigger-170"></i>
-                                    <!--<a data-toggle="tab" href="#dropdown1">-->
-                                    product
+                            <%--<li style="width:100px" style="text-align:center;">--%>
+                                <%--<a data-toggle="tab"  onclick="typeForm('product')">--%>
+                                    <%--<i class="green icon-home bigger-170"></i>--%>
+                                    <%--<!--<a data-toggle="tab" href="#dropdown1">-->--%>
+                                    <%--product--%>
 
-                                </a>
-                            </li>
+                                <%--</a>--%>
+                            <%--</li>--%>
 
 
-                            <li style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab" onclick="typeForm('html')">
-                                    <i class="green icon-home bigger-170"></i>
-                                    <!--<a data-toggle="tab" href="#dropdown2">-->
-                                    html
+                            <%--<li style="width:100px" style="text-align:center;">--%>
+                                <%--<a data-toggle="tab" onclick="typeForm('html')">--%>
+                                    <%--<i class="green icon-home bigger-170"></i>--%>
+                                    <%--<!--<a data-toggle="tab" href="#dropdown2">-->--%>
+                                    <%--html--%>
 
-                                </a>
-                            </li>
+                                <%--</a>--%>
+                            <%--</li>--%>
 
 
 
