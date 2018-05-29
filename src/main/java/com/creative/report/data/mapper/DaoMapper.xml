@@ -40,6 +40,21 @@
 	</select>
 
 
+	<select id="conditionTypeRecommends" resultType="com.creative.report.data.vo.SelectFunction">
+		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+	</select>
+
+
+	<select id="conditionTypePlatforms" resultType="com.creative.report.data.vo.SelectFunction">
+		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+	</select>
+
+
+	<select id="conditionTypeMedias" resultType="com.creative.report.data.vo.SelectFunction">
+		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+	</select>
+
+
 
 
 	<select id="findCreative" resultType="com.creative.report.data.vo.LaunchBanner">
@@ -49,7 +64,7 @@
 		<if test="industry!=''"> and advertiser_cat=#{industry}</if>
 		<if test="classify!=''"> and creative_id=#{classify}</if>
 		<if test="size!=''">and CONCAT(width,"*",height) like concat('%',#{size},'%')</if>
-		limit 10
+		and type like concat('%',#{type},'%') limit 10
 	</select>
 
 	<!--<select id="findCustomer" resultType="cn.sxt.carsystem.com.creative.report.data.vo.Customer">-->

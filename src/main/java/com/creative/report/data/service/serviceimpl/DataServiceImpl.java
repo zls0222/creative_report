@@ -62,4 +62,22 @@ public class DataServiceImpl implements DataService{
 		List<LaunchBanner> result=dataDAO.findCreative(submitSelect);
 		return result;
 	}
+
+	@Override
+	public List<SelectFunction> conditionTypeRecommends(SelectFunction subselect) {
+		List<SelectFunction> result=dataDAO.conditionTypeRecommends(subselect);
+		return result;
+	}
+
+	@Override
+	public List<SelectFunction> conditionTypePlatforms(SelectFunction subselect) {
+		List<SelectFunction> result=dataDAO.conditionTypePlatforms(subselect);
+		return result;
+	}
+
+	@Override
+	public List<SelectFunction> conditionTypeMedias(SelectFunction subselect) {
+		List<SelectFunction> result=dataDAO.conditionTypeMedias(subselect);
+		return result;
+	}
 }

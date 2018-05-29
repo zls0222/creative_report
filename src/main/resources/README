@@ -1,0 +1,3 @@
+LOAD DATA LOCAL INFILE 'E:\Native.csv' INTO TABLE creative_tmp;
+
+

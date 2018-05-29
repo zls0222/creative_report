@@ -147,4 +147,22 @@ public class DataDaoImpl implements DataDAO {
         }
             return result;
     }
+
+    @Override
+    public List<SelectFunction> conditionTypeRecommends(SelectFunction subselect) {
+        List<SelectFunction> result=daoMapper.conditionTypeRecommends(subselect);
+        return result;
+    }
+
+    @Override
+    public List<SelectFunction> conditionTypePlatforms(SelectFunction subselect) {
+        List<SelectFunction> result=daoMapper.conditionTypePlatforms(subselect);
+        return result;
+    }
+
+    @Override
+    public List<SelectFunction> conditionTypeMedias(SelectFunction subselect) {
+        List<SelectFunction> result=daoMapper.conditionTypeMedias(subselect);
+        return result;
+    }
 }

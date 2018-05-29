@@ -21,4 +21,10 @@ public interface DataDAO {
 	List<SelectFunction> conditionNativeAdvClassify(SelectFunction condition);
 
 	List<LaunchBanner> findCreative(SubmitSelect submitSelect);
+
+	List<SelectFunction> conditionTypeRecommends(SelectFunction subselect);
+
+	List<SelectFunction> conditionTypePlatforms(SelectFunction subselect);
+
+	List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
 }

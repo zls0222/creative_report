@@ -137,13 +137,13 @@
 
     //别忘了导入该用的js文件
     function subForm() {
-        alert($('#selectCondition').serialize());
+//        alert($('#selectCondition').serialize());
 
         $.fn.dataTable.ext.errMode = 'throw';
         var1=$('#selectCondition').serialize();
-        alert(var1);
+//        alert(var1);
 
-
+        type=document.getElementById('type').value
         advs=document.getElementById('advs').value
         industrys=document.getElementById('industrys').value
         sizes=document.getElementById('sizes').value
@@ -211,14 +211,14 @@
 //
 
 
-                data: {"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
+                data: {"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
                 dataSrc: ''
             },
 
             "columns": [
                 { "data": "creative_url",
                     render : function(data,type, full, meta) {
-                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:5000px"+">"+
                                 "<img style=\"width:180px\" src="+data+" />"+
                                 "</a>"; }
                 },
@@ -229,61 +229,61 @@
 
                 { "data": "advertiser",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
 
                 },
                 { "data": "order_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "exe_campaign_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "advertiser_cat",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "size" ,
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "creative_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
 
                 { "data": "imp",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "click",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "ctr",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "clickContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvt",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvr",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvtContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "comprehensiveWeight",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 }
 
 
@@ -332,6 +332,10 @@
 
 
     function typeForm(arg1) {
+
+        var el = document.getElementById('type');
+        el.setAttribute('value', arg1);
+//        alert(el.getAttribute('value'))
 
         $.fn.dataTable.ext.errMode = 'throw';
         var  labelItemListDataTable =$("#example").dataTable();
@@ -393,7 +397,7 @@
             "columns": [
                 { "data": "creative_url",
                     render : function(data,type, full, meta) {
-                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:5000px"+">"+
                                 "<img style=\"width:180px\" src="+data+" />"+
                                 "</a>"; }
                 },
@@ -404,61 +408,61 @@
 
                 { "data": "advertiser",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
 
                 },
                 { "data": "order_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "exe_campaign_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "advertiser_cat",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "size" ,
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "creative_id",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
 
                 { "data": "imp",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "click",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "ctr",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "clickContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvt",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvr",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "cvtContrast",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 },
                 { "data": "comprehensiveWeight",
                     render : function(data,type, full, meta) {
-                        return "<td width='100' style=\"word-break: break-all;\">"+data + "</td>"; }
+                        return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
                 }
 
 
@@ -600,7 +604,7 @@
                 </h1>
             </div><!--/.page-header-->
 
-      <div class="row-fluid"  style="width:2280px" >
+      <div class="row-fluid"  style="width:5000px" >
         <div class="span6">
           <div class="tabbable">
             <ul class="nav nav-tabs" id="myTab">
@@ -658,7 +662,7 @@
                     <form id="selectCondition"    class="form form-horizontal" id="form-member-add" >
 
                     <%--<form action="${pageContext.request.contextPath}/creative/selected"  method="post" class="form form-horizontal" id="form-member-add" >--%>
-                      <input type="hidden" name="type" id='type' value="banner">
+                      <input type="hidden" name="type" id='type' >
                       <ul class="nav nav-tabs" id="selectadv">
                         <li>
                         <select id="advs" name="adv">
@@ -705,8 +709,12 @@
 
                         <li>
 
-                          <img src="/assets/images/gallery/thumb-3.jpg" onclick="subForm()" style="cursor:pointer;" />
-                          <%--<button id="select01" onclick="subForm()" >提交</button>--%>
+                          <%--<img src="/assets/images/gallery/thumb-3.jpg" onclick="subForm()" style="cursor:pointer;" />--%>
+                          <%--<button  onclick="subForm()" >提交</button>--%>
+                          <button class="btn btn-info" type="button" onclick="subForm()">
+                             <i class="ace-icon fa fa-check bigger-110"></i>
+                               Submit
+                          </button>
 
 
                         </li>
@@ -738,7 +746,7 @@
                           <table id="example" class="display dataTable">
                           <%--<table   id="table_report2" class="table table-striped  order_table">--%>
                           <thead>
-                          <tr style="width:2280px">
+                          <tr style="width:5000px">
                             <th  style="width:180px">创意图片</th>
                               <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status1: activate to sort column ascending" rowspan="1" colspan="1">Status1</th>--%>
                               <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status2: activate to sort column ascending" rowspan="1" colspan="1">Status2</th>--%>

@@ -25,5 +25,9 @@ public interface DaoMapper {
     List<LaunchBanner> findCreative(SubmitSelect submitSelect);
 
 
+    List<SelectFunction> conditionTypePlatforms(SelectFunction subselect);
 
+    List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
+
+    List<SelectFunction> conditionTypeRecommends(SelectFunction subselect);
 }

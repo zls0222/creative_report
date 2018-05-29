@@ -19,4 +19,10 @@ public interface DataService {
 	List<SelectFunction> conditionNativeAdvClassify(SelectFunction condition);
     //条件查询
 	List<LaunchBanner> findCreative(SubmitSelect submitSelect);
+//查询
+	List<SelectFunction> conditionTypeRecommends(SelectFunction subselect);
+
+	List<SelectFunction> conditionTypePlatforms(SelectFunction subselect);
+
+	List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
 }

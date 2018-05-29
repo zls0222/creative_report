@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
@@ -16,11 +16,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <title>dataTables</title>
+    <link href="dataTables.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8" />
     <title>Tables - Ace Admin</title>
 
     <meta name="description" content="Static &amp; Dynamic Tables" />
-    <meta name="viewport" content="width=device-width*2, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--basic styles-->
 
@@ -51,64 +54,218 @@
     <!--inline styles if any-->
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+
+
+
+
+
+    <%--<script type="text/javascript">--%>
+    <%--jQuery(function($) {--%>
+    <%--var oTable1 =--%>
+    <%--$('#table_report2')--%>
+    <%--//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)--%>
+    <%--.dataTable( {--%>
+    <%--bAutoWidth: false,--%>
+    <%--"aoColumns": [--%>
+    <%--{ "bSortable": false },--%>
+    <%--null, null,null, null, null,--%>
+    <%--{ "bSortable": false }--%>
+    <%--],--%>
+    <%--"aaSorting": [],--%>
+
+    <%--//,--%>
+    <%--//"sScrollY": "200px",--%>
+    <%--//"bPaginate": false,--%>
+
+    <%--//"sScrollX": "100%",--%>
+    <%--//"sScrollXInner": "120%",--%>
+    <%--//"bScrollCollapse": true,--%>
+    <%--//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"--%>
+    <%--//you may want to wrap the table inside a "div.dataTables_borderWrap" element--%>
+
+    <%--//"iDisplayLength": 50--%>
+    <%--} );--%>
+    <%--/**--%>
+    <%--var tableTools = new $.fn.dataTable.TableTools( oTable1, {--%>
+    <%--"sSwfPath": "../../copy_csv_xls_pdf.swf",--%>
+    <%--"buttons": [--%>
+    <%--"copy",--%>
+    <%--"csv",--%>
+    <%--"xls",--%>
+    <%--"pdf",--%>
+    <%--"print"--%>
+    <%--]--%>
+    <%--} );--%>
+    <%--$( tableTools.fnContainer() ).insertBefore('#sample-table-2');--%>
+    <%--*/--%>
+
+
+    <%--//oTable1.fnAdjustColumnSizing();--%>
+
+
+    <%--$(document).on('click', 'th input:checkbox' , function(){--%>
+    <%--var that = this;--%>
+    <%--$(this).closest('table').find('tr > td:first-child input:checkbox')--%>
+    <%--.each(function(){--%>
+    <%--this.checked = that.checked;--%>
+    <%--$(this).closest('tr').toggleClass('selected');--%>
+    <%--});--%>
+    <%--});--%>
+
+
+    <%--$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});--%>
+    <%--function tooltip_placement(context, source) {--%>
+    <%--var $source = $(source);--%>
+    <%--var $parent = $source.closest('table')--%>
+    <%--var off1 = $parent.offset();--%>
+    <%--var w1 = $parent.width();--%>
+
+    <%--var off2 = $source.offset();--%>
+    <%--//var w2 = $source.width();--%>
+
+    <%--if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';--%>
+    <%--return 'left';--%>
+    <%--}--%>
+
+    <%--})--%>
+    <%--</script>--%>
+
+
     <script>
+
+
         //别忘了导入该用的js文件
         function subForm() {
-            $.ajax({
-                url: '/creative/selected', //请求的url
-                type: 'post', //请求的方式
-                data: $('#formAddtr').serialize(), //form表单里要提交的内容，里面的input等写上name就会提交，这是序列化
-                success:function (data) {
-//                    alert(data);
+//        alert($('#selectCondition').serialize());
 
+            $.fn.dataTable.ext.errMode = 'throw';
+            var1=$('#selectCondition').serialize();
+//        alert(var1);
 
-//          data = JSON.parse(data);
-                    var str1 = "";
-                    //清空table中的html
-                    $("#test").html("");
-
-                    for(var i = 0;i<data.length;i++){
-                        str1 = "<tr>" +
-                                "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
-                                "<img style=\"width:180px\" src="+data[i].creative_url+" />"+
-                                "</a>"+
-                                "</td>"+
-                                "<td>"+data[i].creative_url + "</td>" +
-                                "<td>"+data[i].order_id + "</td>" +
-                                "<td>"+data[i].campaign_id + "</td>" +
-                                "<td>"+data[i].exe_campaign_id + "</td>" +
-                                "<td>"+data[i].width + "</td>" +
-                                "<td>"+data[i].height + "</td>" +
-                                "<td>"+data[i].imp + "</td>" +
-                                "<td>"+data[i].click + "</td>" +
-                                "</tr>";
+            type=document.getElementById('type').value
+            advs=document.getElementById('advs').value
+            industrys=document.getElementById('industrys').value
+            sizes=document.getElementById('sizes').value
+            classes=document.getElementById('classes').value
 
 
 
-                        <%--<tr class="text-c">--%>
-                        <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
-                        <%--<img alt="15x15" src='${creative.creative_url }' />--%>
-                        <%--<!--<div class="text">-->--%>
-                        <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                        <%--<!--</div>-->--%>
-                        <%--</a>--%>
-                        <%--</td>--%>
 
-                        <%--<td>${creative.order_id }</td>--%>
-                        <%--<td>${creative.exe_campaign_id}</td>--%>
-                        <%--<td>${creative.width }</td>--%>
-                        <%--<td>${creative.height }</td>--%>
-                        <%--<td>${creative.imp }</td>--%>
-                        <%--<td>${creative.click }</td>--%>
-                        <%--<td>${creative.ctr }</td>--%>
-                        <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                        <%--</tr>--%>
 
-                        $("#test").append(str1);
+
+            var  labelItemListDataTable =$("#example").dataTable();
+            labelItemListDataTable.fnClearTable();
+            labelItemListDataTable.fnDestroy();
+
+
+            $('#example').DataTable( {
+                retrieve: true,
+                "serverSide": true,
+                searching: true,
+                lengthChange: true,
+                paging: true,
+                scrollCollapse: true,
+                serverSide: false,
+                search: true,
+                processing: true,
+//            scrollY: 500,   //表格的高度限制*/
+//            scrollX: "50%",
+//            scrollXInner: "100%",
+                scrollCollapse: true,
+//            jQueryUI: true,
+//            autoWidth: false,
+                autoSearch: false,
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项搜索结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 条",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "未搜索到数据",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
                     }
-                }
-            });
+                },
+                ajax: {
+
+                    url : "/creative/selected",
+                    type : "GET",
+                    contentType : "application/json",
+                    dataType : "json",
+
+
+//
+
+
+                    data: {"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
+                    dataSrc: ''
+                },
+
+                "columns": [
+                    { "data": "creative_url",
+                        render : function(data,type, full, meta) {
+                            return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                                    "<img style=\"width:180px\" src="+data+" />"+
+                                    "</a>"; }
+                    },
+
+                    //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
+
+
+
+
+                    { "data": "size" ,
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+
+                    { "data": "imp",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "click",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "ctr",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+                    { "data": "cvt",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "cvr",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+                    { "data": "comprehensiveWeight",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    }
+
+
+                ]
+            } );
+
+
         }
 
         function loadAdv(arg1,arg2){
@@ -126,13 +283,13 @@
 
                 success: function (data) {
 //          $('#resText').empty();   //清空resText里面的所有内容
-//                    alert('请求ok'+arg1+arg2);
+//          alert('请求ok'+arg1+arg2);
 //
                     var str1 = "";
                     //清空table中的html
                     str0="#"+arg2
                     $(str0).html("");
-                    str1="<option value="+arg2+">"+arg2+"</option>";
+                    str1="<option value=''>"+arg2+"</option>";
                     $("#"+arg2).append(str1);
                     for (var i = 0; i < data.length; i++) {
 
@@ -151,109 +308,132 @@
 
         function typeForm(arg1) {
 
+            var el = document.getElementById('type');
+            el.setAttribute('value', arg1);
+//        alert(el.getAttribute('value'))
 
-            $.ajax({
-                type: "GET",
-                url: '/creative/creative',
-                data: {"toSelect": arg1},
-                dataType: "json",
-                error: function (XMLHttpRequest, textStatus, errorThrown, data) {
-                    console.info(XMLHttpRequest.status);
-                    console.info(XMLHttpRequest.readyState);
-                    console.info(textStatus);
-                    console.info(XMLHttpRequest.responseText);
-                },
-
-                success: function (data) {
-//          $('#resText').empty();   //清空resText里面的所有内容
-//                    alert('请求ok');
-//        }
-//      });
-//      $.ajax({
-//        url: '/creative/creative', //请求的url
-//        type: 'post', //请求的方式
-//        data: {"toSelect":arg1},
-//        async : false,
-////        dataType : 'json',
-////        error:function (data) {
-////          alert(data.toLocaleString)
-////          alert('请求失败');
-////        },
-//
-//        success:function (data) {
-//          alert(data);
-                    var str1 = "";
-                    //清空table中的html
-                    $("#test").html("");
-                    for (var i = 0; i < data.length; i++) {
-                        str1 = "<tr>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-//                    "<td>111</td>" +
-                                "<td><a href="+data[i].creative_url +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
-                                "<img style=\"width:180px\" src="+data[i].creative_url+" />"+
-                                "</a>"+
-                                "</td>"+
-//                    "<td>"+data[i].creative_url + "</td>" +
-                                "<td>"+data[i].order_id + "</td>" +
-                                "<td>"+data[i].campaign_id + "</td>" +
-                                "<td>"+data[i].exe_campaign_id + "</td>" +
-                                "<td>"+data[i].width + "</td>" +
-                                "<td>"+data[i].height + "</td>" +
-                                "<td>"+data[i].imp + "</td>" +
-                                "<td>"+data[i].click + "</td>" +
-                                "</tr>";
+            $.fn.dataTable.ext.errMode = 'throw';
+            var  labelItemListDataTable =$("#example").dataTable();
+            labelItemListDataTable.fnClearTable();
+            labelItemListDataTable.fnDestroy();
 
 
-                        <%--&lt;%&ndash;<tr class="text-c">&ndash;%&gt;--%>
-                        <%--"<td><a href="+'${creative.creative_url }'+" data-rel="+"colorbox"+">"+--%>
-                        <%--"<img alt="+"15x15"+" src="+'${creative.creative_url }'+" />"+--%>
-                        <%--<!--<div class="text">-->--%>
-                        <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                        <%--<!--</div>-->--%>
-                        <%--"</a>"+--%>
-                        <%--"</td>"--%>
-
-                        <%--<td>${creative.order_id }</td>--%>
-                        <%--<td>${creative.exe_campaign_id}</td>--%>
-                        <%--<td>${creative.width }</td>--%>
-                        <%--<td>${creative.height }</td>--%>
-                        <%--<td>${creative.imp }</td>--%>
-                        <%--<td>${creative.click }</td>--%>
-                        <%--<td>${creative.ctr }</td>--%>
-                        <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                        <%--</tr>--%>
-
-                        $("#test").append(str1);
+            $('#example').DataTable( {
+                retrieve: true,
+                "serverSide": true,
+                searching: true,
+                lengthChange: true,
+                paging: true,
+                scrollCollapse: true,
+                serverSide: false,
+                search: true,
+                processing: true,
+//            scrollY: 500,   //表格的高度限制*/
+//            scrollX: "50%",
+//            scrollXInner: "100%",
+                scrollCollapse: true,
+//            jQueryUI: true,
+//            autoWidth: false,
+                autoSearch: false,
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项搜索结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 条",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "未搜索到数据",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
                     }
                 },
-                <%--error:function(XMLHttpRequest, textStatus, errorThrown){--%>
-                <%--alert(XMLHttpRequest);--%>
-                <%--alert(textStatus);--%>
-                <%--alert(errorThrown);--%>
-                <%--}--%>
-                <%--});--%>
-            });
+                ajax: {
+
+                    url : "/creative/creative",
+                    type : "GET",
+                    contentType : "application/json",
+                    dataType : "json",
+                    data: {"toSelect":arg1},
+                    dataSrc: ''
+                },
+
+                "columns": [
+                    { "data": "creative_url",
+                        render : function(data,type, full, meta) {
+                            return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                                    "<img style=\"width:180px\" src="+data+" />"+
+                                    "</a>"; }
+                    },
+
+                    //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
+
+
+
+
+                    { "data": "size" ,
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+
+                    { "data": "imp",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "click",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "ctr",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+                    { "data": "cvt",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+                    { "data": "cvr",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    },
+
+                    { "data": "comprehensiveWeight",
+                        render : function(data,type, full, meta) {
+                            return "<td width='50' style=\"word-break: break-all;\">"+data + "</td>"; }
+                    }
+
+
+                ]
+            } );
+
+
+
+
             loadAdv(arg1,"advs")
             loadAdv(arg1,"industrys")
             loadAdv(arg1,"sizes")
             loadAdv(arg1,"classes")
             loadAdv(arg1,"recommends")
-            loadAdv(arg1,"platforms")
-            loadAdv(arg1,"medias")
-
         }
     </script>
 
 </head>
 
-<body onload="typeForm('banner')">
+<%--<body onload="typeForm('banner')">--%>
+<body>
 <div class="navbar navbar-inverse">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -274,7 +454,7 @@
         <span></span>
     </a>
 
-    <div id="sidebar">
+    <div id="sidebar" >
         <div id="sidebar-shortcuts">
             <div id="sidebar-shortcuts-large">
                 <button class="btn btn-small btn-success">
@@ -292,6 +472,10 @@
                 <button class="btn btn-small btn-danger">
                     <i class="icon-cogs"></i>
                 </button>
+
+
+
+
             </div>
 
             <div id="sidebar-shortcuts-mini">
@@ -300,11 +484,13 @@
                 <span class="btn btn-info"></span>
 
                 <span class="btn btn-warning"></span>
+
+                <span class="btn btn-danger"></span>
             </div>
         </div><!--#sidebar-shortcuts-->
 
         <ul class="nav nav-list">
-            <li>
+            <li class="active">
                 <a style=" color:#666; font-size:18px;" href="launch.jsp">
                     <i class="icon-dashboard"></i>
                     <span>投放分析</span>
@@ -318,7 +504,7 @@
                 </a>
             </li>
 
-            <li class="active">
+            <li>
                 <a style=" color:#666; font-size:18px;" href="media.jsp">
                     <i class="icon-dashboard"></i>
                     <span>媒体分析</span>
@@ -374,7 +560,7 @@
                     <div class="tabbable">
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="active" style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab" href="#home" onclick="typeForm('banner')">
+                                <a data-toggle="tab"  onclick="typeForm('banner')">
                                     <%--<button id="select01" onclick="subForm()" >提交</button>--%>
                                     <i class="green icon-home bigger-170"></i>
                                     banner
@@ -382,7 +568,7 @@
                             </li>
 
                             <li style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab" href="#home" onclick="typeForm('native')">
+                                <a data-toggle="tab"  onclick="typeForm('native')">
                                     <i class="green icon-home bigger-170"></i>
 
                                     <!--<a data-toggle="tab" href="#profile">-->
@@ -394,7 +580,7 @@
 
 
                             <li style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab" href="#home" onclick="typeForm('product')">
+                                <a data-toggle="tab"  onclick="typeForm('product')">
                                     <i class="green icon-home bigger-170"></i>
                                     <!--<a data-toggle="tab" href="#dropdown1">-->
                                     product
@@ -404,7 +590,7 @@
 
 
                             <li style="width:100px" style="text-align:center;">
-                                <a data-toggle="tab" href="#home" onclick="typeForm('html')">
+                                <a data-toggle="tab" onclick="typeForm('html')">
                                     <i class="green icon-home bigger-170"></i>
                                     <!--<a data-toggle="tab" href="#dropdown2">-->
                                     html
@@ -424,13 +610,13 @@
 
 
                                     <div >
-                                        <form id="selectCondition"  method="post" class="form form-horizontal" id="form-member-add" >
+                                        <form id="selectCondition"    class="form form-horizontal" id="form-member-add" >
 
                                             <%--<form action="${pageContext.request.contextPath}/creative/selected"  method="post" class="form form-horizontal" id="form-member-add" >--%>
-                                            <input type="hidden" name="type" id='type' value="banner">
+                                            <input type="hidden" name="type" id='type' >
                                             <ul class="nav nav-tabs" id="selectadv">
                                                 <li>
-                                                    <select id="advs" id='adv'>
+                                                    <select id="advs" name="adv" style="width:150px;" class="selectpicker show-tick form-control" title='广告主' required data-live-search="true">
                                                         <%--<option id="advs" value="">广告主</option>--%>
 
                                                         <%--<c:forEach items="${advList }" var="adv" varStatus="one">--%>
@@ -439,9 +625,9 @@
                                                     </select>
                                                 </li>
 
-                                                <li >
+                                                <li onload="typeForm('advertiser_cat')">
 
-                                                    <select  id="industrys" >
+                                                    <select  id="industrys" name="industry" style="width:150px;">
                                                         <%--<option id="industrys" value="">行业</option>--%>
 
                                                         <%--<c:forEach items="${industryList }" var="industry" varStatus="one">--%>
@@ -450,40 +636,9 @@
                                                     </select>
                                                 </li>
 
-                                                <li>
+                                                <li onload="typeForm('size')">
 
-                                                    <select id="sizes" >
-                                                        <%--<option id="sizes" value="">尺寸</option>--%>
-
-                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
-                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
-                                                        <%--</c:forEach>--%>
-                                                    </select>
-                                                </li>
-
-                                                <li>
-
-                                                    <select id="recommends" >
-                                                        <%--<option id="sizes" value="">尺寸</option>--%>
-
-                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
-                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
-                                                        <%--</c:forEach>--%>
-                                                    </select>
-                                                </li>
-                                                <li>
-
-                                                    <select id="platforms" >
-                                                        <%--<option id="sizes" value="">尺寸</option>--%>
-
-                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
-                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
-                                                        <%--</c:forEach>--%>
-                                                    </select>
-                                                </li>
-                                                <li>
-
-                                                    <select id="medias" >
+                                                    <select id="sizes" name="size" style="width:150px;">
                                                         <%--<option id="sizes" value="">尺寸</option>--%>
 
                                                         <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
@@ -493,9 +648,9 @@
                                                 </li>
 
 
-                                                <li>
+                                                <li onload="typeForm('creative_id')">
 
-                                                    <select id="classes" id="classify" >
+                                                    <select id="classes" name="classify" style="width:150px;">
                                                         <%--<option id="classes" value="">创意类别</option>--%>
                                                         <%--<c:forEach items="${classifyList }" var="classify" varStatus="one">--%>
                                                         <%--<option value="${classify.toSelect }">${classify.toSelect }</option>--%>
@@ -504,7 +659,44 @@
                                                 </li>
 
                                                 <li>
-                                                    <button id="select01" onclick="subForm()" >提交</button>
+
+                                                    <select id="recommends" style="width:150px;">
+                                                        <%--<option id="sizes" value="">尺寸</option>--%>
+
+                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                                                        <%--</c:forEach>--%>
+                                                    </select>
+                                                </li>
+                                                <li>
+
+                                                    <select id="platforms" style="width:150px;">
+                                                        <%--<option id="sizes" value="">尺寸</option>--%>
+
+                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                                                        <%--</c:forEach>--%>
+                                                    </select>
+                                                </li>
+                                                <li>
+
+                                                    <select id="medias" style="width:150px;">
+                                                        <%--<option id="sizes" value="">尺寸</option>--%>
+
+                                                        <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                                                        <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                                                        <%--</c:forEach>--%>
+                                                    </select>
+                                                </li>
+
+                                                <li>
+
+                                                    <%--<img src="/assets/images/gallery/thumb-3.jpg" onclick="subForm()" style="cursor:pointer;" />--%>
+                                                    <%--<button  onclick="subForm()" >提交</button>--%>
+                                                    <button class="btn btn-info" type="button" onclick="subForm()">
+                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                        Submit
+                                                    </button>
 
 
                                                 </li>
@@ -529,73 +721,72 @@
                                         <div class="table-header">
                                             Results for Last 90 Day Creative Data
                                         </div>
+                                        <script src="jquery.min.js"></script>
+                                        <script src="dataTables.js"></script>
 
-                                        <table id="table_report2" class="table table-striped table-bordered table-hover">
+
+                                        <table id="example" class="display dataTable">
+                                            <%--<table   id="table_report2" class="table table-striped  order_table">--%>
                                             <thead>
-                                            <tr>
-                                                <th>创意图片</th>
-                                                <th>尺寸</th>
-                                                <th>曝光</th>
-                                                <th>点击</th>
-                                                <th>点击率</th>
-                                                <th>转化数</th>
-                                                <th>转化率</th>
-                                                <th>推荐度</th>
+                                            <tr style="width:2280px">
+                                                <th  style="width:180px">创意图片</th>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status1: activate to sort column ascending" rowspan="1" colspan="1">Status1</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status2: activate to sort column ascending" rowspan="1" colspan="1">Status2</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status3: activate to sort column ascending" rowspan="1" colspan="1">Status3</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status4: activate to sort column ascending" rowspan="1" colspan="1">Status4</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status5: activate to sort column ascending" rowspan="1" colspan="1">Status5</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status6: activate to sort column ascending" rowspan="1" colspan="1">Status6</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status7: activate to sort column ascending" rowspan="1" colspan="1">Status7</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status8: activate to sort column ascending" rowspan="1" colspan="1">Status8</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status9: activate to sort column ascending" rowspan="1" colspan="1">Status9</th>--%>
+                                                <%--<th tabindex="0" class="hidden-480 sorting" aria-controls="sample-table-2" aria-label="Status10: activate to sort column ascending" rowspan="1" colspan="1">Status10</th>--%>
+
+
+                                                <%--<th style="width:100px;word-wrap:break-word;">订单</th>--%>
+
+
+                                                <th width='100' style="word-break: break-all;">尺寸</th>
+
+                                                <th width='100' style="word-break: break-all;">曝光</th>
+                                                <th width='100' style="word-break: break-all;">点击</th>
+                                                <th width='100' style="word-break: break-all;">点击率</th>
+                                                <th width='100' style="word-break: break-all;">转化</th>
+                                                <th width='100' style="word-break: break-all;">转化率</th>
+
+                                                <th width='100' style="word-break: break-all;">综合权重</th>
 
 
                                             </tr>
                                             </thead>
 
-                                            <tbody id="test">
-                                            <tr>
-                                                <%--<c:forEach items="${alllist }" var="creative" varStatus="one">--%>
-                                                <%--<tr class="text-c">--%>
-                                                <%--<td><a href='${creative.creative_url }' data-rel="colorbox">--%>
-                                                <%--<img alt="15x15" src='${creative.creative_url }' />--%>
-                                                <%--<!--<div class="text">-->--%>
-                                                <%--<!--<div class="inner">Sample Caption on Hover</div>-->--%>
-                                                <%--<!--</div>-->--%>
-                                                <%--</a>--%>
-                                                <%--</td>--%>
-
-                                                <%--<td>${creative.order_id }</td>--%>
-                                                <%--<td>${creative.exe_campaign_id}</td>--%>
-                                                <%--<td>${creative.width }</td>--%>
-                                                <%--<td>${creative.height }</td>--%>
-                                                <%--<td>${creative.imp }</td>--%>
-                                                <%--<td>${creative.click }</td>--%>
-                                                <%--<td>${creative.ctr }</td>--%>
-                                                <%--&lt;%&ndash;<td class="f-14"><a title="编辑" href="${pageContext.request.contextPath}/customer/detail?cidcard=${customer.cidcard}" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>&ndash;%&gt;--%>
-                                                <%--&lt;%&ndash;<a title="删除" href="${pageContext.request.contextPath}/customer/delete?cidcard=${customer.cidcard}" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>&ndash;%&gt;--%>
-                                                <%--</tr>--%>
-                                                <%--</c:forEach>--%>
-                                            </tr>
 
 
-                                            </tbody>
+
+
                                         </table>
+
+
+
+
                                     </div>
 
-                                    <!--PAGE CONTENT ENDS HERE-->
-                                </div><!--/row-->
+
+
+                                </div>
+
+
+                                <%--NATIVE--%>
+
                             </div>
-
-
-
-                        </div>
-
-
-                        <%--NATIVE--%>
+                        </div><!--/span-->
 
                     </div>
-                </div><!--/span-->
+
+                </div><!--/row-->
 
 
-
-            </div><!--/row-->
-
-
-        </div><!--/#page-content-->
+            </div><!--/#page-content-->
+        </div>
 
         <div id="ace-settings-container">
             <div class="btn btn-app btn-mini btn-warning" id="ace-settings-btn">
@@ -635,230 +826,52 @@
 
 <!--basic scripts-->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='/assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 </script>
-<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
 
-<!--page specific plugin scripts-->
-
-<script src="/assets/js/jquery.dataTables.min.js"></script>
+<!-- page specific plugin scripts -->
+<script src="/assets/js/jquery.dataTables.js"></script>
 <script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
 
-
-<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="/assets/js/jquery.slimscroll.min.js"></script>
-<script src="/assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="/assets/js/jquery.sparkline.min.js"></script>
-<script src="/assets/js/flot/jquery.flot.min.js"></script>
-<script src="/assets/js/flot/jquery.flot.pie.min.js"></script>
-<script src="/assets/js/flot/jquery.flot.resize.min.js"></script>
-
-<!--ace scripts-->
-
-<script src="/assets/js/ace-elements.min.js"></script>
-<script src="/assets/js/ace.min.js"></script>
-
-<!--inline scripts related to this page-->
-
-<script type="text/javascript">
-    $(function() {
-        var oTable1 = $('#table_report').dataTable( {
-            "aoColumns": [
-                { "bSortable": false },
-                null, null,null, null, null,
-                { "bSortable": false }
-            ] } );
+<!-- ace scripts -->
+<script src="/assets/js/ace/elements.scroller.js"></script>
+<script src="/assets/js/ace/elements.colorpicker.js"></script>
+<script src="/assets/js/ace/elements.fileinput.js"></script>
+<script src="/assets/js/ace/elements.typeahead.js"></script>
+<script src="/assets/js/ace/elements.wysiwyg.js"></script>
+<script src="/assets/js/ace/elements.spinner.js"></script>
+<script src="/assets/js/ace/elements.treeview.js"></script>
+<script src="/assets/js/ace/elements.wizard.js"></script>
+<script src="/assets/js/ace/elements.aside.js"></script>
+<script src="/assets/js/ace/ace.js"></script>
+<script src="/assets/js/ace/ace.ajax-content.js"></script>
+<script src="/assets/js/ace/ace.touch-drag.js"></script>
+<script src="/assets/js/ace/ace.sidebar.js"></script>
+<script src="/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+<script src="/assets/js/ace/ace.submenu-hover.js"></script>
+<script src="/assets/js/ace/ace.widget-box.js"></script>
+<script src="/assets/js/ace/ace.settings.js"></script>
+<script src="/assets/js/ace/ace.settings-rtl.js"></script>
+<script src="/assets/js/ace/ace.settings-skin.js"></script>
+<script src="/assets/js/ace/ace.widget-on-reload.js"></script>
+<script src="/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
 
-        $('table th input:checkbox').on('click' , function(){
-            var that = this;
-            $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function(){
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
+<link rel="stylesheet" href="/assets/css/ace.onpage-help.css" />
+<link rel="stylesheet" href="/assets/js/themes/sunburst.css" />
 
-        });
-
-        $('[data-rel=tooltip]').tooltip();
-    })
-</script>
-<script type="text/javascript">
-    $(function() {
-
-        $('.dialogs,.comments').slimScroll({
-            height: '300px'
-        });
-
-        $('#tasks').sortable();
-        $('#tasks').disableSelection();
-        $('#tasks input:checkbox').removeAttr('checked').on('click', function(){
-            if(this.checked) $(this).closest('li').addClass('selected');
-            else $(this).closest('li').removeClass('selected');
-        });
-
-        var oldie = $.browser.msie && $.browser.version < 9;
-        $('.easy-pie-chart.percentage').each(function(){
-            var $box = $(this).closest('.infobox');
-            var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-            var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
-            var size = parseInt($(this).data('size')) || 50;
-            $(this).easyPieChart({
-                barColor: barColor,
-                trackColor: trackColor,
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: parseInt(size/10),
-                animate: oldie ? false : 1000,
-                size: size
-            });
-        })
-
-        $('.sparkline').each(function(){
-            var $box = $(this).closest('.infobox');
-            var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-            $(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
-        });
+<script src="/assets/js/ace/elements.onpage-help.js"></script>
+<script src="/assets/js/ace/ace.onpage-help.js"></script>
+<script src="/assets/js/rainbow.js"></script>
+<script src="/assets/js/language/generic.js"></script>
+<script src="/assets/js/language/html.js"></script>
+<script src="/assets/js/language/css.js"></script>
+<script src="/assets/js/language/javascript.js"></script>
 
 
 
-
-        var data = [
-            { label: "social networks",  data: 38.7, color: "#68BC31"},
-            { label: "search engines",  data: 24.5, color: "#2091CF"},
-            { label: "ad campaings",  data: 8.2, color: "#AF4E96"},
-            { label: "direct traffic",  data: 18.6, color: "#DA5430"},
-            { label: "other",  data: 10, color: "#FEE074"}
-        ];
-
-        var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
-        $.plot(placeholder, data, {
-
-            series: {
-                pie: {
-                    show: true,
-                    tilt:0.8,
-                    highlight: {
-                        opacity: 0.25
-                    },
-                    stroke: {
-                        color: '#fff',
-                        width: 2
-                    },
-                    startAngle: 2
-
-                }
-            },
-            legend: {
-                show: true,
-                position: "ne",
-                labelBoxBorderColor: null,
-                margin:[-30,15]
-            }
-            ,
-            grid: {
-                hoverable: true,
-                clickable: true
-            },
-            tooltip: true, //activate tooltip
-            tooltipOpts: {
-                content: "%s : %y.1",
-                shifts: {
-                    x: -30,
-                    y: -50
-                }
-            }
-
-        });
-
-
-        var $tooltip = $("<div class='tooltip top in' style='display:none;'><div class='tooltip-inner'></div></div>").appendTo('body');
-        placeholder.data('tooltip', $tooltip);
-        var previousPoint = null;
-
-        placeholder.on('plothover', function (event, pos, item) {
-            if(item) {
-                if (previousPoint != item.seriesIndex) {
-                    previousPoint = item.seriesIndex;
-                    var tip = item.series['label'] + " : " + item.series['percent']+'%';
-                    $(this).data('tooltip').show().children(0).text(tip);
-                }
-                $(this).data('tooltip').css({top:pos.pageY + 10, left:pos.pageX + 10});
-            } else {
-                $(this).data('tooltip').hide();
-                previousPoint = null;
-            }
-
-        });
-
-
-
-
-
-
-        var d1 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.5) {
-            d1.push([i, Math.sin(i)]);
-        }
-
-        var d2 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.5) {
-            d2.push([i, Math.cos(i)]);
-        }
-
-        var d3 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.2) {
-            d3.push([i, Math.tan(i)]);
-        }
-
-
-        var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
-        $.plot("#sales-charts", [
-            { label: "Domains", data: d1 },
-            { label: "Hosting", data: d2 },
-            { label: "Services", data: d3 }
-        ], {
-            hoverable: true,
-            shadowSize: 0,
-            series: {
-                lines: { show: true },
-                points: { show: true }
-            },
-            xaxis: {
-                tickLength: 0
-            },
-            yaxis: {
-                ticks: 10,
-                min: -2,
-                max: 2,
-                tickDecimals: 3
-            },
-            grid: {
-                backgroundColor: { colors: [ "#fff", "#fff" ] },
-                borderWidth: 1,
-                borderColor:'#555'
-            }
-        });
-
-
-        $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('.tab-content')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            var w2 = $source.width();
-
-            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-            return 'left';
-        }
-    })
-</script>
 </body>
 </html>
 
