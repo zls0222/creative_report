@@ -19,66 +19,23 @@
     <meta charset="utf-8">
     <title>dataTables</title>
     <link href="dataTables.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+  <title>Tables - Ace Admin</title>
 
-
-
-    <meta name="description" content="responsive photo gallery using colorbox" />
+  <meta name="description" content="Static &amp; Dynamic Tables" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--basic styles-->
-
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
-
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
-    <![endif]-->
-
-    <!--page specific plugin styles-->
-
-    <link rel="stylesheet" href="/assets/css/colorbox.css" />
-
-    <!--fonts-->
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
-    <!--ace styles-->
-
-    <link rel="stylesheet" href="/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="/assets/css/ace-responsive.min.css" />
-    <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
-
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-
-<!--basic styles-->
+  <!--basic styles-->
 
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
   <link href="http://select2.github.io/select2/select2-3.5.3/select2.css" rel="stylesheet">
-  <%--<script src="http://select2.github.io/select2/select2-3.5.3/select2.js"></script>--%>
-    <%--<script>--%>
-        <%--$(function () {--%>
-            <%--$("#adv").select2();--%>
-        <%--});--%>
-    <%--</script>--%>
-
+  <script src="http://select2.github.io/select2/select2-3.5.3/select2.js"></script>
     <script>
-
-
-        function showDownloadAPPColorbox(data){
-            alert("ok")
-            $.colorbox({
-                reposition: false,      // ?
-//top: "20px",
-                width: "80%",
-                height: "auto",
-                inline: true,
-                href: data
-            });
-        }
+        $(function () {
+            $("#adv").select2();
+        });
     </script>
 
 
@@ -191,30 +148,7 @@
         <%--})--%>
     <%--</script>--%>
 
-    <script>
 
-        function submitComment(data) {
-            alert("ok")
-
-
-
-            $("#makeComment").colorbox({
-                reposition: false,      // ?
-//top: "20px",
-                width: "auto",
-                innerWidth: "200%",
-                innerHeight:"200%",
-                height: "auto",
-                inline: true,
-                href: "<div id=\"download-APP-colorbox\" align=\"center\">"+
-                "<a href=\"javascript:submitComment('"+data+"');\"  data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
-                "<img style=\"width:100%;height=100% \" src='"+data+"' />"+
-                "</a>"+
-                "</div>"
-            });
-            $("#makeComment").click();
-        }
-    </script>
   <script>
 
 
@@ -301,22 +235,9 @@
             "columns": [
                 { "data": "creative_url",
                     render : function(data,type, full, meta) {
-//                        return "<ul class=\"ace-thumbnails\">"+
-//                                "<li>"+
-//                                "<a id=\"pics\" class=\"group1\"  data-rel=\"colorbox\" style=\"width:180px\" >"+
-//                                "<img style=\"width:180px\" src="+data+" onclick=("+data+")/>"+
-////                                "<div class=\"text\">"+
-////                                "<div class=\"inner\" onclick=showDownloadAPPColorbox("+data+")>Sample Caption on Hover</div>"+
-////                                "</div>"+
-//                                "</a>"+
-//                                "</li>"+
-//                                "</ul>"; }
-//                },
-                        return  "<div id=\"download-APP-colorbox\" align=\"center\">"+
-                                "<a href=\"javascript:submitComment('"+data+"');\" data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
+                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:5000px"+">"+
                                 "<img style=\"width:180px\" src="+data+" />"+
-                                "</a>"+
-                                "</div>"; }
+                                "</a>"; }
                 },
 
                 //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
@@ -508,22 +429,9 @@
             "columns": [
                 { "data": "creative_url",
                     render : function(data,type, full, meta) {
-//                        return  "<ul class=\"ace-thumbnails\">"+
-//                                 "<li>"+
-//                                "<a id=\"pics\" class=\"group1\"  data-rel=\"colorbox\" style=\"width:180px\" onclick=showDownloadAPPColorbox("+data+")>"+
-//                                "<img style=\"width:180px\" src="+data+" onclick=showDownloadAPPColorbox("+data+")/>"+
-////                                "<div class=\"text\">"+
-////                                "<div class=\"inner\" onclick=showDownloadAPPColorbox("+data+")>Sample Caption on Hover</div>"+
-////                                "</div>"+
-//                                "</a>"+
-//                                "</li>"+
-//                                "</ul>"; }
-//                        onclick=showDownloadAPPColorbox("+data+")
-                        return  "<div id=\"download-APP-colorbox\" align=\"center\">"+
-                                "<a href=\"javascript:submitComment('"+data+"');\" data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
+                        return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:5000px"+">"+
                                 "<img style=\"width:180px\" src="+data+" />"+
-                                "</a>"+
-                                "</div>"; }
+                                "</a>"; }
                 },
 
                 //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
@@ -1045,8 +953,6 @@
 </script>
 <script src="/assets/js/bootstrap.js"></script>
 
-
-
 <!-- page specific plugin scripts -->
 <script src="/assets/js/jquery.dataTables.js"></script>
 <script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
@@ -1085,60 +991,6 @@
 <script src="/assets/js/language/html.js"></script>
 <script src="/assets/js/language/css.js"></script>
 <script src="/assets/js/language/javascript.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
-</script>
-<script src="/assets/js/bootstrap.min.js"></script>
-
-<!--page specific plugin scripts-->
-
-<script src="/assets/js/jquery.colorbox-min.js"></script>
-
-<!--ace scripts-->
-
-<script src="/assets/js/ace-elements.min.js"></script>
-<script src="/assets/js/ace.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<%--<script src="../colorbox/jquery.colorbox.js"></script>--%>
-
-<script type="text/javascript">
-    $(function() {
-        var colorbox_params = {
-            reposition:true,
-            scalePhotos:true,
-            scrolling:false,
-            previous:'<i class="icon-arrow-left"></i>',
-            next:'<i class="icon-arrow-right"></i>',
-            close:'&times;',
-            current:'{current} of {total}',
-            maxWidth:'100%',
-            maxHeight:'100%',
-            onOpen:function(){
-                document.body.style.overflow = 'hidden';
-            },
-            onClosed:function(){
-                document.body.style.overflow = 'auto';
-            },
-            onComplete:function(){
-                $.colorbox.resize();
-            }
-        };
-        $("#pics").colorbox(colorbox_params);
-//        $('[data-rel="colorbox"]').colorbox(colorbox_params);
-//        $("#cboxLoadingGraphic").append("<i class='icon-spinner orange'></i>");//let's add a custom loading icon
-
-        /**$(window).on('resize.colorbox', function() {
-		try {
-			//this function has been changed in recent versions of colorbox, so it won't work
-			$.fn.colorbox.load();//to redraw the current frame
-		} catch(e){}
-	});*/
-    })
-</script>
-
-
-
 
 
 

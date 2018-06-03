@@ -165,4 +165,13 @@ public class DataDaoImpl implements DataDAO {
         List<SelectFunction> result=daoMapper.conditionTypeMedias(subselect);
         return result;
     }
+
+    @Override
+    public Boolean login(User user) {
+        List<User> loginUser=daoMapper.login(user);
+        if(loginUser.size()==1){
+            return true;
+        }
+            return false;
+    }
 }

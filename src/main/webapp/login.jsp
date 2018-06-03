@@ -1,47 +1,166 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <base href="<%=basePath%>">
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5shiv.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<![endif]-->
-<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<title>鍚庡彴鐧诲綍姹借溅绉熻祦绯荤粺</title>
-<meta name="keywords" content="H-ui.admin 3.0,H-ui缃戠珯鍚庡彴妯＄増,鍚庡彴妯＄増涓嬭浇,鍚庡彴绠＄悊绯荤粺妯＄増,HTML鍚庡彴妯＄増涓嬭浇">
-<meta name="description" content="H-ui.admin 3.0锛屾槸涓�娆剧敱鍥戒汉寮�鍙戠殑杞婚噺绾ф墎骞冲寲缃戠珯鍚庡彴妯℃澘锛屽畬鍏ㄥ厤璐瑰紑婧愮殑缃戠珯鍚庡彴绠＄悊绯荤粺妯＄増锛岄�傚悎涓皬鍨婥MS鍚庡彴绯荤粺銆�">
-<script>
-function check(){
-	var uname = document.getElementById('uname').value;
-	if(uname==null){
-	alert('鐢ㄦ埛鍚嶄笉鑳戒负绌�');
-	return false;
-	}
-	return true;
-}
-</script>
+<%--
+Created by IntelliJ IDEA.
+User: Administrator
+Date: 2018/5/11
+Time: 16:40
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Login Page - Ace Admin</title>
+
+		<meta name="description" content="User login page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!--basic styles-->
+
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!--page specific plugin styles-->
+
+		<!--fonts-->
+
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+		<!--ace styles-->
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-responsive.min.css" />
+
+		<!--[if lt IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<%--<script>--%>
 
 
-</head>
-<body>
-login please
-</body>
+			<%--function UserLogin() {--%>
+<%--//        alert($('#selectCondition').serialize());--%>
+
+
+
+
+				<%--$.ajax({--%>
+					<%--type: "POST",--%>
+					<%--url: "/creative/login",--%>
+					<%--data: {"Username":document.getElementById('Username').value,"Password":document.getElementById('Password').value},--%>
+
+					<%--});--%>
+			<%--}--%>
+		<%--</script>--%>
+	</head>
+
+	<body class="login-layout">
+		<div class="container-fluid" id="main-container">
+			<div id="main-content">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="login-container">
+							<div class="row-fluid">
+								<div class="center">
+									<h1>
+										<i class="icon-leaf green"></i>
+										<span class="red">ALL</span>
+										<span class="white">CREATIVE</span>
+									</h1>
+									<h4 class="blue">&copy;  PINYOU</h4>
+								</div>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="row-fluid">
+								<div class="position-relative">
+									<div id="login-box" class="visible widget-box no-border">
+										<div class="widget-body">
+											<div class="widget-main">
+												<h4 class="header blue lighter bigger">
+													<i class="icon-coffee green"></i>
+													Please Enter Your Information
+												</h4>
+
+												<div class="space-6"></div>
+
+												<form action="/creative/login" method="post">
+													<fieldset>
+														<label>
+															<span class="block input-icon input-icon-right">
+																<input type="text" class="span12" id="Username" name="Username" placeholder="Username" />
+																<i class="icon-user"></i>
+															</span>
+														</label>
+
+														<label>
+															<span class="block input-icon input-icon-right">
+																<input type="password" class="span12" id="Password" name="Password" placeholder="Password" />
+																<i class="icon-lock"></i>
+															</span>
+														</label>
+
+														<div class="space"></div>
+
+														<div class="row-fluid">
+															<%--<label class="span8">--%>
+																<%--<input type="checkbox" />--%>
+																<%--<span class="lbl"> Remember Me</span>--%>
+															<%--</label>--%>
+
+															<%--<button onclick="UserLogin()" class="span4 btn btn-small btn-primary">--%>
+																<%--<i class="icon-key"></i>--%>
+																<%--Login--%>
+															<%--</button>--%>
+															<input type=submit name="submit1" value="登陆">
+														</div>
+													</fieldset>
+												</form>
+											</div><!--/widget-main-->
+
+
+										</div><!--/widget-body-->
+									</div><!--/login-box-->
+
+
+
+
+								</div><!--/position-relative-->
+							</div>
+						</div>
+					</div><!--/span-->
+				</div><!--/row-->
+			</div>
+		</div><!--/.fluid-container-->
+
+		<!--basic scripts-->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-1.9.1.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!--page specific plugin scripts-->
+
+		<!--inline scripts related to this page-->
+
+		<script type="text/javascript">
+			function show_box(id) {
+			 $('.widget-box.visible').removeClass('visible');
+			 $('#'+id).addClass('visible');
+			}
+		</script>
+	</body>
 </html>

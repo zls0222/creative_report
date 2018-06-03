@@ -7,8 +7,13 @@
 	<!--insert into t_custom values(#{cidcard},#{name},#{sex},#{tel},#{adress},#{job})-->
 	<!--</insert>-->
 
+	<select id="login" resultType="com.creative.report.data.vo.User">
+		select username as Username,loginpwd as Password from loginuser where username=#{Username} and loginpwd=#{Password}
+	</select>
+
+
 	<select id="conditionNative" resultType="com.creative.report.data.vo.LaunchBanner">
-		select * from creative_report where type like concat('%',#{toSelect},'%') limit 100
+		select * from creative_report where type like concat('%',#{toSelect},'%')
 	</select>
 
 	<select id="conditionCtrAvg" resultType="com.creative.report.data.vo.MyMap">
@@ -64,7 +69,7 @@
 		<if test="industry!=''"> and advertiser_cat=#{industry}</if>
 		<if test="classify!=''"> and creative_id=#{classify}</if>
 		<if test="size!=''">and CONCAT(width,"*",height) like concat('%',#{size},'%')</if>
-		and type like concat('%',#{type},'%') limit 10
+		and type like concat('%',#{type},'%')
 	</select>
 
 	<!--<select id="findCustomer" resultType="cn.sxt.carsystem.com.creative.report.data.vo.Customer">-->

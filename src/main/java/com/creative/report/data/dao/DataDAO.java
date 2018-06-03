@@ -27,4 +27,6 @@ public interface DataDAO {
 	List<SelectFunction> conditionTypePlatforms(SelectFunction subselect);
 
 	List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
+
+	Boolean login(User user);
 }

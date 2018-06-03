@@ -55,13 +55,40 @@
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
-
+    <link rel="stylesheet" href="/assets/css/colorbox.css" />
+    <script src="/Content/scripts/jquery/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/assets/js/uncompressed/jquery.colorbox.js"></script>
     <script>
 
         function toPercent(point){
             var str=Number(point*100).toFixed(2);
             str+="%";
             return str;
+        }
+    </script>
+    <script>
+
+        function submitComment(data) {
+            alert("ok")
+
+
+
+            $("#makeComment").colorbox({
+                reposition: false,      // ?
+//top: "20px",
+                width: "auto",
+                innerWidth: "200%",
+                innerHeight:"200%",
+                height: "auto",
+                inline: true,
+                href: "<div id=\"download-APP-colorbox\" align=\"center\">"+
+                "<a href=\"javascript:submitComment('"+data+"');\"  data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
+                "<img style=\"width:100%;height=100% \" src='"+data+"' />"+
+                "</a>"+
+                "</div>"
+            });
+            $("#makeComment").click();
         }
     </script>
 
@@ -228,9 +255,11 @@
                 "columns": [
                     { "data": "creative_url",
                         render : function(data,type, full, meta) {
-                            return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                            return  "<div id=\"download-APP-colorbox\" align=\"center\">"+
+                                    "<a href=\"javascript:submitComment('"+data+"');\" data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
                                     "<img style=\"width:180px\" src="+data+" />"+
-                                    "</a>"; }
+                                    "</a>"+
+                                    "</div>"; }
                     },
 
                     //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
@@ -382,9 +411,11 @@
                 "columns": [
                     { "data": "creative_url",
                         render : function(data,type, full, meta) {
-                            return "<a href="+data +" data-rel="+"colorbox"+" style="+"width:2680px"+">"+
+                            return  "<div id=\"download-APP-colorbox\" align=\"center\">"+
+                                    "<a href=\"javascript:submitComment('"+data+"');\" data-rel=\"colorbox\" style=\"width:2680px\" id=\"makeComment\">"+
                                     "<img style=\"width:180px\" src="+data+" />"+
-                                    "</a>"; }
+                                    "</a>"+
+                                    "</div>"; }
                     },
 
                     //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重

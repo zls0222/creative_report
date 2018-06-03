@@ -25,4 +25,6 @@ public interface DataService {
 	List<SelectFunction> conditionTypePlatforms(SelectFunction subselect);
 
 	List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
+
+	Boolean login(User user);
 }

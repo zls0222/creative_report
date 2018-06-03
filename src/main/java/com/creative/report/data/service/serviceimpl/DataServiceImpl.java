@@ -80,4 +80,10 @@ public class DataServiceImpl implements DataService{
 		List<SelectFunction> result=dataDAO.conditionTypeMedias(subselect);
 		return result;
 	}
+
+	@Override
+	public Boolean login(User user) {
+		Boolean result=dataDAO.login(user);
+		return result;
+	}
 }

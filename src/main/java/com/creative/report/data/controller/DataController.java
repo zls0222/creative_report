@@ -26,6 +26,27 @@ public class DataController {
 
 	@Autowired
 	private DataService dataService;
+	//login
+	@RequestMapping("/login")
+	public String login(User user,HttpServletRequest request,HttpServletResponse response) throws IOException {
+//		String userName = request.getParameter("Username");
+//		String passWord = request.getParameter("Password");
+//
+//		User user=new User(userName,passWord);
+		System.out.print(user.toString());
+		Boolean loginuer=dataService.login(user);
+
+		if(loginuer){
+			return "redirect:/launch.jsp";
+		}
+			return "redirect:/login.jsp";
+
+
+
+	}
+
+
+
 
 
 

@@ -30,4 +30,6 @@ public interface DaoMapper {
     List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
 
     List<SelectFunction> conditionTypeRecommends(SelectFunction subselect);
+
+    List<User> login(User user);
 }
