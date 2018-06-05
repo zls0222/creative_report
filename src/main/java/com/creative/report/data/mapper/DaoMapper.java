@@ -32,4 +32,18 @@ public interface DaoMapper {
     List<SelectFunction> conditionTypeRecommends(SelectFunction subselect);
 
     List<User> login(User user);
+
+    List<SelectFunction> conditionTypeDevice(SelectFunction subselect);
+
+    List<MyMap> conditionAdvAvg(OneSelect oneSelect);
+
+    List<MyMap> conditionPlatMediaAvg(OneSelect oneSelect);
+
+    List<MyMap> conditionAdvMax(OneSelect oneSelect);
+
+    List<MyMap> conditionAdvMin(OneSelect oneSelect);
+
+    List<MyMap> conditionPlatMediaMax(OneSelect oneSelect);
+
+    List<MyMap> conditionPlatMediaMin(OneSelect oneSelect);
 }

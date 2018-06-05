@@ -81,6 +81,14 @@
 	</select>
 
 
+	<select id="conditionTypeDevice" resultType="com.creative.report.data.vo.SelectFunction">
+		select DISTINCT device_type AS toSelect from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by  toSelect
+	</select>
+
+
 
 
 	<select id="findCreative" resultType="com.creative.report.data.vo.LaunchBanner">
@@ -92,8 +100,38 @@
 		<if test="adv!=''"> and advertiser=#{adv}</if>
 		<if test="industry!=''"> and advertiser_cat=#{industry}</if>
 		<if test="classify!=''"> and creative_id=#{classify}</if>
+		<if test="device!=''"> and device_type=#{device}</if>
 		<if test="size!=''">and CONCAT(width,"*",height) like concat('%',#{size},'%')</if>
 		and type like concat('%',#{type},'%')
+	</select>
+
+
+
+
+	<select id="conditionAdvAvg" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, avg(ctr) as value from (SELECT advertiser_cat val1,ctr  FROM creative_report) t group by val1 ;
+	</select>
+
+	<select id="conditionAdvMax" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, max(ctr) as value from (SELECT advertiser_cat val1,ctr  FROM creative_report) t group by val1 ;
+	</select>
+
+	<select id="conditionAdvMin" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, min(ctr) as value from (SELECT advertiser_cat val1,ctr  FROM creative_report) t group by val1 ;
+	</select>
+
+
+	<select id="conditionPlatMediaAvg" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, avg(ctr) as value from (SELECT CONCAT(platform,"^",domain) val1,ctr  FROM platform) t group by val1 ;
+	</select>
+
+	<select id="conditionPlatMediaMax" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, max(ctr) as value from (SELECT CONCAT(platform,"^",domain) val1,ctr  FROM platform) t group by val1 ;
+	</select>
+
+
+	<select id="conditionPlatMediaMin" resultType="com.creative.report.data.vo.MyMap">
+		select  val1, min(ctr) as value from (SELECT CONCAT(platform,"^",domain) val1,ctr  FROM platform) t group by val1 ;
 	</select>
 
 	<!--<select id="findCustomer" resultType="cn.sxt.carsystem.com.creative.report.data.vo.Customer">-->

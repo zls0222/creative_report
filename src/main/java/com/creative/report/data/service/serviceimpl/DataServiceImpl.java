@@ -86,4 +86,10 @@ public class DataServiceImpl implements DataService{
 		Boolean result=dataDAO.login(user);
 		return result;
 	}
+
+	@Override
+	public List<SelectFunction> conditionTypeDevice(SelectFunction subselect) {
+		List<SelectFunction> result=dataDAO.conditionTypeDevice(subselect);
+		return result;
+	}
 }

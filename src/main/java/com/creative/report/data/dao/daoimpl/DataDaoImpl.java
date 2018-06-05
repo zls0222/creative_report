@@ -4,6 +4,7 @@ import com.creative.report.data.dao.DataDAO;
 import com.creative.report.data.mapper.DaoMapper;
 import com.creative.report.data.vo.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,29 @@ public class DataDaoImpl implements DataDAO {
         oneSelect.setParam(jsp);
         List<MyMap> ctr_avgss= daoMapper.conditionCtrAvg(oneSelect);
         List<MyMap> cvr_avgss= daoMapper.conditionCvrAvg(oneSelect);
+        List<MyMap> level=new ArrayList<MyMap>();
+        List<MyMap> levelMaxed=new ArrayList<MyMap>();
+        List<MyMap> levelMined=new ArrayList<MyMap>();
+        if(jsp.equals("creative_report")) {
+            List<MyMap> advertiserAvg = daoMapper.conditionAdvAvg(oneSelect);
+            List<MyMap> advertiserMax = daoMapper.conditionAdvMax(oneSelect);
+            List<MyMap> advertiserMin = daoMapper.conditionAdvMin(oneSelect);
+            level=advertiserAvg;
+            levelMaxed=advertiserMax;
+            levelMined=advertiserMin;
+        }else if(jsp.equals("platform")){
+            List<MyMap> platMediaAvg = daoMapper.conditionPlatMediaAvg(oneSelect);
+            List<MyMap> platMediaMax = daoMapper.conditionPlatMediaMax(oneSelect);
+            List<MyMap> platMediaMin = daoMapper.conditionPlatMediaMin(oneSelect);
+            level=platMediaAvg;
+            levelMaxed=platMediaMax;
+            levelMined=platMediaMin;
+        }
+//        System.out.print(level.toString());
+//        System.out.print("************************");
+//        System.out.print(levelMaxed.toString());
+//        System.out.print("************************");
+//        System.out.print(levelMined.toString());
 
         HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
         for(int i=0;i<ctr_avgss.size();i++) {
@@ -37,14 +61,61 @@ public class DataDaoImpl implements DataDAO {
             cvr_avgs.put(one.getVal1(),one.getValue());
         }
 
+        HashMap<String,Float> levelAvgs=new HashMap<String,Float>();
+        for(int i=0;i<level.size();i++) {
+            MyMap one= level.get(i);
+            levelAvgs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> levelMaxs=new HashMap<String,Float>();
+        for(int i=0;i<levelMaxed.size();i++) {
+            MyMap one= levelMaxed.get(i);
+            levelMaxs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> levelMins=new HashMap<String,Float>();
+        for(int i=0;i<levelMined.size();i++) {
+            MyMap one= levelMined.get(i);
+            levelMins.put(one.getVal1(),one.getValue());
+        }
+
+
         for (int i = 0; i < result.size(); i++) {
             String adv=result.get(i).getAdvertiser();
             String type=result.get(i).getType();
             int width=result.get(i).getWidth();
             int height=result.get(i).getHeight();
+            String platform=result.get(i).getPlatform();
+            String advertiserCat=result.get(i).getAdvertiser_cat();
+            String domain=result.get(i).getDomain();
             String key=adv+"^"+type+"^"+width+"×"+height;
-            System.out.print(key);
-            System.out.print(ctr_avgs.toString());
+
+            String thisLevel="";
+            if(jsp.equals("creative_report")){
+                thisLevel=advertiserCat;
+            }
+            else{
+
+                thisLevel=platform+"^"+domain;
+            }
+
+            System.out.print(thisLevel);
+            float levelAvg=levelAvgs.get(thisLevel);
+            float levelMax=levelMaxs.get(thisLevel);
+            float levelMin=levelMins.get(thisLevel);
+//            System.out.print(key);
+//            System.out.print(result.get(i).getCtr()-levelAvg+"&&"+levelMax+"&&"+levelAvg+"&&"+levelMin);
+
+            if((result.get(i).getCtr()-levelAvg)>0&&(result.get(i).getCtr()-levelAvg)>(levelMax-levelAvg)*2/3){
+                result.get(i).setComprehensiveWeight("★★★★★");
+            }else if((result.get(i).getCtr()-levelAvg)>0&&(result.get(i).getCtr()-levelAvg)>(levelMax-levelAvg)*1/3){
+                result.get(i).setComprehensiveWeight("★★★★");
+            }else if((result.get(i).getCtr()-levelAvg)>0){
+                result.get(i).setComprehensiveWeight("★★★");
+            }else if((result.get(i).getCtr()-levelAvg)<=0&&(result.get(i).getCtr()-levelAvg)>(levelMin-levelAvg)*1/2){
+                result.get(i).setComprehensiveWeight("★★");
+            }else {
+                result.get(i).setComprehensiveWeight("★");
+            }
+
 
             float ctr_avg= (float) ctr_avgs.get(key);
             float cvr_avg= (float) cvr_avgs.get(key);
@@ -65,7 +136,7 @@ public class DataDaoImpl implements DataDAO {
             result.get(i).setClickContrast(clickContrast);
             result.get(i).setCvtContrast(cvtContrast);
             result.get(i).setSize(size);
-            result.get(i).setComprehensiveWeight((float) 1.0);
+
 
 
 
@@ -104,11 +175,29 @@ public class DataDaoImpl implements DataDAO {
         List<LaunchBanner> result=daoMapper.findCreative(submitSelect);
         System.out.print(result.toString());
 
-
+        String jsp=submitSelect.getJsp();
         OneSelect oneSelect=new OneSelect();
         oneSelect.setParam(submitSelect.getJsp());
         List<MyMap> ctr_avgss= (List<MyMap>) daoMapper.conditionCtrAvg(oneSelect);
         List<MyMap> cvr_avgss=(List<MyMap>)daoMapper.conditionCvrAvg(oneSelect);
+        List<MyMap> level=new ArrayList<MyMap>();
+        List<MyMap> levelMaxed=new ArrayList<MyMap>();
+        List<MyMap> levelMined=new ArrayList<MyMap>();
+        if(jsp.equals("creative_report")) {
+            List<MyMap> advertiserAvg = daoMapper.conditionAdvAvg(oneSelect);
+            List<MyMap> advertiserMax = daoMapper.conditionAdvMax(oneSelect);
+            List<MyMap> advertiserMin = daoMapper.conditionAdvMin(oneSelect);
+            level=advertiserAvg;
+            levelMaxed=advertiserMax;
+            levelMined=advertiserMin;
+        }else if(jsp.equals("platform")){
+            List<MyMap> platMediaAvg = daoMapper.conditionPlatMediaAvg(oneSelect);
+            List<MyMap> platMediaMax = daoMapper.conditionPlatMediaMax(oneSelect);
+            List<MyMap> platMediaMin = daoMapper.conditionPlatMediaMin(oneSelect);
+            level=platMediaAvg;
+            levelMaxed=platMediaMax;
+            levelMined=platMediaMin;
+        }
 
         HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
         for(int i=0;i<ctr_avgss.size();i++) {
@@ -120,6 +209,21 @@ public class DataDaoImpl implements DataDAO {
             MyMap one= cvr_avgss.get(i);
             cvr_avgs.put(one.getVal1(),one.getValue());
         }
+        HashMap<String,Float> levelAvgs=new HashMap<String,Float>();
+        for(int i=0;i<level.size();i++) {
+            MyMap one= level.get(i);
+            levelAvgs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> levelMaxs=new HashMap<String,Float>();
+        for(int i=0;i<levelMaxed.size();i++) {
+            MyMap one= level.get(i);
+            levelMaxs.put(one.getVal1(),one.getValue());
+        }
+        HashMap<String,Float> levelMins=new HashMap<String,Float>();
+        for(int i=0;i<levelMined.size();i++) {
+            MyMap one= level.get(i);
+            levelMins.put(one.getVal1(),one.getValue());
+        }
 
 
         for (int i = 0; i < result.size(); i++) {
@@ -127,10 +231,37 @@ public class DataDaoImpl implements DataDAO {
             String type=result.get(i).getType();
             int width=result.get(i).getWidth();
             int height=result.get(i).getHeight();
+            String advertiserCat=result.get(i).getAdvertiser_cat();
+            String platform=result.get(i).getPlatform();
+            String domain=result.get(i).getDomain();
             String key=adv+"^"+type+"^"+width+"×"+height;
 
             float ctr_avg= (float) ctr_avgs.get(key);
             float cvr_avg= (float) cvr_avgs.get(key);
+            String thisLevel="";
+            if(jsp.equals("creative_report")){
+                thisLevel=advertiserCat;
+            }
+            else{
+                thisLevel=platform+"^"+domain;
+            }
+
+            float levelAvg=levelAvgs.get(thisLevel);
+            float levelMax=levelMaxs.get(thisLevel);
+            float levelMin=levelMins.get(thisLevel);
+//            System.out.print(key);
+//            System.out.print(ctr_avgs.toString());
+            if((result.get(i).getCtr()-levelAvg)>0&&(result.get(i).getCtr()-levelAvg)>(levelMax-levelAvg)*2/3){
+                result.get(i).setComprehensiveWeight("★★★★★");
+            }else if((result.get(i).getCtr()-levelAvg)>0&&(result.get(i).getCtr()-levelAvg)>(levelMax-levelAvg)*1/3){
+                result.get(i).setComprehensiveWeight("★★★★");
+            }else if((result.get(i).getCtr()-levelAvg)>0){
+                result.get(i).setComprehensiveWeight("★★★");
+            }else if((result.get(i).getCtr()-levelAvg)<=0&&(result.get(i).getCtr()-levelAvg)>(levelMin-levelAvg)*1/2){
+                result.get(i).setComprehensiveWeight("★★");
+            }else {
+                result.get(i).setComprehensiveWeight("★");
+            }
 
 
 
@@ -148,7 +279,7 @@ public class DataDaoImpl implements DataDAO {
             result.get(i).setClickContrast(clickContrast);
             result.get(i).setCvtContrast(cvtContrast);
             result.get(i).setSize(size);
-            result.get(i).setComprehensiveWeight((float) 1.0);
+//            result.get(i).setComprehensiveWeight((float) 1.0);
 
 
 
@@ -182,5 +313,11 @@ public class DataDaoImpl implements DataDAO {
             return true;
         }
             return false;
+    }
+
+    @Override
+    public List<SelectFunction> conditionTypeDevice(SelectFunction subselect) {
+        List<SelectFunction> result=daoMapper.conditionTypeDevice(subselect);
+        return result;
     }
 }

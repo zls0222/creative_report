@@ -12,19 +12,20 @@ public class SubmitSelect {
     String size;
     String classify;
     String jsp;
+    String device;
 
     public SubmitSelect() {
     }
 
-    public SubmitSelect(String type, String adv, String industry, String size, String classify, String jsp) {
+    public SubmitSelect(String type, String adv, String industry, String size, String classify, String jsp, String device) {
         this.type = type;
         this.adv = adv;
         this.industry = industry;
         this.size = size;
         this.classify = classify;
         this.jsp = jsp;
+        this.device = device;
     }
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -78,6 +79,13 @@ public class SubmitSelect {
         this.jsp = jsp;
     }
 
+    public String getDevice() {
+        return device;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -91,7 +99,8 @@ public class SubmitSelect {
         if (industry != null ? !industry.equals(that.industry) : that.industry != null) return false;
         if (size != null ? !size.equals(that.size) : that.size != null) return false;
         if (classify != null ? !classify.equals(that.classify) : that.classify != null) return false;
-        return !(jsp != null ? !jsp.equals(that.jsp) : that.jsp != null);
+        if (jsp != null ? !jsp.equals(that.jsp) : that.jsp != null) return false;
+        return !(device != null ? !device.equals(that.device) : that.device != null);
 
     }
 
@@ -103,9 +112,9 @@ public class SubmitSelect {
         result = 31 * result + (size != null ? size.hashCode() : 0);
         result = 31 * result + (classify != null ? classify.hashCode() : 0);
         result = 31 * result + (jsp != null ? jsp.hashCode() : 0);
+        result = 31 * result + (device != null ? device.hashCode() : 0);
         return result;
     }
-
 
     @Override
     public String toString() {
@@ -116,6 +125,7 @@ public class SubmitSelect {
                 ", size='" + size + '\'' +
                 ", classify='" + classify + '\'' +
                 ", jsp='" + jsp + '\'' +
+                ", device='" + device + '\'' +
                 '}';
     }
 }

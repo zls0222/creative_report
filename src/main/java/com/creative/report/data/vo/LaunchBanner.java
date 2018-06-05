@@ -9,6 +9,9 @@ public class LaunchBanner {
 
     //选择	广告主	订单	计划	分类	尺寸	类型	创意分类	创意	曝光	点击	点击率	对比值	转化	转化率	对比值	综合权重
 
+
+    String platform;
+    String domain;
     String creative_url;
     String advertiser;
     String order_id;
@@ -30,14 +33,15 @@ public class LaunchBanner {
     Long cvt;
     Float cvr;
     Float cvtContrast;
-    Float comprehensiveWeight;
+    String comprehensiveWeight;
 
 
     public LaunchBanner() {
     }
 
-
-    public LaunchBanner(String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String advertiser_cat, String creative_id, int width, int height, String type, String title, String descri, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, Float comprehensiveWeight) {
+    public LaunchBanner(String platform, String domain, String creative_url, String advertiser, String order_id, String exe_campaign_id, String size, String advertiser_cat, String creative_id, int width, int height, String type, String title, String descri, Long imp, Long click, Float ctr, Float clickContrast, Long cvt, Float cvr, Float cvtContrast, String comprehensiveWeight) {
+        this.platform = platform;
+        this.domain = domain;
         this.creative_url = creative_url;
         this.advertiser = advertiser;
         this.order_id = order_id;
@@ -62,6 +66,22 @@ public class LaunchBanner {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public String getCreative_url() {
@@ -216,13 +236,14 @@ public class LaunchBanner {
         this.cvtContrast = cvtContrast;
     }
 
-    public Float getComprehensiveWeight() {
+    public String getComprehensiveWeight() {
         return comprehensiveWeight;
     }
 
-    public void setComprehensiveWeight(Float comprehensiveWeight) {
+    public void setComprehensiveWeight(String comprehensiveWeight) {
         this.comprehensiveWeight = comprehensiveWeight;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -233,6 +254,8 @@ public class LaunchBanner {
 
         if (width != that.width) return false;
         if (height != that.height) return false;
+        if (platform != null ? !platform.equals(that.platform) : that.platform != null) return false;
+        if (domain != null ? !domain.equals(that.domain) : that.domain != null) return false;
         if (creative_url != null ? !creative_url.equals(that.creative_url) : that.creative_url != null) return false;
         if (advertiser != null ? !advertiser.equals(that.advertiser) : that.advertiser != null) return false;
         if (order_id != null ? !order_id.equals(that.order_id) : that.order_id != null) return false;
@@ -259,7 +282,9 @@ public class LaunchBanner {
 
     @Override
     public int hashCode() {
-        int result = creative_url != null ? creative_url.hashCode() : 0;
+        int result = platform != null ? platform.hashCode() : 0;
+        result = 31 * result + (domain != null ? domain.hashCode() : 0);
+        result = 31 * result + (creative_url != null ? creative_url.hashCode() : 0);
         result = 31 * result + (advertiser != null ? advertiser.hashCode() : 0);
         result = 31 * result + (order_id != null ? order_id.hashCode() : 0);
         result = 31 * result + (exe_campaign_id != null ? exe_campaign_id.hashCode() : 0);
@@ -282,10 +307,13 @@ public class LaunchBanner {
         return result;
     }
 
+
     @Override
     public String toString() {
         return "LaunchBanner{" +
-                "creative_url='" + creative_url + '\'' +
+                "platform='" + platform + '\'' +
+                ", domain='" + domain + '\'' +
+                ", creative_url='" + creative_url + '\'' +
                 ", advertiser='" + advertiser + '\'' +
                 ", order_id='" + order_id + '\'' +
                 ", exe_campaign_id='" + exe_campaign_id + '\'' +

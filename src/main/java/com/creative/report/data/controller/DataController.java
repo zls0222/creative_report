@@ -125,6 +125,9 @@ public class DataController {
 		else if(creativeadv.equals("medias")){
 			list = dataService.conditionTypeMedias(subselect);
 		}
+		else if(creativeadv.equals("device")){
+			list = dataService.conditionTypeDevice(subselect);
+		}
 
 //
 		String jsonStr = JSONObject.toJSONString(list);
@@ -150,6 +153,7 @@ public class DataController {
 		String industry = request.getParameter("industry");
 		String size = request.getParameter("size");
 		String classify = request.getParameter("classify");
+		String device = request.getParameter("device");
 		String jsp = request.getParameter("jsp");
 		if(jsp.equals("launch")){
 			jsp="creative_report";
@@ -160,7 +164,7 @@ public class DataController {
 		}
 
 
-		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify,jsp);
+		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify,jsp,device);
 		System.out.print(submitSelect);
 //		System.out.print(submitSelect.toString());
 		List<LaunchBanner> findCreative = new ArrayList<LaunchBanner>();

@@ -294,7 +294,7 @@
 //
 
 
-                data: {"jsp":document.getElementById('launch').value,"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
+                data: {"jsp":document.getElementById('launch').value,"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value,"device":document.getElementById('device').value},
                 dataSrc: ''
             },
 
@@ -611,6 +611,8 @@
       loadAdv(arg1,"industrys")
       loadAdv(arg1,"sizes")
       loadAdv(arg1,"classes")
+      loadAdv(arg1,"device")
+
     }
   </script>
 
@@ -896,6 +898,17 @@
                             <%--</c:forEach>--%>
                           </select>
                         </li>
+
+                          <li onload="typeForm('device')">
+
+                              <select id="device" name="device">
+                                  <%--<option id="sizes" value="">尺寸</option>--%>
+
+                                  <%--<c:forEach items="${sizeList }" var="size" varStatus="one">--%>
+                                  <%--<option value="${size.toSelect }">${size.toSelect }</option>--%>
+                                  <%--</c:forEach>--%>
+                              </select>
+                          </li>
 
                         <li>
 

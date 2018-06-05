@@ -29,4 +29,6 @@ public interface DataDAO {
 	List<SelectFunction> conditionTypeMedias(SelectFunction subselect);
 
 	Boolean login(User user);
+
+	List<SelectFunction> conditionTypeDevice(SelectFunction subselect);
 }
