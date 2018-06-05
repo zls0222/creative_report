@@ -7,6 +7,7 @@ import com.creative.report.data.vo.*;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.One;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -17,11 +18,13 @@ public class DataDaoImpl implements DataDAO {
     @Autowired
     private DaoMapper daoMapper;
     @Override
-    public List<LaunchBanner> conditionNative(String condition) {
-        List<LaunchBanner> result=daoMapper.conditionNative(condition);
-
-        List<MyMap> ctr_avgss= daoMapper.conditionCtrAvg();
-        List<MyMap> cvr_avgss= daoMapper.conditionCvrAvg();
+    public List<LaunchBanner> conditionNative(String condition,String jsp) {
+        SelectFunction two=new SelectFunction(condition,jsp);
+        List<LaunchBanner> result=daoMapper.conditionNative(two);
+        OneSelect oneSelect=new OneSelect();
+        oneSelect.setParam(jsp);
+        List<MyMap> ctr_avgss= daoMapper.conditionCtrAvg(oneSelect);
+        List<MyMap> cvr_avgss= daoMapper.conditionCvrAvg(oneSelect);
 
         HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
         for(int i=0;i<ctr_avgss.size();i++) {
@@ -40,6 +43,8 @@ public class DataDaoImpl implements DataDAO {
             int width=result.get(i).getWidth();
             int height=result.get(i).getHeight();
             String key=adv+"^"+type+"^"+width+"×"+height;
+            System.out.print(key);
+            System.out.print(ctr_avgs.toString());
 
             float ctr_avg= (float) ctr_avgs.get(key);
             float cvr_avg= (float) cvr_avgs.get(key);
@@ -98,8 +103,12 @@ public class DataDaoImpl implements DataDAO {
 
         List<LaunchBanner> result=daoMapper.findCreative(submitSelect);
         System.out.print(result.toString());
-        List<MyMap> ctr_avgss= (List<MyMap>) daoMapper.conditionCtrAvg();
-        List<MyMap> cvr_avgss=(List<MyMap>)daoMapper.conditionCvrAvg();
+
+
+        OneSelect oneSelect=new OneSelect();
+        oneSelect.setParam(submitSelect.getJsp());
+        List<MyMap> ctr_avgss= (List<MyMap>) daoMapper.conditionCtrAvg(oneSelect);
+        List<MyMap> cvr_avgss=(List<MyMap>)daoMapper.conditionCvrAvg(oneSelect);
 
         HashMap<String,Float> ctr_avgs=new HashMap<String,Float>();
         for(int i=0;i<ctr_avgss.size();i++) {

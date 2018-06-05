@@ -8,7 +8,7 @@ public interface DataService {
 
 
 
-	List<LaunchBanner> conditionNative(String condition);
+	List<LaunchBanner> conditionNative(String condition,String jsp);
 
 	List<SelectFunction> conditionNativeAdv(SelectFunction condition);
 

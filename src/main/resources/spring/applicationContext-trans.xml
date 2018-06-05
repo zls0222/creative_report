@@ -35,7 +35,9 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	
+
+
+
 	<!-- 配置通知 -->
 	 <tx:advice id="Advice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -51,6 +53,7 @@
 			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="condition*" propagation="SUPPORTS" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 	

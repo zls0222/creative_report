@@ -10,9 +10,9 @@ import java.util.List;
 public interface DaoMapper {
 
 
-    List<LaunchBanner> conditionNative(String condition);
-    List<MyMap> conditionCtrAvg();
-    List<MyMap> conditionCvrAvg();
+    List<LaunchBanner> conditionNative(SelectFunction condition);
+    List<MyMap> conditionCtrAvg(OneSelect jsp);
+    List<MyMap> conditionCvrAvg(OneSelect jsp);
 
     List<SelectFunction> conditionNativeAdv(SelectFunction condition);
 

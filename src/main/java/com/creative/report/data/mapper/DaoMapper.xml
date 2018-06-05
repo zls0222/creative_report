@@ -13,35 +13,56 @@
 
 
 	<select id="conditionNative" resultType="com.creative.report.data.vo.LaunchBanner">
-		select * from creative_report where type like concat('%',#{toSelect},'%')
+		select * from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by ctr desc limit 1000
 	</select>
 
 	<select id="conditionCtrAvg" resultType="com.creative.report.data.vo.MyMap">
-		select  val1, avg(ctr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,ctr  FROM `creative_report`) t group by val1 ;
+		select  val1, avg(ctr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,ctr  FROM
+		<if test="param=='creative_report'">creative_report</if>
+		<if test="param=='platform'">platform</if>
+		) t group by val1 ;
 	</select>
 
 	<select id="conditionCvrAvg" resultType="com.creative.report.data.vo.MyMap">
-		select  val1, avg(cvr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,cvr  FROM `creative_report`) t group by val1 ;
+		select  val1, avg(cvr) as value from (SELECT CONCAT(advertiser,"^",type,"^",width,"×",height) val1,cvr  FROM
+		<if test="param=='creative_report'">creative_report</if>
+		<if test="param=='platform'">platform</if>
+		) t group by val1 ;
 	</select>
 
 	<!--筛选出广告主-->
 	<select id="conditionNativeAdv" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT advertiser AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT advertiser AS toSelect from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeIndustry" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT advertiser_cat AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT advertiser_cat AS toSelect from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeAdvSize" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT CONCAT(width,"*",height) AS toSelect  from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT CONCAT(width,"*",height) AS toSelect  from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionNativeAdvClassify" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT creative_id AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT creative_id AS toSelect from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
@@ -63,7 +84,10 @@
 
 
 	<select id="findCreative" resultType="com.creative.report.data.vo.LaunchBanner">
-		select *  from creative_report where '1'='1'
+		select *  from
+		<if test="jsp=='creative_report'">creative_report</if>
+		<if test="jsp=='platform'">platform</if>
+		where '1'='1'
 
 		<if test="adv!=''"> and advertiser=#{adv}</if>
 		<if test="industry!=''"> and advertiser_cat=#{industry}</if>

@@ -9,7 +9,7 @@ import java.util.List;
 public interface DataDAO {
 
 
-	List<LaunchBanner> conditionNative(String condition);
+	List<LaunchBanner> conditionNative(String condition,String jsp);
 
 
 	List<SelectFunction> conditionNativeAdv(SelectFunction condition);

@@ -66,7 +66,15 @@ public class DataController {
 	public @ResponseBody String showNative(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		System.out.print("进来了");
 		String toSelect = request.getParameter("toSelect");
-		List<LaunchBanner> list=dataService.conditionNative(toSelect);
+		String jsp = request.getParameter("jsp");
+		if(jsp.equals("launch")){
+			jsp="creative_report";
+		}else if(jsp.equals("media")){
+			jsp="platform";
+		}else if(jsp.equals("recommend")){
+			jsp="creative_report";
+		}
+		List<LaunchBanner> list=dataService.conditionNative(toSelect,jsp);
 //=
 		String jsonStr = JSONObject.toJSONString(list);
 //		System.out.print(jsonStr);
@@ -85,10 +93,19 @@ public class DataController {
 	public @ResponseBody String subSelected(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String toSelect = request.getParameter("creativetype");
 
+		String jsp = request.getParameter("jsp");
+		if(jsp.equals("launch")){
+			jsp="creative_report";
+		}else if(jsp.equals("media")){
+			jsp="platform";
+		}else if(jsp.equals("recommend")){
+			jsp="creative_report";
+		}
+
 		String creativeadv = request.getParameter("creativeadv");
 		System.out.print(toSelect+creativeadv);
 		System.out.print("**************");
-		SelectFunction subselect=new SelectFunction(toSelect);
+		SelectFunction subselect=new SelectFunction(toSelect,jsp);
 		List<SelectFunction> list=new ArrayList<SelectFunction>();
 		if(creativeadv.equals("advs")){
 			list = dataService.conditionNativeAdv(subselect);
@@ -133,9 +150,17 @@ public class DataController {
 		String industry = request.getParameter("industry");
 		String size = request.getParameter("size");
 		String classify = request.getParameter("classify");
+		String jsp = request.getParameter("jsp");
+		if(jsp.equals("launch")){
+			jsp="creative_report";
+		}else if(jsp.equals("media")){
+			jsp="platform";
+		}else if(jsp.equals("recommend")){
+			jsp="creative_report";
+		}
 
 
-		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify);
+		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify,jsp);
 		System.out.print(submitSelect);
 //		System.out.print(submitSelect.toString());
 		List<LaunchBanner> findCreative = new ArrayList<LaunchBanner>();

@@ -27,8 +27,8 @@ public class DataServiceImpl implements DataService{
 //	}
 
 	@Override
-	public List<LaunchBanner> conditionNative(String condition) {
-		List<LaunchBanner> result=dataDAO.conditionNative(condition);
+	public List<LaunchBanner> conditionNative(String condition,String jsp) {
+		List<LaunchBanner> result=dataDAO.conditionNative(condition,jsp);
 
 		return result;
 	}

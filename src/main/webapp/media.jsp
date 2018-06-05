@@ -248,7 +248,7 @@
 //
 
 
-                    data: {"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
+                    data: {"jsp":document.getElementById('media').value,"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value},
                     dataSrc: ''
                 },
 
@@ -311,7 +311,7 @@
             $.ajax({
                 type: "GET",
                 url: '/creative/creative/subselect',
-                data: {"creativetype": arg1,"creativeadv":arg2},
+                data: {"jsp":document.getElementById('media').value,"creativetype": arg1,"creativeadv":arg2},
                 dataType: "json",
                 error: function (XMLHttpRequest, textStatus, errorThrown, data) {
                     console.info(XMLHttpRequest.status);
@@ -404,7 +404,7 @@
                     type : "GET",
                     contentType : "application/json",
                     dataType : "json",
-                    data: {"toSelect":arg1},
+                    data: {"jsp":document.getElementById('media').value,"toSelect":arg1},
                     dataSrc: ''
                 },
 
@@ -654,6 +654,7 @@
 
                                     <div >
                                         <form id="selectCondition"    class="form form-horizontal" id="form-member-add" >
+                                            <input type="hidden" name="media" value="media" id="media">
 
                                             <%--<form action="${pageContext.request.contextPath}/creative/selected"  method="post" class="form form-horizontal" id="form-member-add" >--%>
                                             <input type="hidden" name="type" id='type' >
