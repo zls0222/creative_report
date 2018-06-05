@@ -51,12 +51,12 @@
 
 
 	<select id="conditionTypePlatforms" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT creative_id AS toSelect from creative_report where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT platform AS toSelect from platform where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 
 	<select id="conditionTypeMedias" resultType="com.creative.report.data.vo.SelectFunction">
-		select DISTINCT creative_id AS toSelect from creative_data where type like concat('%',#{toSelect},'%') order by  toSelect
+		select DISTINCT domain AS toSelect from platform where type like concat('%',#{toSelect},'%') order by  toSelect
 	</select>
 
 

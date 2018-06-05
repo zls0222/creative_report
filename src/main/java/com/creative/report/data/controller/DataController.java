@@ -33,7 +33,7 @@ public class DataController {
 //		String passWord = request.getParameter("Password");
 //
 //		User user=new User(userName,passWord);
-		System.out.print(user.toString());
+//		System.out.print(user.toString());
 		Boolean loginuer=dataService.login(user);
 
 		if(loginuer){
@@ -69,7 +69,7 @@ public class DataController {
 		List<LaunchBanner> list=dataService.conditionNative(toSelect);
 //=
 		String jsonStr = JSONObject.toJSONString(list);
-		System.out.print(jsonStr);
+//		System.out.print(jsonStr);
 
 
 		if (list.size()>0) {

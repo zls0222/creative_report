@@ -468,6 +468,8 @@
             loadAdv(arg1,"sizes")
             loadAdv(arg1,"classes")
             loadAdv(arg1,"recommends")
+            loadAdv(arg1,"platforms")
+            loadAdv(arg1,"medias")
         }
     </script>
 
