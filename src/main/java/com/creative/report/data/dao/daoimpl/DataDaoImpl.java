@@ -4,9 +4,7 @@ import com.creative.report.data.dao.DataDAO;
 import com.creative.report.data.mapper.DaoMapper;
 import com.creative.report.data.vo.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.apache.ibatis.annotations.One;
 import org.springframework.stereotype.Repository;
@@ -285,14 +283,39 @@ public class DataDaoImpl implements DataDAO {
 
 
         }
+        if(submitSelect.getRecommends()!=""){
+            List<LaunchBanner> star_result=new ArrayList<LaunchBanner>();
+            for(int i=0;i<result.size();i++){
+                if(result.get(i).getComprehensiveWeight()==submitSelect.getRecommends()){
+                    star_result.add(result.get(i));
+                }
+            }
+            return star_result;
+
+        }else {
             return result;
+        }
+
     }
 
     @Override
     public List<SelectFunction> conditionTypeRecommends(SelectFunction subselect) {
-        List<SelectFunction> result=daoMapper.conditionTypeRecommends(subselect);
+        List<SelectFunction> result=new ArrayList<SelectFunction>();
+        List<LaunchBanner> result0=conditionNative(subselect.getToSelect(), subselect.getJsp());
+        TreeSet sets=new TreeSet<String>();
+        for(int i=0;i<result0.size();i++){
+            sets.add(result0.get(i).getComprehensiveWeight());
+
+        }
+        Iterator<String> it = sets.iterator();
+        while (it.hasNext()) {
+            String str = it.next();
+            result.add(new SelectFunction(str));
+        }
         return result;
     }
+
+
 
     @Override
     public List<SelectFunction> conditionTypePlatforms(SelectFunction subselect) {

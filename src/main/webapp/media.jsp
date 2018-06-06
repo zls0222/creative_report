@@ -248,7 +248,7 @@
 //
 
 
-                    data: {"jsp":document.getElementById('media').value,"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value,"device":document.getElementById('device').value},
+                    data: {"jsp":document.getElementById('media').value,"type":document.getElementById('type').value,"adv":document.getElementById('advs').value,"industry":document.getElementById('industrys').value,"size":document.getElementById('sizes').value,"classify":document.getElementById('classes').value,"device":document.getElementById('device').value,"recommends":document.getElementById('recommends').value,"platforms":document.getElementById('platforms').value,"medias":document.getElementById('medias').value},
                     dataSrc: ''
                 },
 

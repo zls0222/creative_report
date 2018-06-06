@@ -102,6 +102,8 @@
 		<if test="classify!=''"> and creative_id=#{classify}</if>
 		<if test="device!=''"> and device_type=#{device}</if>
 		<if test="size!=''">and CONCAT(width,"*",height) like concat('%',#{size},'%')</if>
+		<if test="platforms!=''"> and device_type=#{platforms}</if>
+		<if test="medias!=''"> and device_type=#{medias}</if>
 		and type like concat('%',#{type},'%')
 	</select>
 

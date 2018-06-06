@@ -11,6 +11,10 @@ public class SelectFunction {
     public SelectFunction() {
     }
 
+    public SelectFunction(String toSelect) {
+        this.toSelect = toSelect;
+    }
+
     public SelectFunction(String toSelect, String jsp) {
         this.toSelect = toSelect;
         this.jsp = jsp;

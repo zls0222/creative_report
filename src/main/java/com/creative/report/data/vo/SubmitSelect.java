@@ -13,11 +13,14 @@ public class SubmitSelect {
     String classify;
     String jsp;
     String device;
+    String recommends;
+    String platforms;
+    String medias;
 
     public SubmitSelect() {
     }
 
-    public SubmitSelect(String type, String adv, String industry, String size, String classify, String jsp, String device) {
+    public SubmitSelect(String type, String adv, String industry, String size, String classify, String jsp, String device, String recommends, String platforms, String medias) {
         this.type = type;
         this.adv = adv;
         this.industry = industry;
@@ -25,7 +28,11 @@ public class SubmitSelect {
         this.classify = classify;
         this.jsp = jsp;
         this.device = device;
+        this.recommends = recommends;
+        this.platforms = platforms;
+        this.medias = medias;
     }
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -87,6 +94,30 @@ public class SubmitSelect {
         this.device = device;
     }
 
+    public String getRecommends() {
+        return recommends;
+    }
+
+    public void setRecommends(String recommends) {
+        this.recommends = recommends;
+    }
+
+    public String getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public String getMedias() {
+        return medias;
+    }
+
+    public void setMedias(String medias) {
+        this.medias = medias;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,7 +131,10 @@ public class SubmitSelect {
         if (size != null ? !size.equals(that.size) : that.size != null) return false;
         if (classify != null ? !classify.equals(that.classify) : that.classify != null) return false;
         if (jsp != null ? !jsp.equals(that.jsp) : that.jsp != null) return false;
-        return !(device != null ? !device.equals(that.device) : that.device != null);
+        if (device != null ? !device.equals(that.device) : that.device != null) return false;
+        if (recommends != null ? !recommends.equals(that.recommends) : that.recommends != null) return false;
+        if (platforms != null ? !platforms.equals(that.platforms) : that.platforms != null) return false;
+        return !(medias != null ? !medias.equals(that.medias) : that.medias != null);
 
     }
 
@@ -113,6 +147,9 @@ public class SubmitSelect {
         result = 31 * result + (classify != null ? classify.hashCode() : 0);
         result = 31 * result + (jsp != null ? jsp.hashCode() : 0);
         result = 31 * result + (device != null ? device.hashCode() : 0);
+        result = 31 * result + (recommends != null ? recommends.hashCode() : 0);
+        result = 31 * result + (platforms != null ? platforms.hashCode() : 0);
+        result = 31 * result + (medias != null ? medias.hashCode() : 0);
         return result;
     }
 
@@ -126,6 +163,9 @@ public class SubmitSelect {
                 ", classify='" + classify + '\'' +
                 ", jsp='" + jsp + '\'' +
                 ", device='" + device + '\'' +
+                ", recommends='" + recommends + '\'' +
+                ", platforms='" + platforms + '\'' +
+                ", medias='" + medias + '\'' +
                 '}';
     }
 }

@@ -155,6 +155,9 @@ public class DataController {
 		String classify = request.getParameter("classify");
 		String device = request.getParameter("device");
 		String jsp = request.getParameter("jsp");
+		String recommends = request.getParameter("recommends");
+		String platforms = request.getParameter("platforms");
+		String medias = request.getParameter("medias");
 		if(jsp.equals("launch")){
 			jsp="creative_report";
 		}else if(jsp.equals("media")){
@@ -164,7 +167,7 @@ public class DataController {
 		}
 
 
-		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify,jsp,device);
+		SubmitSelect submitSelect=new SubmitSelect(type,adv,industry,size,classify,jsp,device,recommends,platforms,medias);
 		System.out.print(submitSelect);
 //		System.out.print(submitSelect.toString());
 		List<LaunchBanner> findCreative = new ArrayList<LaunchBanner>();
