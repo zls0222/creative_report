@@ -69,7 +69,7 @@
 
 
         function showDownloadAPPColorbox(data){
-            alert("ok")
+            alert("ok2")
             $.colorbox({
                 reposition: false,      // ?
 //top: "20px",
@@ -194,7 +194,7 @@
     <script>
 
         function submitComment(data) {
-            alert("ok")
+            alert("ok1")
 
 
 

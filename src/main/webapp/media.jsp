@@ -70,7 +70,7 @@
     <script>
 
         function submitComment(data) {
-            alert("ok")
+            alert("ok1")
 
 
 
